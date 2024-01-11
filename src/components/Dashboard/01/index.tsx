@@ -4,6 +4,7 @@ import { getWeek } from "../../../utils/utils";
 import { WeatherType } from "../../../types/Types";
 import Weather from "./weather";
 import Workflow from "./workflow";
+import Notice from "./notice";
 
 
 export interface DashboardProps {
@@ -40,10 +41,7 @@ const Dashboard: React.FC<DashboardProps> = ({ weather, children }) => {
                     </WeatherForcastBlock>
                     <WorkBlock>
                         <WorkflowBlock><Workflow /></WorkflowBlock>
-
-                        <div>
-                            aaaaaaaaa
-                        </div>
+                        <NoticeBlock><Notice /></NoticeBlock>
                     </WorkBlock>
                 </WorkContainer>
             </Container>
@@ -117,6 +115,14 @@ const WorkBlock = styled.div`
 const WorkflowBlock = styled.div`
     float: left;
     width: 50%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+`
+
+const NoticeBlock = styled.div`
+    float: right;
+    width: 45%;
     height: 100%;
     padding: 10px;
     text-align: center;
