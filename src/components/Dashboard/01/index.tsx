@@ -33,8 +33,11 @@ const Dashboard: React.FC<DashboardProps> = ({ weather, children }) => {
                         <Weather title="明日の天気" kubun="image" icon={weather?.weather[0].icon} time="Tomorrow" />
                     </WeatherBlock>
                 </WeatherContainer>
-                <div>
-                </div>
+                <WorkContainer>
+                    <WeatherForcastContainer>
+                        <span>気象情報：注意報が流れます</span>
+                    </WeatherForcastContainer>
+                </WorkContainer>
             </Container>
         </Body>
     )
@@ -56,16 +59,13 @@ const Header = styled.div`
 `;
 
 const Title = styled.div`
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffffff;
+    font-size: 40px;
 `;
 
 const Day = styled.div`
     margin-right: 100px;
     font-size: 18px;
     font-weight: bold;
-    color: #ffffff;
 `;
 
 const Container = styled.div`
@@ -85,6 +85,22 @@ const WeatherBlock = styled.div`
     padding-top:10px;
 `;
 
+const WorkContainer = styled.div`
+    width: 80%;
+`;
+
+const WeatherForcastContainer = styled.div`
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    border-bottom: solid 2px #ffffff;
+    font-size: 30px;
+
+    & > span {
+        margin-left: 20px;
+    }
+`;
 
 
 export default Dashboard;
