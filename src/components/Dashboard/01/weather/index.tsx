@@ -4,7 +4,7 @@ import styled from "styled-components";
 export type WeatherProps = ({
     kubun: "image";
     icon: string | undefined;
-    time: "Today" | "Tomorrow";
+    timer: "Today" | "Tomorrow";
 } | {
     kubun: "number";
     val?: number | undefined;
@@ -27,13 +27,13 @@ const Weather: React.FC<WeatherProps> = (props) => {
                             <img src={`https://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="" />
                         </Image>
                     </ImageContainer>
-                    <ImageMemo time={props.time}>{props.time}</ImageMemo>
+                    <ImageMemo timer={props.timer}>{props.timer}</ImageMemo>
                 </>
             )}
-            {props.kubun === "number" && (
+            {props.kubun === "number" && props.val && (
                 <NumberContainer>
                     <span>{props.val}</span>
-                    <NumberUnit>{props.type === 'temp' ? "℃": "%"}</NumberUnit>
+                    <NumberUnit>{props.type === 'temp' ? "℃" : "%"}</NumberUnit>
                 </NumberContainer>
             )}
         </Container>
@@ -69,12 +69,12 @@ const Image = styled.div`
     left: calc(50% - 50px);
 `;
 
-const ImageMemo = styled.div<{ time?: string }>`
+const ImageMemo = styled.div<{ timer?: string }>`
     width: 100px;
     margin: 60px auto 0;
     padding: 2px 0;
     text-align: center;
-    background-color: ${(props) => props.time === 'Today' ? 'green' : 'orange'};
+    background-color: ${(props) => props.timer === 'Today' ? 'green' : 'orange'};
     border-radius: 5px;
 `;
 

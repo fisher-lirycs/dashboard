@@ -47,4 +47,10 @@ export type WeatherType = {
     id: number;
     timezone: number;
 
-}
+};
+
+export type WorkflowType = {
+    date: string;
+    weekDay: number;
+    detail: string;
+};

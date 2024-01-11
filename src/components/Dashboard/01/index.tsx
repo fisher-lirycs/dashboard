@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { getWeek } from "../../../utils/utils";
 import { WeatherType } from "../../../types/Types";
 import Weather from "./weather";
+import Workflow from "./workflow";
 
 
 export interface DashboardProps {
@@ -21,7 +22,7 @@ const Dashboard: React.FC<DashboardProps> = ({ weather, children }) => {
             <Container>
                 <WeatherContainer>
                     <WeatherBlock>
-                        <Weather title="今日の天気" kubun="image" icon={weather?.weather[0].icon} time="Today" />
+                        <Weather title="今日の天気" kubun="image" icon={weather?.weather[0].icon} timer="Today" />
                     </WeatherBlock>
                     <WeatherBlock>
                         <Weather title="最高気温" kubun="number" val={weather?.main.temp} type="temp" />
@@ -30,13 +31,20 @@ const Dashboard: React.FC<DashboardProps> = ({ weather, children }) => {
                         <Weather title="降水確率" kubun="number" val={weather?.main.humidity} type="rain" />
                     </WeatherBlock>
                     <WeatherBlock>
-                        <Weather title="明日の天気" kubun="image" icon={weather?.weather[0].icon} time="Tomorrow" />
+                        <Weather title="明日の天気" kubun="image" icon={weather?.weather[0].icon} timer="Tomorrow" />
                     </WeatherBlock>
                 </WeatherContainer>
                 <WorkContainer>
-                    <WeatherForcastContainer>
+                    <WeatherForcastBlock>
                         <span>気象情報：注意報が流れます</span>
-                    </WeatherForcastContainer>
+                    </WeatherForcastBlock>
+                    <WorkBlock>
+                        <WorkflowBlock><Workflow /></WorkflowBlock>
+
+                        <div>
+                            aaaaaaaaa
+                        </div>
+                    </WorkBlock>
                 </WorkContainer>
             </Container>
         </Body>
@@ -89,7 +97,7 @@ const WorkContainer = styled.div`
     width: 80%;
 `;
 
-const WeatherForcastContainer = styled.div`
+const WeatherForcastBlock = styled.div`
     display: flex;
     height: 50px;
     width: 100%;
@@ -101,6 +109,18 @@ const WeatherForcastContainer = styled.div`
         margin-left: 20px;
     }
 `;
+
+const WorkBlock = styled.div`
+    height: calc(100% - 72px);
+`
+
+const WorkflowBlock = styled.div`
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+`
 
 
 export default Dashboard;
