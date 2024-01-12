@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Dashboard from './components/Dashboard/01';
+import Dashboard from './components/Dashboard/02';
 import { WeatherType } from './types/Types';
 import axios from 'axios';
 import 'react-clock/dist/Clock.css';
@@ -13,8 +13,8 @@ function App() {
   }, []);
   return (
     <div>
-      <Dashboard weather={weather} />
-      {/* <Dashboard /> */}
+      {/* <Dashboard weather={weather} /> */}
+      <Dashboard />
     </div>
   );
 }
