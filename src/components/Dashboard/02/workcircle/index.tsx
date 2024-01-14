@@ -46,7 +46,7 @@ const WorkCircle: React.FC = () => {
             <ContainerCircle>
                 <ReactEcharts option={option} />
                 <ClockBlock>
-                    <MyClock />
+                    {/* <MyClock /> */}
                 </ClockBlock>
             </ContainerCircle>
         </Container>
@@ -55,7 +55,6 @@ const WorkCircle: React.FC = () => {
 
 const Container = styled.div`
     height: 100%;
-    weight: 100%;
     padding: 20px;
 `
 

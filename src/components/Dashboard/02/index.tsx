@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import WorkCircle from "./workcircle";
+import Reservation from "./reservation";
+import Safety from "./safety";
+import Rules from "./rule";
+import Description from "./description";
 
 const DashBoard: React.FC = () => {
     return (
@@ -11,10 +15,18 @@ const DashBoard: React.FC = () => {
             <ContainerMain>
                 <ContainerLeft>
                     <Block height="50%"><WorkCircle /></Block>
-                    <Block height="50%">222</Block>
+                    <Block height="50%"><Reservation /></Block>
                 </ContainerLeft>
                 <ContainerMiddle></ContainerMiddle>
-                <ContainerRight></ContainerRight>
+                <ContainerRight>
+                    <Block height="50%">
+                        <Safety />
+                        <Rules />
+                    </Block>
+                    <Block height="50%">
+                        <Description />
+                    </Block>
+                </ContainerRight>
             </ContainerMain>
         </Container>
     )
@@ -54,7 +66,6 @@ const ContainerLeft = styled.div`
 const ContainerMiddle = styled.div`
     width: 50%;
     height: 100;
-    background-color: grey;
 `
 
 const ContainerRight = styled.div`
