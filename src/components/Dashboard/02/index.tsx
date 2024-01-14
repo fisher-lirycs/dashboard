@@ -5,6 +5,7 @@ import Reservation from "./reservation";
 import Safety from "./safety";
 import Rules from "./rule";
 import Description from "./description";
+import Weather from "./weather";
 
 const DashBoard: React.FC = () => {
     return (
@@ -17,7 +18,7 @@ const DashBoard: React.FC = () => {
                     <Block height="50%"><WorkCircle /></Block>
                     <Block height="50%"><Reservation /></Block>
                 </ContainerLeft>
-                <ContainerMiddle></ContainerMiddle>
+                <ContainerMiddle><Weather /></ContainerMiddle>
                 <ContainerRight>
                     <Block height="50%">
                         <Safety />

@@ -26,7 +26,7 @@ const Container = styled.div`
 const TextBlock = styled.div`
     padding-left: 20px;
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 1.5vw;
     font-weith: bold;
 `
 
