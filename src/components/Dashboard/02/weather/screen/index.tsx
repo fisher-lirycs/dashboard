@@ -18,7 +18,7 @@ const Screen: React.FC<ScreenProps> = ({ size = "small", item, value, unit }) =>
             <ValueBlock size={size} unit={unit}>
                 <span>{value}</span>
             </ValueBlock>
-            <UnitBlock>
+            <UnitBlock size={size}>
                 <span>{unit}</span>
             </UnitBlock>
         </Container>
@@ -38,13 +38,13 @@ const Container = styled.div<{ size: "large" | "small" }>`
 `
 
 const ItemBlock = styled.div<{ size: "large" | "small" }>`
-    height: ${props => props.size === "small" ? "20px" : "auto"};
+    height: ${props => props.size === "small" ? "20%" : "auto"};
     font-weight: bold;
 `
 
 const ValueBlock = styled.div<{ size: "large" | "small", unit?: string }>`
     display: flex;
-    width: ${props => props.size === "small" ? (props.unit ? "85%" : "95%") : "75%"};
+    width: ${props => props.size === "small" ? (props.unit ? "80%" : "90%") : "70%"};
     height: ${props => props.size === "small" ? "80%" : "95%"};
     margin: ${props => props.size === "small" ? "5px 0 0 0" : "0 0 0 5px"};
     align-items: center;
@@ -55,9 +55,9 @@ const ValueBlock = styled.div<{ size: "large" | "small", unit?: string }>`
     color: #ffffff;
     font-size: ${props => props.size === "small" ? "2vw" : "4vw"};
 `
-const UnitBlock = styled.div`
+const UnitBlock = styled.div<{ size?: "large" | "small" }>`
     position: absolute;
-    left: 87%;
+    left: ${props => props.size === "large" ? "86%" : "82%"};
     bottom: 8%;
     font-size: 20px;
     font-weight: bold;

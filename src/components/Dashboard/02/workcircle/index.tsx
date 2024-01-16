@@ -18,8 +18,8 @@ const WorkCircle: React.FC = () => {
             series: [
                 {
                     type: 'pie',
-                    radius: ['49%', "85%"],
-                    center: ['50%', '50%'],
+                    radius: ['30%', "50%"],
+                    center: ['50%', '30%'],
                     selectedMode: 'single',
                     data: [
                         { value: 735, name: 'A' },

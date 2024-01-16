@@ -19,7 +19,7 @@ const Container = styled.div`
 `
 
 const RulesBlock = styled.div`
-    height: 80%;
+    height: 65%;
     margin-top: 10px;
     padding: 10px;
     border-radius: 5px;
