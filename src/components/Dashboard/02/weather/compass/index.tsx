@@ -1,23 +1,68 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { ReactComponent as Icon1CircleFill } from "./../../../../../assets/";
+import { ReactComponent as CompassImage } from "./../../../../../assets/images/compass.svg";
 
 export interface CompassProps {
     direction: string;
     children?: React.ReactNode
 }
 const Compass: React.FC<CompassProps> = ({ direction }) => {
+    const [windDirection, setWindDirection] = useState("");
+    const [windDeg, setWindDeg] = useState(0);
+
+
+    useEffect(() => {
+        switch (direction) {
+            case "E":
+                setWindDirection("東");
+                setWindDeg(0);
+                break;
+            case "W":
+                setWindDirection("西");
+                setWindDeg(180);
+                break;
+            case "N":
+                setWindDirection("北");
+                setWindDeg(270);
+                break;
+            case "S":
+                setWindDirection("南");
+                setWindDeg(90);
+                break;
+            case "SE":
+                setWindDirection("南東");
+                setWindDeg(45);
+                break;
+            case "SW":
+                setWindDirection("南西");
+                setWindDeg(135);
+                break;
+            case "NE":
+                setWindDirection("北東");
+                setWindDeg(315);
+                break;
+            case "NW":
+                setWindDirection("北西");
+                setWindDeg(225);
+                break;
+        }
+    }, [direction])
+
+
     return (
         <Container>
-            <ValueBlock>
+            <ValueBlock>{windDirection}</ValueBlock>
+            <PointBlock>
                 <North>北</North>
                 <South>南</South>
                 <West>西</West>
                 <East>東</East>
                 <CompassPointBlock>
-
+                    <CompassImageBlock deg={windDeg}>
+                        <CompassImage width={"100%"} height={"100%"} />
+                    </CompassImageBlock>
                 </CompassPointBlock>
-            </ValueBlock>
+            </PointBlock>
         </Container>
     )
 }
@@ -31,6 +76,20 @@ const Container = styled.div`
 `
 
 const ValueBlock = styled.div`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 10%;
+    right: 15%;
+    width: 40%;
+    height: 15%;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #ffffff;
+`
+
+const PointBlock = styled.div`
     position: absolute;
     bottom: 5px;
     left: 15%;
@@ -79,6 +138,15 @@ const CompassPointBlock = styled.div`
     height: 60%;
     background-color: #ffffff;
     border-radius: 50%;
+`;
+
+const CompassImageBlock = styled.div<{ deg: number }>`
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    transform: rotate(${props => props.deg}deg);
 `;
 
 export default Compass;

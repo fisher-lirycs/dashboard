@@ -22,7 +22,7 @@ const Weather: React.FC = () => {
                 </div>
                 <div style={{ float: "right", width: "30%", height: "95%" }}>
                     <DateLine height="92%" >
-                        <Compass direction="北西" />
+                        <Compass direction="SE" />
                     </DateLine>
                 </div>
             </DateLine>
