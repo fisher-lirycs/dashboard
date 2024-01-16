@@ -42,7 +42,7 @@ const Weather: React.FC = () => {
 
 const Container = styled.div`
     width: 98%;
-    height: 75%;
+    height: 85%;
     background-color: #000000;
     padding: 10px;
 `;

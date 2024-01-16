@@ -51,8 +51,8 @@ const Compass: React.FC<CompassProps> = ({ direction }) => {
 
     return (
         <Container>
-            <ValueBlock>{windDirection}</ValueBlock>
             <PointBlock>
+                <ValueBlock>{windDirection}</ValueBlock>
                 <North>北</North>
                 <South>南</South>
                 <West>西</West>
@@ -68,7 +68,8 @@ const Compass: React.FC<CompassProps> = ({ direction }) => {
 }
 
 const Container = styled.div`
-    position: relative;
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 100%;
     background-color: orange;
@@ -80,21 +81,21 @@ const ValueBlock = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 10%;
-    right: 15%;
+    top: -35px;
+    right: 0;
     width: 40%;
-    height: 15%;
+    height: 30px;
     border-radius: 5px;
     background-color: #000000;
     color: #ffffff;
 `
 
 const PointBlock = styled.div`
-    position: absolute;
-    bottom: 5px;
+    position: relative;
     left: 15%;
     width: 70%;
     height: 0;
+    margin-top: 30px;
     padding-bottom: 70%;
     background-color: #000000;
     border-radius: 5px;
@@ -106,7 +107,7 @@ const PointBlock = styled.div`
 `
 
 const North = styled.span`
-    position: absolute;
+    position: relative;
     top: 5px;
     left: 45%;
     color: #ffffff;
