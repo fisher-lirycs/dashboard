@@ -61,17 +61,17 @@ const ContainerMain = styled.div`
 
 const ContainerLeft = styled.div`
     width: 25%;
-    height: 100;
+    height: 100%;
 `
 
 const ContainerMiddle = styled.div`
     width: 50%;
-    height: 100;
+    height: 100%;
 `
 
 const ContainerRight = styled.div`
     width: 25%;
-    height: 100;
+    height: 100%;
 `
 
 const Block = styled.div<{ height: string }>`
