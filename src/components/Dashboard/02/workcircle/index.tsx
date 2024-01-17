@@ -2,41 +2,16 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Clock from "../clock";
 import Title from "../title";
-import ReactEcharts from "echarts-for-react"
+import Pie from "../pie";
+import { PieType } from "../../../../types/Types";
 
 const WorkCircle: React.FC = () => {
-    const
-        option = {
-            title: {
-                left: 'center'
-            },
-            tooltip: {
-                show: false,
-                trigger: 'item',
-                formatter: '{a} <br/>{b} : {c} ({d}%)'
-            },
-            series: [
-                {
-                    type: 'pie',
-                    radius: ['30%', "50%"],
-                    center: ['50%', '30%'],
-                    selectedMode: 'single',
-                    data: [
-                        { value: 735, name: 'A' },
-                        { value: 510, name: 'B' },
-                        { value: 434, name: 'C' },
-                        { value: 335, name: 'D' }
-                    ],
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ]
-        };
+    const data: Array<PieType> = [
+        { value: 735, name: 'A', color: "red" },
+        { value: 510, name: 'B', color: "orange" },
+        { value: 434, name: 'C', color: "blue" },
+        { value: 335, name: 'D', color: "green" }
+    ];
 
     const [time, setTime] = useState(new Date());
     useEffect(() => {
@@ -51,10 +26,10 @@ const WorkCircle: React.FC = () => {
                 <span>安 全 施 工 サ イ ク ル</span>
             </Title>
             <ContainerCircle>
-                {/* <ReactEcharts option={option} /> */}
                 <ClockBlock>
                     <Clock width={"100%"} height={"100%"} borderColor={"silver"} time={time} />
-                </ClockBlock>
+                    <Pie width={"100%"} height={"100%"} data={data} />
+                </ClockBlock >
             </ContainerCircle>
         </Container>
     )

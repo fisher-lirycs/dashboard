@@ -54,3 +54,9 @@ export type WorkflowType = {
     weekDay: number;
     detail: string;
 };
+
+export type PieType = {
+    name: string,
+    value: number
+    color?: string
+};
