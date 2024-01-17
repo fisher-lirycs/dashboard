@@ -26,10 +26,12 @@ const WorkCircle: React.FC = () => {
                 <span>安 全 施 工 サ イ ク ル</span>
             </Title>
             <ContainerCircle>
-                <ClockBlock>
-                    <Clock width={"100%"} height={"100%"} borderColor={"silver"} time={time} />
+                <PieBlock>
                     <Pie width={"100%"} height={"100%"} data={data} />
-                </ClockBlock >
+                </PieBlock >
+                <ClockBlock>
+                    <Clock time={time} borderColor="silver"/>
+                </ClockBlock>
             </ContainerCircle>
         </Container>
     )
@@ -42,15 +44,22 @@ const Container = styled.div`
 
 const ContainerCircle = styled.div`
     position: relative;
-    margin: 0 auto;
-    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const PieBlock = styled.div`
+    width: 90%;
+    height: 90%;
 `
 
 const ClockBlock = styled.div`
     position: absolute;
-    left: 20%;
     width: 50%;
     height: 50%;
+    top: 20%;
+    left: 23%;
 `
 
 export default WorkCircle;

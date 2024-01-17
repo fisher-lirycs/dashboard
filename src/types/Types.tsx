@@ -56,7 +56,8 @@ export type WorkflowType = {
 };
 
 export type PieType = {
-    name: string,
-    value: number
-    color?: string
+    name: string;
+    value: number;
+    color?: string;
+    angle?: number;
 };
