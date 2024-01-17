@@ -3,6 +3,7 @@ import Dashboard from './components/Dashboard/02';
 import { WeatherType } from './types/Types';
 import axios from 'axios';
 import 'react-clock/dist/Clock.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [weather, setWeather] = useState<WeatherType>();

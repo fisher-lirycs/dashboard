@@ -6,8 +6,11 @@ import Safety from "./safety";
 import Rules from "./rule";
 import Description from "./description";
 import Weather from "./weather";
+import { ReactComponent as PlayImage } from "./../../../assets/images/play.svg";
+import Slider from "./slider";
 
 const DashBoard: React.FC = () => {
+    const [sliderStatus, setSliderStatus] = useState(false);
     return (
         <Container>
             <ContainerHeader>
@@ -18,7 +21,9 @@ const DashBoard: React.FC = () => {
                     <Block height="50%"><WorkCircle /></Block>
                     <Block height="50%"><Reservation /></Block>
                 </ContainerLeft>
-                <ContainerMiddle><Weather /></ContainerMiddle>
+                <ContainerMiddle>
+                    <Weather />
+                </ContainerMiddle>
                 <ContainerRight>
                     <Block height="50%">
                         <Safety />
@@ -29,7 +34,11 @@ const DashBoard: React.FC = () => {
                     </Block>
                 </ContainerRight>
             </ContainerMain>
-        </Container>
+            <PlayButton onClick={() => setSliderStatus(!sliderStatus)}>
+                <PlayImage width={"100%"} height={"100%"} />
+            </PlayButton>
+            {sliderStatus && <Slider status={sliderStatus} setStatus={setSliderStatus} />}
+        </Container >
     )
 }
 
@@ -79,5 +88,13 @@ const Block = styled.div<{ height: string }>`
     width: 100%;
 
 `
+
+const PlayButton = styled.div`
+    position: absolute;
+    bottom : 20px;
+    left: 50%; 
+    width: 80px;
+    cursor: pointer;
+`;
 
 export default DashBoard;
