@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import MyClock from "../clock";
+import Clock from "../clock";
 import Title from "../title";
 import ReactEcharts from "echarts-for-react"
 
@@ -38,15 +38,22 @@ const WorkCircle: React.FC = () => {
             ]
         };
 
+    const [time, setTime] = useState(new Date());
+    useEffect(() => {
+        const interval = setInterval(() => setTime(new Date()), 1000);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
     return (
         <Container>
             <Title>
                 <span>安 全 施 工 サ イ ク ル</span>
             </Title>
             <ContainerCircle>
-                <ReactEcharts option={option} />
+                {/* <ReactEcharts option={option} /> */}
                 <ClockBlock>
-                    {/* <MyClock /> */}
+                    <Clock width={300} height={300} time={time} />
                 </ClockBlock>
             </ContainerCircle>
         </Container>
