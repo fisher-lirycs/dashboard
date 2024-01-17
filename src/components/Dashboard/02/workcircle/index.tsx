@@ -53,7 +53,7 @@ const WorkCircle: React.FC = () => {
             <ContainerCircle>
                 {/* <ReactEcharts option={option} /> */}
                 <ClockBlock>
-                    <Clock width={300} height={300} time={time} />
+                    <Clock width={"100%"} height={"100%"} borderColor={"silver"} time={time} />
                 </ClockBlock>
             </ContainerCircle>
         </Container>
@@ -73,8 +73,9 @@ const ContainerCircle = styled.div`
 
 const ClockBlock = styled.div`
     position: absolute;
-    top:30%;
-    left:33%
+    left: 20%;
+    width: 50%;
+    height: 50%;
 `
 
 export default WorkCircle;
