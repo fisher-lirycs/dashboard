@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Clock from "../clock";
 import Title from "../title";
 import Pie from "../pie";
+import ClockAndPie from "../clockAndPie";
 import { PieType } from "../../../../types/Types";
 
 const WorkCircle: React.FC = () => {
@@ -27,11 +28,11 @@ const WorkCircle: React.FC = () => {
             </Title>
             <ContainerCircle>
                 <PieBlock>
-                    <Pie width={"100%"} height={"100%"} data={data} />
+                    <ClockAndPie width={"100%"} height={"100%"} pieData={data} time={time} borderColor="silver"/>
                 </PieBlock >
-                <ClockBlock>
+                {/* <ClockBlock>
                     <Clock time={time} borderColor="silver"/>
-                </ClockBlock>
+                </ClockBlock> */}
             </ContainerCircle>
         </Container>
     )
