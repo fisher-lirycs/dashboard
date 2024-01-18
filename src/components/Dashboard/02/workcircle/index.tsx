@@ -50,12 +50,4 @@ const PieBlock = styled.div`
     height: 90%;
 `
 
-const ClockBlock = styled.div`
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    top: 20%;
-    left: 23%;
-`
-
 export default WorkCircle;

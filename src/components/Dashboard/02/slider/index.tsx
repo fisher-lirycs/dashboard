@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as ColseImage } from "./../../../../assets/images/home.svg";
+import TransCarousel from "./Carousel";
 import Safety from "../safety";
 import Rules from "../rule";
+import WorkCircle from "../workcircle";
+import Reservation from "../reservation";
+import Description from "../description";
 
 
 export interface SliderProps {
@@ -17,7 +21,24 @@ const Slider: React.FC<SliderProps> = ({ status, setStatus }) => {
             <SliderModal>
                 <SliderModalDialog>
                     <SliderContent>
-
+                        <TransCarousel>
+                            <TransCarousel.Item>
+                                <SliderBlock>
+                                    <Reservation />
+                                </SliderBlock>
+                            </TransCarousel.Item>
+                            <TransCarousel.Item>
+                                <SliderBlock>
+                                    <Safety />
+                                    <Rules />
+                                </SliderBlock>
+                            </TransCarousel.Item>
+                            <TransCarousel.Item>
+                                <SliderBlock>
+                                    <Description />
+                                </SliderBlock>
+                            </TransCarousel.Item>
+                        </TransCarousel>
                     </SliderContent>
                     <CloseButton onClick={() => setStatus(!status)}>
                         <ColseImage width={"100%"} height={"100%"} />
@@ -33,7 +54,7 @@ const Container = styled.div`
 `;
 
 const SliderBackDrop = styled.div`
-    opacity: 0.5;
+    opacity: 0.9;
     position: fixed;
     top: 0;
     left: 0;
@@ -81,11 +102,17 @@ const SliderContent = styled.div`
 
 const CloseButton = styled.div`
     position: absolute;
-    bottom : -25px;
+    bottom : -50px;
     left: calc(50% - 50px); 
     width: 100px;
     cursor: pointer;
 `;
+
+const SliderBlock = styled.div`
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+`
 
 
 export default Slider;
