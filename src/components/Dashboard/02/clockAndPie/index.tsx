@@ -207,7 +207,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
 
     return (
         <Container ref={frameRef} width={width} height={height}>
-            <canvas ref={canvasRef} style={{ margin: "20px" }} />
+            <canvas ref={canvasRef} />
         </Container>
     )
 }
