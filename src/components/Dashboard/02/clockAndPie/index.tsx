@@ -88,8 +88,8 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
     // drwa clock from here
     const drawHour = useCallback((hour: number, minute: number, radius: number, ratio: number, ctx: CanvasRenderingContext2D) => {
         const radian = 2 * Math.PI / 12 * (hour - 3 + (minute / 60));
-        const x = Math.cos(radian) * (radius - 80 * ratio);
-        const y = Math.sin(radian) * (radius - 80 * ratio);
+        const x = Math.cos(radian) * (radius - 70 * ratio);
+        const y = Math.sin(radian) * (radius - 70 * ratio);
         ctx.beginPath();
         ctx.lineWidth = 6 * ratio;
         ctx.lineCap = 'round';
