@@ -88,14 +88,14 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
     // drwa clock from here
     const drawHour = useCallback((hour: number, minute: number, radius: number, ratio: number, ctx: CanvasRenderingContext2D) => {
         const radian = 2 * Math.PI / 12 * (hour - 3 + (minute / 60));
-        const x = Math.cos(radian) * (radius - 70 * ratio);
-        const y = Math.sin(radian) * (radius - 70 * ratio);
+        const x = Math.cos(radian) * (radius - 65 * ratio);
+        const y = Math.sin(radian) * (radius - 65 * ratio);
         ctx.beginPath();
         ctx.lineWidth = 6 * ratio;
         ctx.lineCap = 'round';
         ctx.strokeStyle = "#333333";
-        ctx.moveTo(-x * .2 + 70 * ratio, -y * .2 + 60 * ratio);
-        ctx.lineTo(x + 70 * ratio, y + 60 * ratio);
+        ctx.moveTo(-x * .2 * ratio, -y * .2 * ratio);
+        ctx.lineTo(x * ratio, y * ratio);
         ctx.stroke();
     }, []);
 
@@ -107,8 +107,8 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         ctx.beginPath();
         ctx.lineWidth = 3 * ratio;
         ctx.lineCap = 'round';
-        ctx.moveTo(-x * .25 + 70 * ratio, -y * .25 + 60 * ratio);
-        ctx.lineTo(x + 70 * ratio, y + 60 * ratio);
+        ctx.moveTo(-x * .25 * ratio, -y * .25 * ratio);
+        ctx.lineTo(x * ratio, y * ratio);
         ctx.stroke();
     }, []);
 
@@ -120,27 +120,33 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         ctx.beginPath();
         ctx.lineWidth = 1 * ratio;
         ctx.lineCap = 'round';
-        ctx.moveTo(-x * .25 + 70 * ratio, -y * .25 + 60 * ratio);
-        ctx.lineTo(x + 70 * ratio, y + 60 * ratio);
+        ctx.moveTo(-x * .25 * ratio, -y * .25 * ratio);
+        ctx.lineTo(x * ratio, y * ratio);
         ctx.stroke();
     }, []);
 
     const drawClock = useCallback((time: Date, frameWidth: number, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
+        
+        const ww = ctx.canvas.width * 0.7;
+        const hh = ctx.canvas.height * 0.7;
+        const x0 = ww / 2 + 50;
+        const y0 = hh / 2 + 40;
+        
         const w = ctx.canvas.width * 0.6;
         const h = ctx.canvas.height * 0.6;
         const radius = w / 2;
         const ratio = frameWidth / canvas.width;
-        ctx.translate(radius, radius);
+        ctx.translate(x0, y0);
         // 背景色
         ctx.beginPath();
         ctx.fillStyle = "#fff";
-        ctx.arc(70 * ratio, 60 * ratio, radius - ctx.lineWidth, 0, 2 * Math.PI, false);
+        ctx.arc(0, 0, radius - ctx.lineWidth, 0, 2 * Math.PI, false);
         ctx.fill()
         // 枠
         ctx.beginPath();
         ctx.lineWidth = 7 * ratio;
         ctx.strokeStyle = borderColor || "#333333";
-        ctx.arc(70 * ratio, 60 * ratio, radius - ctx.lineWidth / 2, 0, 2 * Math.PI, false);
+        ctx.arc(0, 0, radius - ctx.lineWidth / 2, 0, 2 * Math.PI, false);
         ctx.stroke();
 
         // 数値
@@ -152,7 +158,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
             const radian = 2 * Math.PI / 12 * (i - 2);
             const x = Math.cos(radian) * (radius - 35 * ratio);
             const y = Math.sin(radian) * (radius - 35 * ratio);
-            ctx.fillText((i + 1).toString(), x + 70 * ratio, y + 60 * ratio);
+            ctx.fillText((i + 1).toString(), x * ratio, y * ratio);
         }
 
         for (let j = 0; j < 60; j++) {
@@ -166,7 +172,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
             } else {
                 ctx.fillStyle = "#ccc";
             }
-            ctx.arc(x + 70 * ratio, y + 60 * ratio, 2 * ratio, 2 * Math.PI, 0, false);
+            ctx.arc(x * ratio, y * ratio, 2 * ratio, 2 * Math.PI, 0, false);
             ctx.fill();
             ctx.closePath();
         }
@@ -179,7 +185,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
 
         ctx.beginPath();
         ctx.fillStyle = "#fff";
-        ctx.arc(70 * ratio, 60 * ratio, 3 * ratio, 2 * Math.PI, 0, false);
+        ctx.arc(ratio, ratio, 3 * ratio, 2 * Math.PI, 0, false);
         ctx.fill();
 
     }, [])
