@@ -14,7 +14,6 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
     const canvasRef = useRef(null);
     const frameRef = useRef(null);
 
-
     const transformAngle = useCallback((data: Array<PieType>) => {
         let total = 0;
         data.forEach(el => total += el.value);
@@ -199,7 +198,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
             frameWidth = frame.offsetWidth;
         }
 
-        if (canvasRef.current) {
+        if (frameWidth > 0 && canvasRef.current) {
             const canvas = canvasRef.current as HTMLCanvasElement;
             canvas.width = frameWidth;
             canvas.height = frameWidth;

@@ -24,6 +24,11 @@ const Slider: React.FC<SliderProps> = ({ status, setStatus }) => {
                         <TransCarousel>
                             <TransCarousel.Item>
                                 <SliderBlock>
+                                    <WorkCircle />
+                                </SliderBlock>
+                            </TransCarousel.Item>
+                            <TransCarousel.Item>
+                                <SliderBlock>
                                     <Reservation />
                                 </SliderBlock>
                             </TransCarousel.Item>
