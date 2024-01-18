@@ -92,11 +92,11 @@ const ValueBlock = styled.div`
 
 const PointBlock = styled.div`
     position: relative;
-    left: 15%;
-    width: 70%;
+    left: 20%;
+    width: 60%;
     height: 0;
     margin-top: 30px;
-    padding-bottom: 70%;
+    padding-bottom: 60%;
     background-color: #000000;
     border-radius: 5px;
     color: #ffffff;

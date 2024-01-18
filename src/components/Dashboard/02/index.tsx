@@ -91,7 +91,7 @@ const Block = styled.div<{ height: string }>`
 
 const PlayButton = styled.div`
     position: absolute;
-    bottom : 20px;
+    bottom : 10px;
     left: 50%; 
     width: 80px;
     cursor: pointer;

@@ -38,15 +38,14 @@ const Container = styled.div<{ size: "large" | "small" }>`
 `
 
 const ItemBlock = styled.div<{ size: "large" | "small" }>`
-    height: ${props => props.size === "small" ? "20%" : "auto"};
     font-weight: bold;
 `
 
 const ValueBlock = styled.div<{ size: "large" | "small", unit?: string }>`
     display: flex;
     width: ${props => props.size === "small" ? (props.unit ? "80%" : "90%") : "70%"};
-    height: ${props => props.size === "small" ? "80%" : "95%"};
-    margin: ${props => props.size === "small" ? "5px 0 0 0" : "0 0 0 5px"};
+    height: ${props => props.size === "small" ? "70%" : "95%"};
+    margin: ${props => props.size === "small" ? "0" : "0 0 0 5px"};
     align-items: center;
     justify-content: end;
     padding-right: 5px;
