@@ -62,11 +62,12 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         ctx.fillText(outTitle, outX, outY)
     }, []);
 
-    const drawPie = useCallback((ctx: CanvasRenderingContext2D) => {
+    const drawPie = useCallback((
+        ctx: CanvasRenderingContext2D,
+        x0: number,
+        y0: number
+    ) => {
         const w = ctx.canvas.width * 0.7;
-        const h = ctx.canvas.height * 0.7;
-        const x0 = w / 2 + 50;
-        const y0 = h / 2 + 40;
         const radius = w / 2;
         const outLine = 20;
 
@@ -125,15 +126,16 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         ctx.stroke();
     }, []);
 
-    const drawClock = useCallback((time: Date, frameWidth: number, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
-        
-        const ww = ctx.canvas.width * 0.7;
-        const hh = ctx.canvas.height * 0.7;
-        const x0 = ww / 2 + 50;
-        const y0 = hh / 2 + 40;
-        
+    const drawClock = useCallback((
+        time: Date,
+        frameWidth: number,
+        x0: number,
+        y0: number,
+        canvas: HTMLCanvasElement,
+        ctx: CanvasRenderingContext2D
+    ) => {
+
         const w = ctx.canvas.width * 0.6;
-        const h = ctx.canvas.height * 0.6;
         const radius = w / 2;
         const ratio = frameWidth / canvas.width;
         ctx.translate(x0, y0);
@@ -204,9 +206,11 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
             const ctx = canvas.getContext('2d');
             if (ctx) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                drawPie(ctx);
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-                drawClock(time, frameWidth, canvas, ctx);
+                const x0 = ctx.canvas.width * 0.7 / 2 + 50;
+                const y0 = ctx.canvas.height * 0.7 / 2 + 40;
+
+                drawPie(ctx, x0, y0);
+                drawClock(time, frameWidth, x0, y0, canvas, ctx);
             }
         }
     }, [time, borderColor, pieData]);

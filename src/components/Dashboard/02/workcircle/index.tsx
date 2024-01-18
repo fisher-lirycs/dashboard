@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Clock from "../clock";
 import Title from "../title";
-import Pie from "../pie";
 import ClockAndPie from "../clockAndPie";
 import { PieType } from "../../../../types/Types";
 
@@ -30,9 +28,6 @@ const WorkCircle: React.FC = () => {
                 <PieBlock>
                     <ClockAndPie width={"100%"} height={"100%"} pieData={data} time={time} borderColor="silver"/>
                 </PieBlock >
-                {/* <ClockBlock>
-                    <Clock time={time} borderColor="silver"/>
-                </ClockBlock> */}
             </ContainerCircle>
         </Container>
     )
