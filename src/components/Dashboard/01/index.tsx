@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getWeek } from "../../../utils/utils";
 import { WeatherType } from "../../../types/Types";
 import Weather from "./weather";
 import Workflow from "./workflow";
 import Notice from "./notice";
-
+import axios from "axios";
 
 export interface DashboardProps {
-    weather?: WeatherType;
     children?: React.ReactNode;
 }
 
-const DashBoard01: React.FC<DashboardProps> = ({ weather, children }) => {
+const DashBoard01: React.FC<DashboardProps> = () => {
     const day = new Date();
+    const [weather, setWeather] = useState<WeatherType>();
+    useEffect(() => {
+        axios.get("https://api.openweathermap.org/data/2.5/weather?lat=35.558751&lon=139.715263&units=metric&appid=2d6f72fd863d8dbb934d557c5009e646").then(({ data }) => {
+            debugger;
+            setWeather(data);
+        })
+    }, []);
+
     return (
         <Body>
             <Header>

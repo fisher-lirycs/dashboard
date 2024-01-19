@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { WeatherType } from "../../../../types/Types";
+import axios from "axios";
 
 export type WeatherProps = ({
     kubun: "image";
@@ -17,6 +19,15 @@ export type WeatherProps = ({
 
 
 const Weather: React.FC<WeatherProps> = (props) => {
+
+    const [weather, setWeather] = useState<WeatherType>();
+    useEffect(() => {
+        axios.get("https://api.openweathermap.org/data/2.5/weather?lat=35.558751&lon=139.715263&units=metric&appid=2d6f72fd863d8dbb934d557c5009e646").then(({ data }) => {
+            debugger;
+            setWeather(data);
+        })
+    }, []);
+    
     return (
         <Container>
             <Title>{props.title}</Title>
