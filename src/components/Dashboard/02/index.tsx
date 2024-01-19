@@ -9,7 +9,7 @@ import Weather from "./weather";
 import { ReactComponent as PlayImage } from "./../../../assets/images/play.svg";
 import Slider from "./slider";
 
-const DashBoard: React.FC = () => {
+const DashBoard02: React.FC = () => {
     const [sliderStatus, setSliderStatus] = useState(false);
     return (
         <Container>
@@ -97,4 +97,4 @@ const PlayButton = styled.div`
     cursor: pointer;
 `;
 
-export default DashBoard;
+export default DashBoard02;

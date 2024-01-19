@@ -12,7 +12,7 @@ export interface DashboardProps {
     children?: React.ReactNode;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ weather, children }) => {
+const DashBoard01: React.FC<DashboardProps> = ({ weather, children }) => {
     const day = new Date();
     return (
         <Body>
@@ -129,4 +129,4 @@ const NoticeBlock = styled.div`
 `
 
 
-export default Dashboard;
+export default DashBoard01;

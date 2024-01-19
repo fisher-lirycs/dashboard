@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Dashboard from './components/Dashboard/02';
+import DashBoard01 from './components/Dashboard/01';
+import DashBoard02 from './components/Dashboard/02';
 import { WeatherType } from './types/Types';
 import axios from 'axios';
 import 'react-clock/dist/Clock.css';
+import { Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   const [weather, setWeather] = useState<WeatherType>();
@@ -13,9 +16,15 @@ function App() {
   }, []);
   return (
     <div>
-      {/* <Dashboard weather={weather} /> */}
-      <Dashboard />
-    </div>
+      <ul>
+        <li>
+          <Link to="/dashBoard01" >DashBoard01</Link>
+        </li>
+        <li>
+          <Link to="/dashBoard02">DashBoard02</Link>
+        </li>
+      </ul>
+    </div >
   );
 }
 

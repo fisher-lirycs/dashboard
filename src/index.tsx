@@ -4,13 +4,34 @@ import './index.css';
 import './carousel.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import DashBoard01 from './components/Dashboard/01';
+import DashBoard02 from './components/Dashboard/02';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/dashboard01",
+    element: <DashBoard01 />,
+  },
+  {
+    path: "/dashboard02",
+    element: <DashBoard02 />,
+  },
+]);
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
