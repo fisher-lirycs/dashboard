@@ -23,18 +23,16 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <title>React App</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-	<script src="https://relay.mamory.jp/js/mamory-cameraview.js"></script>
-	<script src="https://relay.mamory.jp/js/mamory-cameraview-control.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://relay.mamory.jp/js/mamory-cameraview.js"></script>
+  <script src="https://relay.mamory.jp/js/mamory-cameraview-control.js"></script>
   <script>
-    async function login() {
+    async function mamoryLogin() {
       let authApi = MamoryCameraViewApi.Authentication.instance();
-      let authData = authApi.makeAuthenticationData('exlnk-eJym4WXfkzLm', 'UD&hNcC(g5-m');
+      let authData = authApi.makeAuthenticationData(MY_USER_ID, MY_PASSWORD);
       let json = await authApi.login(authData);
-
       return json;
     }
-    login();
   </script>
 </head>
 
