@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import DashBoard01 from './components/Dashboard/01';
 import DashBoard02 from './components/Dashboard/02';
+import IconView from './components/Icon';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard02",
     element: <DashBoard02 />,
+  },
+  {
+    path: "/icons",
+    element: <IconView />,
   },
 ]);
 root.render(

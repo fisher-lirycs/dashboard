@@ -10,6 +10,9 @@ function App() {
         <li>
           <Link to="/dashBoard02">DashBoard02</Link>
         </li>
+        <li>
+          <Link to="/icons">Icons</Link>
+        </li>
       </ul>
     </div >
   );

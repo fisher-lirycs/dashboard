@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.li {
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentcolor;
+}
