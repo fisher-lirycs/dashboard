@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import { Icons, IconTypes } from "../../constant/Icon";
 
 export interface IconProps {
@@ -8,23 +7,6 @@ export interface IconProps {
     readonly height?: number | string;
     readonly className?: string;
 }
-
-type SvgProps = {
-    readonly svg: React.FC<React.SVGProps<SVGAElement>>;
-    readonly width?: number | string;
-    readonly height?: number | string;
-    readonly className?: string;
-};
-
-const IconSvg: React.FC<SvgProps> = ({
-    svg: Svg,
-    width,
-    height,
-    className,
-}) => {
-    const classes = classNames("li", className);
-    return <Svg width={width} height={height} className={classes} />;
-};
 
 export const Icon: React.FC<IconProps> = ({
     name,
@@ -38,6 +20,7 @@ export const Icon: React.FC<IconProps> = ({
             width={width}
             height={height}
             className={className}
+            alt={name}
         />
     );
 };

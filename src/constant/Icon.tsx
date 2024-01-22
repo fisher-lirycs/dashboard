@@ -247,3 +247,28 @@ export const Icons = {
 };
 
 export type IconTypes = keyof typeof Icons;
+
+
+export const WeatherIconMap: {
+    [key: string]: string;
+} = {
+    "01d": "ClearDay",
+    "02d": "PartlyCloudyDay",
+    "03d": "Cloudy",
+    "04d": "Overcast",
+    "09d": "PartlyCloudyDayRain",
+    "10d": "Rain",
+    "11d": "ThunderstormsRain",
+    "13d": "Snow",
+    "50d": "Mist",
+    "01n": "ClearNight",
+    "02n": "PartlyCloudyNight",
+    "03n": "Cloudy",
+    "04n": "Overcast",
+    "09n": "PartlyCloudyNightRain",
+    "10n": "Rain",
+    "11n": "ThunderstormsRain",
+    "13n": "Snow",
+    "50n": "Mist",
+
+}

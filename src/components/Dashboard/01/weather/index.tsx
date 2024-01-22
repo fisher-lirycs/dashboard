@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import Icon from "../../../Icon/Icon";
+import { Icons, IconTypes, WeatherIconMap } from "../../../../constant/Icon";
 
 export type WeatherProps = ({
     kubun: "image";
@@ -24,7 +26,7 @@ const Weather: React.FC<WeatherProps> = (props) => {
                 <>
                     <ImageContainer>
                         <Image>
-                            <img src={`https://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="" />
+                            <Icon name={WeatherIconMap[props.icon] as IconTypes} width={"100%"} height={"100%"} />
                         </Image>
                     </ImageContainer>
                     <ImageMemo timer={props.timer}>{props.timer}</ImageMemo>
@@ -60,18 +62,23 @@ const Title = styled.div`
 
 const ImageContainer = styled.div`
     position: relative;
-    textAlign: center;
+    top: -20%;
+    width: 100%;
+    height: 70%;
+    text-align: center;
 `;
 
 const Image = styled.div`
-    position: absolute;
-    top: -20px;
-    left: calc(50% - 50px);
+    position: relative;
+    width: 100%;
+    height: 150%;
 `;
 
 const ImageMemo = styled.div<{ timer?: string }>`
+    position: relative;
+    top: -10%;
     width: 100px;
-    margin: 60px auto 0;
+    margin: 0 auto;
     padding: 2px 0;
     text-align: center;
     background-color: ${(props) => props.timer === 'Today' ? 'green' : 'orange'};
