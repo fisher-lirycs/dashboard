@@ -62,7 +62,6 @@ const Title = styled.div`
 
 const ImageContainer = styled.div`
     position: relative;
-    top: -20%;
     width: 100%;
     height: 70%;
     text-align: center;
@@ -70,8 +69,9 @@ const ImageContainer = styled.div`
 
 const Image = styled.div`
     position: relative;
+    top: -10%;
     width: 100%;
-    height: 150%;
+    height: 100%;
 `;
 
 const ImageMemo = styled.div<{ timer?: string }>`
