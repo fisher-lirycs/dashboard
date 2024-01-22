@@ -13,6 +13,9 @@ function App() {
         <li>
           <Link to="/icons">Icons</Link>
         </li>
+        <li>
+          <Link to="/mamory">Mamory</Link>
+        </li>
       </ul>
     </div >
   );
