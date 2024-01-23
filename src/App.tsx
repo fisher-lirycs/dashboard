@@ -11,6 +11,9 @@ function App() {
           <Link to="/dashBoard02">DashBoard02</Link>
         </li>
         <li>
+          <Link to="/setting">Set</Link>
+        </li>
+        <li>
           <Link to="/icons">Icons</Link>
         </li>
         <li>

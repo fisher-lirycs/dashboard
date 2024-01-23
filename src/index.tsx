@@ -12,6 +12,7 @@ import DashBoard01 from './components/Dashboard/01';
 import DashBoard02 from './components/Dashboard/02';
 import IconView from './components/Icon';
 import Mamory from './components/Mamory';
+import Setting from './components/Setting';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/icons",
     element: <IconView />,
+  },
+  {
+    path: "/setting",
+    element: <Setting />,
   },
   {
     path: "/mamory",
