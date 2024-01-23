@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Title from "../title";
+import { ScheduleDataType } from "../../../../types/Types";
 
 const Reservation: React.FC = () => {
+    const [schedules, setSchedules] = useState<Array<ScheduleDataType>>();
+    useEffect(() => {
+        const scheduleData: Array<ScheduleDataType> = JSON.parse(localStorage.getItem("schedule") || "");
+        setSchedules(scheduleData);
+    }, [])
     return (
         <Container>
             <Title>
@@ -10,41 +16,15 @@ const Reservation: React.FC = () => {
             </Title>
             <Table>
                 <tbody>
-                    <tr>
-                        <td className="day">2/8</td>
-                        <td className="week">月</td>
-                        <td className="detail">あああああああああああ</td>
-                    </tr>
-                    <tr>
-                        <td className="day">2/8</td>
-                        <td className="week">月</td>
-                        <td className="detail">あああああああああああ</td>
-                    </tr>
-                    <tr>
-                        <td className="day">2/8</td>
-                        <td className="week">月</td>
-                        <td className="detail">あああああああああああ</td>
-                    </tr>
-                    <tr>
-                        <td className="day">2/8</td>
-                        <td className="week">月</td>
-                        <td className="detail">あああああああああああ</td>
-                    </tr>
-                    <tr>
-                        <td className="day">2/8</td>
-                        <td className="week">月</td>
-                        <td className="detail">あああああああああああ</td>
-                    </tr>
-                    <tr>
-                        <td className="day">2/8</td>
-                        <td className="week">月</td>
-                        <td className="detail">あああああああああああ</td>
-                    </tr>
-                    <tr>
-                        <td className="day">2/8</td>
-                        <td className="week">月</td>
-                        <td className="detail">あああああああああああ</td>
-                    </tr>
+                    {
+                        schedules && schedules.map((schedule) => (
+                            <tr key={schedule.day}>
+                                <td className="day">{schedule.day}</td>
+                                <td className="week" >{schedule.week}</td>
+                                <td className="detail">{schedule.detail}</td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </Table>
         </Container>

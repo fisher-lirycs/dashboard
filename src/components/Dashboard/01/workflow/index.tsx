@@ -1,60 +1,36 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import { WorkflowType } from "../../../../types/Types";
+import { ScheduleDataType } from "../../../../types/Types";
 
 const Workflow: React.FC = () => {
-    const [flows, setFlows] = useState<Array<WorkflowType>>([]);
 
+    const [schedules, setSchedules] = useState<Array<ScheduleDataType>>();
     useEffect(() => {
-       // axios.get("https://x1q4e6las4.execute-api.ap-northeast-1.amazonaws.com/dev/workflows").then((result => console.log(result)))
-}, []);
+        const scheduleData: Array<ScheduleDataType> = JSON.parse(localStorage.getItem("schedule") || "");
+        setSchedules(scheduleData);
+    }, [])
 
+    return (
+        <Container>
+            <Title>今週の作業予定</Title>
+            {
+                <Table>
+                    <tbody>
+                        {
+                            schedules && schedules.length > 0 && schedules.map((schedule) => (
+                                <tr key={schedule.day}>
+                                    <td className="day">{schedule.day}</td>
+                                    <TdWeek className="week" week={schedule.week}>{schedule.week}</TdWeek>
+                                    <td className="detail">{schedule.detail}</td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </Table>
+            }
 
-return (
-    <Container>
-        <Title>今週の作業予定</Title>
-        <Table>
-            <tbody>
-                <tr>
-                    <td className="day">2/8</td>
-                    <td className="week">月</td>
-                    <td className="detail">あああああああああああ</td>
-                </tr>
-                <tr>
-                    <td className="day">2/8</td>
-                    <td className="week">月</td>
-                    <td className="detail">あああああああああああ</td>
-                </tr>
-                <tr>
-                    <td className="day">2/8</td>
-                    <td className="week">月</td>
-                    <td className="detail">あああああああああああ</td>
-                </tr>
-                <tr>
-                    <td className="day">2/8</td>
-                    <td className="week">月</td>
-                    <td className="detail">あああああああああああ</td>
-                </tr>
-                <tr>
-                    <td className="day">2/8</td>
-                    <td className="week">月</td>
-                    <td className="detail">あああああああああああ</td>
-                </tr>
-                <tr>
-                    <td className="day">2/8</td>
-                    <td className="week">月</td>
-                    <td className="detail">あああああああああああ</td>
-                </tr>
-                <tr>
-                    <td className="day">2/8</td>
-                    <td className="week">月</td>
-                    <td className="detail">あああああああああああ</td>
-                </tr>
-            </tbody>
-        </Table>
-    </Container>
-)
+        </Container>
+    )
 }
 const Container = styled.div`
     height: 100%;
@@ -100,6 +76,10 @@ const Table = styled.table`
         padding-left: 5px;
         text-align: left;
     }
+`
+
+const TdWeek = styled.td<{ week?: string }>`
+    color: ${props => props.week === "日" ? "red" : (props.week === "土" ? "blue" : "#000")}
 `
 
 export default Workflow;

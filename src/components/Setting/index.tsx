@@ -1,13 +1,80 @@
-import React, { HtmlHTMLAttributes, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
+import { ScheduleDataType } from "../../types/Types";
 
 const Setting: React.FC = () => {
     const [displayFileName, setDisplayFileName] = useState<string>("選択されていません");
+    const [scheduleFile, setScheduleFile] = useState<File>();
+    const [sliderTime, setSliderTime] = useState<string>("5");
+
+    const [errMessage, setErrMessage] = useState<Array<string>>([]);
+    const [success, setSuccess] = useState(false);
+
     const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = null || e.target.files && e.target.files[0]
         const name = selectedFile?.name || "選択されていません";
         setDisplayFileName(name)
+        if (selectedFile) {
+            setScheduleFile(selectedFile);
+        } else {
+            setScheduleFile(undefined)
+        }
     }, [])
+
+    const handleTimeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const target = e.target;
+        const value = target.value;
+        setSliderTime(value);
+    }, [setSliderTime])
+
+    const set = () => {
+        const errMsg: Array<string> = [];
+        if (!scheduleFile && !sliderTime) {
+            errMsg.push("日程ファイル または スライドの切替時間を設定してください");
+        }
+        setErrMessage(errMsg)
+        if (errMsg.length > 0) {
+            setSuccess(false)
+        } else {
+            setSuccess(true)
+            if (sliderTime) {
+                localStorage.setItem("sliderTime", sliderTime as string)
+            }
+            if (scheduleFile) {
+                const reader = new FileReader();
+                const scheduleArray: Array<ScheduleDataType> = []
+                reader.onload = (event: ProgressEvent<FileReader>) => {
+                    const content = event.target?.result;
+                    if (content) {
+                        const lines = content.toString().split("\r\n");
+                        for (const line of lines) {
+                            const strs = line.split(",");
+                            if (strs[0]) {
+                                const scheduleJson: ScheduleDataType = {
+                                    day: "",
+                                    week: "",
+                                    detail: "",
+                                };
+                                const day = strs[0]
+                                const newDate = new Date(day);
+
+                                scheduleJson.day = `${newDate.getMonth() + 1}/${newDate.getDate()}`;
+                                scheduleJson.week = strs[1];
+                                scheduleJson.detail = strs[2];
+                                scheduleArray.push(scheduleJson)
+                            }
+
+                        }
+                    }
+                };
+                reader.onloadend = () => {
+                    localStorage.setItem("schedule", JSON.stringify(scheduleArray))
+                };
+                reader.readAsText(scheduleFile as File, "UTF-8");
+            }
+
+        }
+    };
 
 
     return (
@@ -23,11 +90,27 @@ const Setting: React.FC = () => {
                 </FileUpBlock>
                 <div>
                     <Lable htmlFor="file">スライドの切替</Lable>
-                    <NummberInput type="number" name="slideTime" id="slideTime" />
+                    <NummberInput type="number" name="slideTime" id="slideTime" defaultValue={sliderTime} onBlur={handleTimeChange} />
                     <span>秒</span>
                 </div>
+                {errMessage && errMessage.length > 0 && (
+                    <ErrorBlock>
+                        <ul>
+                            {errMessage.map((msg, index) => (
+                                <li key={index}>{msg}</li>
+                            ))}
+                        </ul>
+                    </ErrorBlock>
+                )}
+                {success && (
+                    <SuccessBlock>
+                        <ul>
+                            <li>設定成功しました</li>
+                        </ul>
+                    </SuccessBlock>
+                )}
                 <ButtonBlock>
-                    <Button type="button" value="設定" />
+                    <Button type="button" value="設定" onClick={set} />
                 </ButtonBlock>
             </Content>
         </Contanier>
@@ -44,7 +127,6 @@ const Contanier = styled.div`
 
 const Content = styled.div`
     width: 300px;
-    height: 150px;
     padding: 30px;
     background: #fff;
     box-shadow: 0 0 8px rgba(0,0,0,.12);
@@ -145,6 +227,33 @@ const Button = styled.input`
     user-select: none;
     vertical-align: middle;
     cursor: pointer;
+`
+const ErrorBlock = styled.div`
+    width: 100%;
+    color: red;
+    font-size: 12px;
+
+    & > ul{
+        list-style: "×";
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+        margin-bottom: 0;
+    }
+`
+
+const SuccessBlock = styled.div`
+    width: 100%;
+    color: #198754;
+    font-size: 12px;
+
+    & > ul{
+        list-style: "√";
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+        margin-bottom: 0;
+    }
 `
 
 export default Setting;

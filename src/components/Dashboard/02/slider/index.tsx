@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as ColseImage } from "./../../../../assets/images/home.svg";
 import TransCarousel from "./Carousel";
@@ -15,13 +15,18 @@ export interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ status, setStatus }) => {
+    const [sliderTime, setSliterTime] = useState<number>(5);
+    useEffect(() => {
+        const time: number =Number.parseInt(localStorage.getItem("sliderTime") || '5');
+        setSliterTime(time);
+    }, [])
     return (
         <Container>
             <SliderBackDrop />
             <SliderModal>
                 <SliderModalDialog>
                     <SliderContent>
-                        <TransCarousel>
+                        <TransCarousel interval={sliderTime * 1000}>
                             <TransCarousel.Item>
                                 <SliderBlock>
                                     <WorkCircle />

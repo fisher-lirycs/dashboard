@@ -61,3 +61,9 @@ export type PieType = {
     color?: string;
     angle?: number;
 };
+
+export type ScheduleDataType = {
+    day: string;
+    week: string;
+    detail: string;
+}
