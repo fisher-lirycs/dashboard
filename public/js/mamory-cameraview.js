@@ -11,7 +11,7 @@ var MamoryCameraViewApi = MamoryCameraViewApi || {};
  */
 MamoryCameraViewApi.Authentication = class {
 
-	APP_URL = "https://external-api.mamory.jp";
+	APP_URL = "https://external-api.mamory.jp/v1";
 	login_url = this.APP_URL + "/api/auth/login";
 	refresh_url = this.APP_URL + "/api/auth/refresh";
 
@@ -130,7 +130,7 @@ MamoryCameraViewApi.Authentication = class {
  */
 MamoryCameraViewApi.Camera = class {
 
-	APP_URL = "https://external-api.mamory.jp";
+	APP_URL = "https://external-api.mamory.jp/v1";
 
 	authApi = MamoryCameraViewApi.Authentication.instance();
 

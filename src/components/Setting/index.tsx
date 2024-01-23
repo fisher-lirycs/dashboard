@@ -6,11 +6,11 @@ const Setting: React.FC = () => {
         <Contanier>
             <Content>
                 <div>
-                    <label htmlFor="file">日程ファイル</label>
+                    <Lable htmlFor="file">日程ファイル</Lable>
                     <input type="file" name="file" id="file" />
                 </div>
                 <div>
-                    <label htmlFor="file">スライド</label>
+                    <Lable htmlFor="file">スライド</Lable>
                     <input type="number" name="slideTime" id="slideTime" />
                 </div>
                 <div>
@@ -32,9 +32,24 @@ const Contanier = styled.div`
 const Content = styled.div`
     width: 300px;
     height: 300px;
-    padding: 60px 80px;
+    padding: 30px;
     background: #fff;
     box-shadow: 0 0 8px rgba(0,0,0,.12);
     border-radius: 10px;
 `;
+
+const Lable = styled.label`
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-right: .75rem;
+    height: 40px;
+    width: 100px;
+    padding-left: 10px;
+    background: #eaeaea;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #3c3c3c;
+`
 export default Setting;
