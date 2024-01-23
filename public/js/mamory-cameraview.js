@@ -11,7 +11,7 @@ var MamoryCameraViewApi = MamoryCameraViewApi || {};
  */
 MamoryCameraViewApi.Authentication = class {
 
-	APP_URL = "https://relay.mamory.jp";
+	APP_URL = "https://relay.kids-way.ne.jp";
 	login_url = this.APP_URL + "/api/auth/login";
 	refresh_url = this.APP_URL + "/api/auth/refresh";
 
@@ -129,7 +129,7 @@ MamoryCameraViewApi.Authentication = class {
  */
 MamoryCameraViewApi.Camera = class {
 
-	APP_URL = "https://relay.mamory.jp";
+	APP_URL = "https://relay.kids-way.ne.jp";
 
 	authApi = MamoryCameraViewApi.Authentication.instance();
 
