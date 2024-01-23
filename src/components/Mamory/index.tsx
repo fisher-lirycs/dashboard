@@ -2,12 +2,6 @@ import React, { useEffect } from "react";
 import axios from "axios";
 
 const Mamory: React.FC = () => {
-    const { mamoryLogin } = window;
-    // useEffect(() => {
-    //     mamoryLogin()
-    //         .then(data => console.log(data))
-    //         .catch(error => console.log(error))
-    // }, [])
     useEffect(() => {
         axios.post("https://external-api.mamory.jp/v1/auth/token", {
             "user_id": "exlnk-eJym4WXfkzLm",

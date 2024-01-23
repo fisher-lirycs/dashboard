@@ -111,7 +111,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 Carousel.defaultProps = {
     defaultIndex: 0,
     fade: false,
-    interval: 5000,
+    interval: 2000,
     slide: true,
 };
 
