@@ -11,7 +11,7 @@ var MamoryCameraViewApi = MamoryCameraViewApi || {};
  */
 MamoryCameraViewApi.Authentication = class {
 
-	APP_URL = "https://external-api.mamory.jp/v1";
+	APP_URL = "{{appurl}}";
 	login_url = this.APP_URL + "/api/auth/login";
 	refresh_url = this.APP_URL + "/api/auth/refresh";
 
@@ -38,7 +38,6 @@ MamoryCameraViewApi.Authentication = class {
 	 * @returns {LoginInfo} ログイン情報
 	 */
 	makeAuthenticationData(user_id, password) {
-		console.log(this.APP_URL);
 		return { user_id: user_id, password: password };
 	}
 
@@ -55,20 +54,20 @@ MamoryCameraViewApi.Authentication = class {
 	async login(authenticationData) {
 
 		let response = await fetch(this.login_url,
-			{
-				method: "POST",
-				mode: "cors",
-				cache: "no-cache",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json"
-				},
-				credentials: 'include',
-				body: JSON.stringify({
-					"user_id": authenticationData.user_id,
-					"password": authenticationData.password
-				})
-			});
+								   {
+									   method: "POST",
+									   mode: "cors",
+									   cache: "no-cache",
+									   headers: {
+										   Accept: "application/json",
+										   "Content-Type": "application/json"
+									   },
+									   credentials: 'include',
+									   body: JSON.stringify({
+										   "user_id" : authenticationData.user_id,
+										   "password" : authenticationData.password
+									   })
+								   });
 
 		if (response.ok) {
 			let json = await response.json();
@@ -98,19 +97,19 @@ MamoryCameraViewApi.Authentication = class {
 	async refresh() {
 
 		let response = await fetch(this.refresh_url,
-			{
-				method: "POST",
-				mode: "cors",
-				cache: "no-cache",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json"
-				},
-				credentials: 'include',
-				body: JSON.stringify({
-					"message": "OK"
-				})
-			});
+								   {
+									   method: "POST",
+									   mode: "cors",
+									   cache: "no-cache",
+									   headers: {
+										   Accept: "application/json",
+										   "Content-Type": "application/json"
+									   },
+									   credentials: 'include',
+									   body: JSON.stringify({
+										   "message" : "OK"
+									   })
+								   });
 
 		if (response.ok) {
 			let json = await response.json();
@@ -130,7 +129,7 @@ MamoryCameraViewApi.Authentication = class {
  */
 MamoryCameraViewApi.Camera = class {
 
-	APP_URL = "https://external-api.mamory.jp/v1";
+	APP_URL = "{{appurl}}";
 
 	authApi = MamoryCameraViewApi.Authentication.instance();
 
@@ -148,7 +147,7 @@ MamoryCameraViewApi.Camera = class {
 	 */
 	async geturl(camera_serial_id) {
 		let url = this._geturl_url(camera_serial_id);
-		let access_token = this.authApi.AuthenticationResult.access_token;
+		let access_token =  this.authApi.AuthenticationResult.access_token;
 		let response = await fetch(url, {
 			method: "GET",
 			mode: "cors",
@@ -177,7 +176,7 @@ MamoryCameraViewApi.Camera = class {
 	 */
 	async getimageurl(camera_serial_id) {
 		let url = this._getimageurl_url(camera_serial_id);
-		let access_token = this.authApi.AuthenticationResult.access_token;
+		let access_token =  this.authApi.AuthenticationResult.access_token;
 		let response = await fetch(url, {
 			method: "GET",
 			mode: "cors",
@@ -351,7 +350,7 @@ MamoryCameraViewApi.Camera = class {
 	 */
 	_streamrec_url(camera_serial_id, recplay_datetime, last_tsfilename) {
 		let url = this.APP_URL + "/api/camera/" + camera_serial_id + "/streamrec/" + recplay_datetime;
-		if (last_tsfilename != "") {
+		if (last_tsfilename != ""){
 			url += "/" + last_tsfilename;
 		}
 		return url;
