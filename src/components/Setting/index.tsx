@@ -6,8 +6,7 @@ const Setting: React.FC = () => {
         <Contanier>
             <Content>
                 <div>
-                    <Lable htmlFor="file">日程ファイル</Lable>
-                    <input type="file" name="file" id="file" />
+                    <FileInput type="file" name="file" id="file" />
                 </div>
                 <div>
                     <Lable htmlFor="file">スライド</Lable>
@@ -70,5 +69,23 @@ const NummberInput = styled.input`
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+`
+
+const FileInput = styled.input`
+    cursor: pointer;
+    overflow: hidden;
+    appearance: none;
+    background-clip: padding-box;
+    background-color: #212529;
+    border: 1px solid #495057;
+    border-radius: 0.375rem;
+    color: #495057;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    width: 100%;
 `
 export default Setting;
