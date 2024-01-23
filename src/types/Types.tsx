@@ -49,6 +49,70 @@ export type WeatherType = {
 
 };
 
+export type KidsWeatherType = {
+    response_datetime: string,
+    weathery_info: [{
+        serial_id: string,
+        initial_weathery_name: string,
+        custom_weathery_name: string,
+        sensors: [
+            {
+                unit_id: string,
+                serial_id: string,
+                initial_weathery_name: string,
+                custom_weathery_name: string,
+                dispatch_datetime: string,
+                current: {
+                    status: string,
+                    temp: string,
+                    humi: string,
+                    wbgt: string,
+                    inws: string,
+                    avws: string,
+                }
+                alert: string | {
+                    inws_flag: boolean,
+                    avws_flag: boolean,
+                },
+                threshold: {
+                    wbgt_caution_threshold: string,
+                    wbgt_alarm_threshold: string,
+                    inws_alarm_threshold: string,
+                    avws_alarm_threshold: string,
+                }
+            }
+        ]
+    }]
+};
+
+export type SensorsType =
+    {
+        unit_id: string,
+        serial_id: string,
+        initial_weathery_name: string,
+        custom_weathery_name: string,
+        dispatch_datetime: string,
+        current: {
+            status: string,
+            temp: string,
+            humi: string,
+            wbgt: string,
+            inws: string,
+            avws: string,
+        }
+        alert: string | {
+            inws_flag: boolean,
+            avws_flag: boolean,
+        },
+        threshold: {
+            wbgt_caution_threshold: string,
+            wbgt_alarm_threshold: string,
+            inws_alarm_threshold: string,
+            avws_alarm_threshold: string,
+        }
+
+    };
+
 export type WorkflowType = {
     date: string;
     weekDay: number;
