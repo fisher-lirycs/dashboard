@@ -20,6 +20,7 @@
       let authApi = MamoryCameraViewApi.Authentication.instance();
       let authData = authApi.makeAuthenticationData("exlnk-eJym4WXfkzLm", "UD&hNcC(g5-m");
       let json = await authApi.login(authData);
+      console.log(json);
       return json;
     }
     mamoryLogin();
