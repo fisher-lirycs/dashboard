@@ -134,7 +134,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         ctx: CanvasRenderingContext2D
     ) => {
 
-        const w = ctx.canvas.width * 0.6;
+        const w = ctx.canvas.width * 0.5;
         const radius = w / 2;
         const ratio = frameWidth / canvas.width;
         ctx.translate(x0, y0);
