@@ -61,7 +61,7 @@ const Weather: React.FC = () => {
             </TimeBlock>
             <MiddleDateContent>
                 <CameraBlock>
-                    <iframe id="cameraIframe" width="100%" height="100%" style={{border: "1px solid silver"}} src={cameraUrl}></iframe>
+                    <CameraIframe id="cameraIframe" src={cameraUrl}></CameraIframe>
                 </CameraBlock>
                 <MiddleWeatherBlock>
                     <div style={{ height: "32%", width: "100%" }}>
@@ -108,6 +108,13 @@ const CameraBlock = styled.div`
     height: 100%;
     width: 66%;
     margin-left: 1%;
+`
+
+const CameraIframe = styled.iframe`
+    height: 100%;
+    width: 100%;
+    border: 1px solid silver;
+    border-radius: 5px;
 `
 
 const MiddleWeatherBlock = styled.div`
