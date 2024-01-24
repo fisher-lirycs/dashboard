@@ -4,7 +4,6 @@ import axios from "axios";
 
 const Carama: React.FC = () => {
     const { getCameraUrl } = window;
-    const cameraToken = localStorage.getItem("cameraToken");
     const [cameraUrl, setCameraUrl] = useState("");
     const serialId = "1503-5254-4767-2882";
 
@@ -22,22 +21,22 @@ const Carama: React.FC = () => {
     }, [getCameraUrl])
 
     useEffect(() => {
-        // axios({
-        //     url: `https://external-api.mamory.jp/v1/camera_controls/${serialId}/brightness`,
-        //     method: 'put',
-        //     data: {
-        //         "brightness": 1
-        //     },
-        //     headers: {
-        //         "Authorization": cameraToken
-        //     }
-        // }).then((data) => {
-        //     console.log(data);
-        // }).catch(error => {
-        //     console.log(error);
+        axios({
+            url: `https://external-api.mamory.jp/v1/camera_controls/${serialId}/brightness`,
+            method: 'put',
+            data: {
+                "brightness": 1
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("cameraToken")}`
+            }
+        }).then((data) => {
+            console.log(data);
+        }).catch(error => {
+            console.log(error);
 
-        // })
-    }, [cameraToken])
+        })
+    }, [])
 
 
     return <CameraIframe id="cameraIframe" src={cameraUrl} />

@@ -73,6 +73,7 @@ MamoryCameraViewApi.Authentication = class {
 			let json = await response.json();
 
 			this.AuthenticationResult = json;
+			localStorage.setItem("cameraToken", json.access_token);
 
 			setInterval(async function () {
 				let api = MamoryCameraViewApi.Authentication.instance();
@@ -115,8 +116,6 @@ MamoryCameraViewApi.Authentication = class {
 			let json = await response.json();
 			this.access_token = json.access_token;
 			localStorage.setItem("cameraToken", json.access_token);
-			console.log("---------------------------------------");
-			console.log(json.access_token);
 			return json;
 		} else {
 			return false;
