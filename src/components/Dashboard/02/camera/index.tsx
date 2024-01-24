@@ -22,21 +22,21 @@ const Carama: React.FC = () => {
     }, [getCameraUrl])
 
     useEffect(() => {
-        axios({
-            url: `https://external-api.mamory.jp/v1/camera_controls/${serialId}/brightness`,
-            method: 'put',
-            data: {
-                "brightness": 1
-            },
-            headers: {
-                "Authorization": cameraToken
-            }
-        }).then((data) => {
-            console.log(data);
-        }).catch(error => {
-            console.log(error);
+        // axios({
+        //     url: `https://external-api.mamory.jp/v1/camera_controls/${serialId}/brightness`,
+        //     method: 'put',
+        //     data: {
+        //         "brightness": 1
+        //     },
+        //     headers: {
+        //         "Authorization": cameraToken
+        //     }
+        // }).then((data) => {
+        //     console.log(data);
+        // }).catch(error => {
+        //     console.log(error);
 
-        })
+        // })
     }, [cameraToken])
 
 
