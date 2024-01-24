@@ -4,26 +4,14 @@ import { getWeek } from "../../../../utils/utils";
 import Screen from "./screen";
 import { KidsWeatherType, SensorsType } from "../../../../types/Types";
 import axios from "axios";
+import Carama from "../camera";
 
 const Weather: React.FC = () => {
     const weathery_name = "msp000969"
-    const { getCameraUrl } = window;
 
     const [weather, setWeather] = useState<KidsWeatherType>();
     const [tempSensor, setTempSensor] = useState<SensorsType>();
     const [windSensor, setWindSensor] = useState<SensorsType>();
-    const [cameraUrl, setCameraUrl] = useState("");
-
-    useEffect(() => {
-        getCameraUrl("exlnk-eJym4WXfkzLm", "UD&hNcC(g5-m", "1503-5254-4767-2882").then(data => {
-            let url = data.url;
-            let qs = "aspect_ratio=16_9&";
-            qs += "pause_resume_enable=enable";
-            setCameraUrl(url + "?" + qs)
-        }).catch(error => {
-            console.log(error);
-        })
-    }, [getCameraUrl])
 
     useEffect(() => {
         axios.get("https://t-api.kids-way.ne.jp/login/get_weathery_info?userid=esri&pass=esri1test1esri").then(({ data }) => {
@@ -61,7 +49,7 @@ const Weather: React.FC = () => {
             </TimeBlock>
             <MiddleDateContent>
                 <CameraBlock>
-                    <CameraIframe id="cameraIframe" src={cameraUrl}></CameraIframe>
+                    <Carama />
                 </CameraBlock>
                 <MiddleWeatherBlock>
                     <div style={{ height: "32%", width: "100%" }}>
@@ -110,12 +98,6 @@ const CameraBlock = styled.div`
     margin-left: 1%;
 `
 
-const CameraIframe = styled.iframe`
-    height: 100%;
-    width: 100%;
-    border: 1px solid silver;
-    border-radius: 5px;
-`
 
 const MiddleWeatherBlock = styled.div`
     height: 100%;
