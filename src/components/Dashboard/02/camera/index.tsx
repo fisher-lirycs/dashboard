@@ -48,7 +48,7 @@ const Carama: React.FC = () => {
                     "brightness": 1
                 },
                 headers: {
-                    Authorization: `Bearer ${controlToken}`
+                    Authorization: controlToken
                 }
             }).then((data) => {
                 console.log("success");
