@@ -15,7 +15,7 @@ const Weather: React.FC = () => {
 
     useEffect(() => {
         axios("https://t-api.kids-way.ne.jp/login/get_weathery_info?userid=esri&pass=esri1test1esri", {
-            method: "GET",
+            withCredentials: true,
             headers: {
                 "Access-Control-Allow-Origin": "*"
             }
