@@ -6,8 +6,10 @@ const Workflow: React.FC = () => {
 
     const [schedules, setSchedules] = useState<Array<ScheduleDataType>>();
     useEffect(() => {
-        const scheduleData: Array<ScheduleDataType> = JSON.parse(localStorage.getItem("schedule") || "");
-        setSchedules(scheduleData);
+        if (localStorage.getItem("schedule")) {
+            const scheduleData: Array<ScheduleDataType> = JSON.parse(localStorage.getItem("schedule") || "");
+            setSchedules(scheduleData);
+        }
     }, [])
 
     return (
