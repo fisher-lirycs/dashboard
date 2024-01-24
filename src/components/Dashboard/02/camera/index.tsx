@@ -22,13 +22,11 @@ const Carama: React.FC = () => {
 
     useEffect(() => {
         axios({
-            url: `https://external-api.mamory.jp/v1/camera_controls/${serialId}/brightness`,
-            method: 'put',
+            url: `https://external-api.mamory.jp/v1/auth/token`,
+            method: 'post',
             data: {
-                "brightness": 1
-            },
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("cameraToken")}`
+                "user_id": "exlnk-eJym4WXfkzLm",
+                "password": "UD&hNcC(g5-m"
             }
         }).then((data) => {
             console.log(data);
@@ -36,6 +34,21 @@ const Carama: React.FC = () => {
             console.log(error);
 
         })
+        // axios({
+        //     url: `https://external-api.mamory.jp/v1/camera_controls/${serialId}/brightness`,
+        //     method: 'put',
+        //     data: {
+        //         "brightness": 1
+        //     },
+        //     headers: {
+        //         Authorization: `Bearer ${localStorage.getItem("cameraToken")}`
+        //     }
+        // }).then((data) => {
+        //     console.log(data);
+        // }).catch(error => {
+        //     console.log(error);
+
+        // })
     }, [])
 
 
