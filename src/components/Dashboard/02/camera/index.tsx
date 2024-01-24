@@ -48,7 +48,7 @@ const Carama: React.FC = () => {
                     "brightness": 1
                 },
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("cameraToken")}`
+                    Authorization: `Bearer ${controlToken}`
                 }
             }).then((data) => {
                 console.log("success");
