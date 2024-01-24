@@ -14,13 +14,8 @@ const Weather: React.FC = () => {
     const [windSensor, setWindSensor] = useState<SensorsType>();
 
     useEffect(() => {
-        // axios.get("https://t-api.kids-way.ne.jp/login/get_weathery_info?userid=esri&pass=esri1test1esri").then(({ data }) => {
-        //     setWeather(data);
-        // }).catch(error => {
-        //     console.log(error);
-        // })
-
         axios("https://t-api.kids-way.ne.jp/login/get_weathery_info?userid=esri&pass=esri1test1esri", {
+            method: "GET",
             withCredentials: true,
             headers: {
                 "Access-Control-Allow-Origin": "*"
