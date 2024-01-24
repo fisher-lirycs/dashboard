@@ -47,14 +47,14 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         ctx.moveTo(x0, y0);
         ctx.lineTo(outX, outY);
         ctx.strokeStyle = outColor;
-        ctx.font = 'bold 16px Arial';
+        ctx.font = 'bold 13px Arial';
         const textWidth = ctx.measureText(outTitle).width;
         if (outX > x0) {
-            ctx.lineTo(outX + textWidth + 10, outY)
+            ctx.lineTo(outX + textWidth, outY)
             ctx.textAlign = 'left'
         } else {
             ctx.textAlign = 'right'
-            ctx.lineTo(outX - textWidth - 10, outY)
+            ctx.lineTo(outX - textWidth, outY)
         }
         ctx.stroke();
         ctx.textBaseline = 'bottom';
@@ -68,7 +68,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
     ) => {
         const w = ctx.canvas.width * 0.7;
         const radius = w / 2;
-        const outLine = 20;
+        const outLine = 13;
 
         const angleList = transformAngle(pieData);
         let startAngle = 0;
@@ -91,7 +91,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         const x = Math.cos(radian) * (radius - 65 * ratio);
         const y = Math.sin(radian) * (radius - 65 * ratio);
         ctx.beginPath();
-        ctx.lineWidth = 6 * ratio;
+        ctx.lineWidth = 4 * ratio;
         ctx.lineCap = 'round';
         ctx.strokeStyle = "#333333";
         ctx.moveTo(-x * .2 * ratio, -y * .2 * ratio);
@@ -105,7 +105,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         const y = Math.sin(radian) * (radius - 50 * ratio);
 
         ctx.beginPath();
-        ctx.lineWidth = 3 * ratio;
+        ctx.lineWidth = 2 * ratio;
         ctx.lineCap = 'round';
         ctx.moveTo(-x * .25 * ratio, -y * .25 * ratio);
         ctx.lineTo(x * ratio, y * ratio);
@@ -134,7 +134,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         ctx: CanvasRenderingContext2D
     ) => {
 
-        const w = ctx.canvas.width * 0.5;
+        const w = ctx.canvas.width * 0.55;
         const radius = w / 2;
         const ratio = frameWidth / canvas.width;
         ctx.translate(x0, y0);
