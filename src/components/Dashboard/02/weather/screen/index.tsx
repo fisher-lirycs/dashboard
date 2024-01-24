@@ -3,15 +3,17 @@ import styled from "styled-components";
 
 export interface ScreenProps {
     size?: "large" | "small",
+    width?: string,
+    height?: string,
     item: string;
     value: string | number;
     unit: string;
     children?: React.ReactNode
 }
 
-const Screen: React.FC<ScreenProps> = ({ size = "small", item, value, unit }) => {
+const Screen: React.FC<ScreenProps> = ({ size = "small", width = "auto", height = "calc(100% - 20px)", item, value, unit }) => {
     return (
-        <Container size={size}>
+        <Container size={size} width={width} height={height}>
             <ItemBlock size={size}>
                 <span>{item}</span>
             </ItemBlock>
@@ -25,16 +27,17 @@ const Screen: React.FC<ScreenProps> = ({ size = "small", item, value, unit }) =>
     )
 }
 
-const Container = styled.div<{ size: "large" | "small" }>`
+const Container = styled.div<{ size: "large" | "small", width: string, height: string }>`
     position: relative;
     display: ${props => props.size === "small" ? "block" : "flex"};
     align-items: center;
-    width: ${props => props.size === "small" ? "32%" : "calc(100% - 10px)"};
-    height: calc(100% - 20px);
+    width: ${props => props.width};
+    height: ${props => props.height};
     background-color: orange;
     border-radius: 5px;
     padding: 10px;
     margin-left: 1%;
+    margin-bottom: 2%;
 `
 
 const ItemBlock = styled.div<{ size: "large" | "small" }>`

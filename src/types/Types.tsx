@@ -131,3 +131,8 @@ export type ScheduleDataType = {
     week: string;
     detail: string;
 }
+
+type CameraResponseType = {
+    AccessToken: string,
+    url: string
+}

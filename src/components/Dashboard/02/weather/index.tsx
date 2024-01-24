@@ -7,14 +7,30 @@ import axios from "axios";
 
 const Weather: React.FC = () => {
     const weathery_name = "msp000969"
+    const { getCameraUrl } = window;
+
     const [weather, setWeather] = useState<KidsWeatherType>();
     const [tempSensor, setTempSensor] = useState<SensorsType>();
     const [windSensor, setWindSensor] = useState<SensorsType>();
+    const [cameraUrl, setCameraUrl] = useState("");
+
+    useEffect(() => {
+        getCameraUrl("exlnk-eJym4WXfkzLm", "UD&hNcC(g5-m", "1503-5254-4767-2882").then(data => {
+            let url = data.url;
+            let qs = "aspect_ratio=16_9&";
+            qs += "pause_resume_enable=enable";
+            setCameraUrl(url + "?" + qs)
+        }).catch(error => {
+            console.log(error);
+        })
+    }, [getCameraUrl])
 
     useEffect(() => {
         axios.get("https://t-api.kids-way.ne.jp/login/get_weathery_info?userid=esri&pass=esri1test1esri").then(({ data }) => {
             setWeather(data);
-        }).catch(err => { throw (err) })
+        }).catch(error => {
+            console.log(error);
+        })
     }, [])
 
     useEffect(() => {
@@ -43,11 +59,26 @@ const Weather: React.FC = () => {
             <TimeBlock>
                 <span>{today.getFullYear()}年　{today.getMonth() + 1}月{today.getDate()}日（{getWeek(today.getDay())}）</span>
             </TimeBlock>
-            <DateLine height="20%" style={{ display: "flex" }}>
-                <Screen item="温度" value={tempSensor?.current.temp as string} unit="℃" />
-                <Screen item="湿度" value={tempSensor?.current.humi as string} unit="％" />
-                <Screen item="暑き指数" value={tempSensor?.current.wbgt as string} unit="℃" />
-            </DateLine>
+            <MiddleDateContent>
+                <CameraBlock>
+                    <iframe id="cameraIframe" width="100%" height="100%" src={cameraUrl}></iframe>
+                </CameraBlock>
+                <MiddleWeatherBlock>
+                    <div style={{ height: "32%", width: "100%" }}>
+                        <Screen item="温度" value={tempSensor?.current.temp as string} unit="℃" />
+                    </div>
+                    <div style={{ height: "32%", width: "100%", marginTop: "2%" }}>
+                        <Screen item="湿度" value={tempSensor?.current.humi as string} unit="％" />
+                    </div>
+                    <div style={{ height: "32%", width: "100%", marginTop: "2%" }}>
+                        <Screen item="暑き指数" value={tempSensor?.current.wbgt as string} unit="℃" />
+                    </div>
+                </MiddleWeatherBlock>
+            </MiddleDateContent>
+            <BottomDateContent>
+                <Screen item="最大瞬間風速" width="100%" value={tempSensor?.current.temp as string} unit="m/sec" />
+                <Screen item="平均風速" width="100%" value={tempSensor?.current.humi as string} unit="m/sec" />
+            </BottomDateContent>
         </Container>
     )
 }
@@ -67,11 +98,31 @@ const TimeBlock = styled.div`
     font-size: 1.5vw;
 `
 
-const DateLine = styled.div<{ height: string, width?: string }>`
+const MiddleDateContent = styled.div`
+    display: flex;
+    height: 65%;
+    width: 100%;
+`
+
+const CameraBlock = styled.div`
+    height: 100%;
+    width: 66%;
+    background-color: red;
+    margin-left: 1%;
+`
+
+const MiddleWeatherBlock = styled.div`
+    height: 100%;
+    width: 33%;
+    margin-left: 1%;
+`
+
+const BottomDateContent = styled.div`
     position: relative;
-    top: 70%;
-    width:  ${props => props.width || "100%"};
-    height: ${props => props.height};
+    display: flex;
+    width: 100%;
+    height: 20%;
+    margin-top: 2%;
 `
 
 
