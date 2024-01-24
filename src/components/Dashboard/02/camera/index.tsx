@@ -61,11 +61,11 @@ const Carama: React.FC = () => {
 
     return (
         <CameraContainer>
-            <BrightlessBlock>
+            {/* <BrightlessBlock>
                 <BrightlessImage src={BrightnessLight} alt={"brightless"} onClick={() => setBrightless(1)} />
                 <BrightlessImage src={BrightnessNormal} alt={"brightless"} onClick={() => setBrightless(0)} />
                 <BrightlessImage src={BrightnessDark} alt={"brightless"} onClick={() => setBrightless(-1)} />
-            </BrightlessBlock>
+            </BrightlessBlock> */}
             <CameraIframe id="cameraIframe" src={cameraUrl} />
         </CameraContainer>
     )
@@ -95,8 +95,8 @@ const BrightlessImage = styled.img`
 `
 
 const CameraIframe = styled.iframe`
-    height: 90%;
-    width: 90%;
+    height: 100%;
+    width: 100%;
     border: 1px solid silver;
     border-radius: 5px;
 `
