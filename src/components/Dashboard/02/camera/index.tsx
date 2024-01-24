@@ -45,7 +45,7 @@ const Carama: React.FC = () => {
                 url: `https://external-api.mamory.jp/v1/camera_controls/${serialId}/brightness`,
                 method: 'put',
                 data: {
-                    "brightness": 1
+                    "brightness": 0
                 },
                 headers: {
                     Authorization: controlToken
