@@ -64,7 +64,7 @@ const Weather: React.FC = () => {
                         <Screen item="湿度" value={tempSensor?.current.humi as string} unit="％" />
                     </div>
                     <div style={{ height: "32%", width: "100%", marginTop: "3%" }}>
-                        <Screen item="暑き指数" value={tempSensor?.current.wbgt as string} unit="℃" />
+                        <Screen item="暑さ指数" value={tempSensor?.current.wbgt as string} unit="℃" />
                     </div>
                 </MiddleWeatherBlock>
             </MiddleDateContent>
