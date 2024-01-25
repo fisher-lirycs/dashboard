@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import DashBoard01 from './components/Dashboard/01';
 import DashBoard02 from './components/Dashboard/02';
+import DashBoard03 from './components/Dashboard/03';
 import IconView from './components/Icon';
 import Mamory from './components/Mamory';
 import Setting from './components/Setting';
@@ -32,17 +33,21 @@ const router = createBrowserRouter([
     element: <DashBoard02 />,
   },
   {
-    path: "/icons",
-    element: <IconView />,
+    path: "/dashboard03",
+    element: <DashBoard03 />,
   },
+  // {
+  //   path: "/icons",
+  //   element: <IconView />,
+  // },
   {
     path: "/setting",
     element: <Setting />,
   },
-  {
-    path: "/mamory",
-    element: <Mamory />,
-  },
+  // {
+  //   path: "/mamory",
+  //   element: <Mamory />,
+  // },
 ]);
 root.render(
   <React.StrictMode>

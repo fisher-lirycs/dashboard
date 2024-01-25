@@ -11,14 +11,17 @@ function App() {
           <Link to="/dashBoard02">DashBoard02</Link>
         </li>
         <li>
-          <Link to="/setting">Set</Link>
+          <Link to="/dashBoard03">DashBoard03</Link>
         </li>
         <li>
+          <Link to="/setting">Setting</Link>
+        </li>
+        {/* <li>
           <Link to="/icons">Icons</Link>
         </li>
         <li>
           <Link to="/mamory">Mamory</Link>
-        </li>
+        </li> */}
       </ul>
     </div >
   );
