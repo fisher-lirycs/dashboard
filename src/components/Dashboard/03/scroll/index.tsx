@@ -62,6 +62,8 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     position: relative;
+    display: flex;
+    align-items: center;
     overflow: hidden;
 `
 
@@ -69,7 +71,6 @@ const TextContent = styled.div`
     position: absolute;
     white-space: nowrap;
     word-wrap: normal;
-    top: 0;
 `
 
 export default Scroll;
