@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { getWeek } from "../../../utils/utils";
 import Weather from "./weather";
+import Work from "./work";
 
 const DashBoard03: React.FC = () => {
     const day = new Date();
@@ -31,7 +32,9 @@ const DashBoard03: React.FC = () => {
                         <Weather type="number" title="湿度" number="50" unit="%"></Weather>
                     </WeatherNumberBlock>
                 </WeatherContent>
-                <WorkContent></WorkContent>
+                <WorkContent>
+                    <Work />
+                </WorkContent>
                 <NoticeContent></NoticeContent>
             </MainContent>
         </Container>
@@ -108,7 +111,6 @@ const WorkContent = styled.div`
     height: 100%;
     width: 38%;
     margin-left: 5px;
-    background: blue;
 `
 
 const NoticeContent = styled.div`
