@@ -4,6 +4,7 @@ import { getWeek } from "../../../utils/utils";
 import Weather from "./weather";
 import Work from "./work";
 import Notice from "./notice";
+import Scroll from "./scroll";
 
 const DashBoard03: React.FC = () => {
     const day = new Date();
@@ -16,7 +17,9 @@ const DashBoard03: React.FC = () => {
         <Container>
             <HeaderContent>
                 <HeaderDateBlock>{day.getFullYear()}年{day.getMonth() + 1}月{day.getDate()}日 ({getWeek(day.getDay())})</HeaderDateBlock>
-                <HeaderFlowBlock>年</HeaderFlowBlock>
+                <HeaderFlowBlock>
+                    <Scroll text={"流れる文字"}/>
+                </HeaderFlowBlock>
             </HeaderContent>
             <MainContent>
                 <WeatherContent>
