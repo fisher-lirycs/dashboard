@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { getWeek } from "../../../utils/utils";
 import Weather from "./weather";
 import Work from "./work";
 import Notice from "./notice";
 import Scroll from "./scroll";
+import { KidsWeatherType, SensorsType } from "../../../types/Types";
+import axios from "axios";
 
 const DashBoard03: React.FC = () => {
     const day = new Date();
@@ -13,12 +15,55 @@ const DashBoard03: React.FC = () => {
         "today": "03d",
         "tomorrow": "10d",
     }
+
+    const weathery_name = "msp000969"
+
+    const [weather, setWeather] = useState<KidsWeatherType>();
+    const [tempSensor, setTempSensor] = useState<SensorsType>();
+    const [windSensor, setWindSensor] = useState<SensorsType>();
+
+    const getWeather = useCallback(() => {
+        axios.get("https://o6qzaa6wj3fyhkhyugfpa6d4iq0frhoq.lambda-url.ap-northeast-1.on.aws/").then(({ data }) => {
+            setWeather(data);
+        }).catch(error => {
+            console.log(error);
+        })
+    }, [])
+
+    useEffect(() => {
+        getWeather();
+        const timerX = setInterval(getWeather, 10000)
+        return () => {
+            clearInterval(timerX)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (weather) {
+            if (weather.weathery_info) {
+                for (const weatherInfo of weather.weathery_info) {
+                    if (weatherInfo.initial_weathery_name === weathery_name
+                        && weatherInfo.sensors
+                        && weatherInfo.sensors.length > 0) {
+
+                        for (const sensor of weatherInfo.sensors) {
+                            if (sensor.unit_id === "thermohygro") {
+                                setTempSensor(sensor);
+                            } else if (sensor.unit_id === "ws") {
+                                setWindSensor(sensor)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }, [weather, weathery_name])
     return (
         <Container>
             <HeaderContent>
                 <HeaderDateBlock>{day.getFullYear()}年{day.getMonth() + 1}月{day.getDate()}日 ({getWeek(day.getDay())})</HeaderDateBlock>
                 <HeaderFlowBlock>
-                    <Scroll text={"流れる文字"}/>
+                    <Scroll text={"流れる文字"} />
                 </HeaderFlowBlock>
             </HeaderContent>
             <MainContent>
@@ -27,13 +72,13 @@ const DashBoard03: React.FC = () => {
                         <Weather type="image" title="天気" weather={weatherData}></Weather>
                     </WeatherImageBlock>
                     <WeatherNumberBlock>
-                        <Weather type="number" title="降水確率" number="50" unit="%"></Weather>
+                        <Weather type="number" title="温度" number={tempSensor?.current.temp as number} unit="℃"></Weather>
                     </WeatherNumberBlock>
                     <WeatherNumberBlock>
-                        <Weather type="number" title="気温" number="17.5" unit="℃"></Weather>
+                        <Weather type="number" title="湿度" number={tempSensor?.current.humi as number} unit="%"></Weather>
                     </WeatherNumberBlock>
                     <WeatherNumberBlock>
-                        <Weather type="number" title="湿度" number="50" unit="%"></Weather>
+                        <Weather type="number" title="暑さ指数" number={tempSensor?.current.wbgt as number} unit="℃"></Weather>
                     </WeatherNumberBlock>
                 </WeatherContent>
                 <WorkContent>

@@ -9,9 +9,9 @@ export type WeatherProps = ({
     timer: "Today" | "Tomorrow";
 } | {
     kubun: "number";
-    val?: number | undefined;
-    unit?: string | undefined;
-    type?: "temp" | "rain"
+    val?: number;
+    unit?: string;
+    type?: "temp" | "humi"
 }) & {
     title: string;
     children?: React.ReactNode;

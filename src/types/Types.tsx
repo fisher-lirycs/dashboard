@@ -63,22 +63,22 @@ export type KidsWeatherType = {
                 custom_weathery_name: string,
                 dispatch_datetime: string,
                 current: {
-                    status: string,
-                    temp: string,
-                    humi: string,
-                    wbgt: string,
-                    inws: string,
-                    avws: string,
+                    status: number,
+                    temp: number,
+                    humi: number,
+                    wbgt: number,
+                    inws: number,
+                    avws: number,
                 }
                 alert: string | {
                     inws_flag: boolean,
                     avws_flag: boolean,
                 },
                 threshold: {
-                    wbgt_caution_threshold: string,
-                    wbgt_alarm_threshold: string,
-                    inws_alarm_threshold: string,
-                    avws_alarm_threshold: string,
+                    wbgt_caution_threshold: number,
+                    wbgt_alarm_threshold: number,
+                    inws_alarm_threshold: number,
+                    avws_alarm_threshold: number,
                 }
             }
         ]
@@ -93,22 +93,22 @@ export type SensorsType =
         custom_weathery_name: string,
         dispatch_datetime: string,
         current: {
-            status: string,
-            temp: string,
-            humi: string,
-            wbgt: string,
-            inws: string,
-            avws: string,
+            status: number,
+            temp: number,
+            humi: number,
+            wbgt: number,
+            inws: number,
+            avws: number,
         }
         alert: string | {
             inws_flag: boolean,
             avws_flag: boolean,
         },
         threshold: {
-            wbgt_caution_threshold: string,
-            wbgt_alarm_threshold: string,
-            inws_alarm_threshold: string,
-            avws_alarm_threshold: string,
+            wbgt_caution_threshold: number,
+            wbgt_alarm_threshold: number,
+            inws_alarm_threshold: number,
+            avws_alarm_threshold: number,
         }
 
     };

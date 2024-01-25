@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { getWeek } from "../../../utils/utils";
-import { WeatherType } from "../../../types/Types";
 import Weather from "./weather";
 import Workflow from "./workflow";
 import Notice from "./notice";
 import axios from "axios";
+import { KidsWeatherType, SensorsType } from "../../../types/Types";
 
 export interface DashboardProps {
     children?: React.ReactNode;
@@ -13,12 +13,49 @@ export interface DashboardProps {
 
 const DashBoard01: React.FC<DashboardProps> = () => {
     const day = new Date();
-    const [weather, setWeather] = useState<WeatherType>();
-    useEffect(() => {
-        axios.get("https://api.openweathermap.org/data/2.5/weather?lat=35.558751&lon=139.715263&units=metric&appid=2d6f72fd863d8dbb934d557c5009e646").then(({ data }) => {
+
+    const weathery_name = "msp000969"
+
+    const [weather, setWeather] = useState<KidsWeatherType>();
+    const [tempSensor, setTempSensor] = useState<SensorsType>();
+    const [windSensor, setWindSensor] = useState<SensorsType>();
+
+    const getWeather = useCallback(() => {
+        axios.get("https://o6qzaa6wj3fyhkhyugfpa6d4iq0frhoq.lambda-url.ap-northeast-1.on.aws/").then(({ data }) => {
             setWeather(data);
+        }).catch(error => {
+            console.log(error);
         })
-    }, []);
+    }, [])
+
+    useEffect(() => {
+        getWeather();
+        const timerX = setInterval(getWeather, 10000)
+        return () => {
+            clearInterval(timerX)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (weather) {
+            if (weather.weathery_info) {
+                for (const weatherInfo of weather.weathery_info) {
+                    if (weatherInfo.initial_weathery_name === weathery_name
+                        && weatherInfo.sensors
+                        && weatherInfo.sensors.length > 0) {
+
+                        for (const sensor of weatherInfo.sensors) {
+                            if (sensor.unit_id === "thermohygro") {
+                                setTempSensor(sensor);
+                            } else if (sensor.unit_id === "ws") {
+                                setWindSensor(sensor)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }, [weather, weathery_name])
 
     return (
         <Body>
@@ -29,16 +66,16 @@ const DashBoard01: React.FC<DashboardProps> = () => {
             <Container>
                 <WeatherContainer>
                     <WeatherBlock>
-                        <Weather title="今日の天気" kubun="image" icon={weather?.weather[0].icon} timer="Today" />
+                        <Weather title="今日の天気" kubun="image" icon={"03d"} timer="Today" />
                     </WeatherBlock>
                     <WeatherBlock>
-                        <Weather title="最高気温" kubun="number" val={weather?.main.temp} type="temp" />
+                        <Weather title="温度" kubun="number" val={tempSensor?.current.temp} type="temp" />
                     </WeatherBlock>
                     <WeatherBlock>
-                        <Weather title="降水確率" kubun="number" val={weather?.main.humidity} type="rain" />
+                        <Weather title="湿度" kubun="number" val={tempSensor?.current.humi} type="humi" />
                     </WeatherBlock>
                     <WeatherBlock>
-                        <Weather title="明日の天気" kubun="image" icon={weather?.weather[0].icon} timer="Tomorrow" />
+                        <Weather title="明日の天気" kubun="image" icon={"10d"} timer="Tomorrow" />
                     </WeatherBlock>
                 </WeatherContainer>
                 <WorkContainer>

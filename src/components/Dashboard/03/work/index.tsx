@@ -90,7 +90,7 @@ const Table = styled.table`
 `
 
 const TdWeek = styled.td<{ week?: string }>`
-    color: ${props => props.week === "日" ? "red" : (props.week === "土" ? "blue" : "#fff")}
+    color: ${props => props.week === "日" ? "red": "#fff"}
 `
 
 export default Work;

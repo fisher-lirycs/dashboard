@@ -14,7 +14,7 @@ export type WeatherProps = {
 } | {
     type: "number"
     title: string;
-    number: string;
+    number: number;
     unit: string;
 }
 

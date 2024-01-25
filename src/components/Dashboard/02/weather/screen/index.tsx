@@ -6,19 +6,20 @@ export interface ScreenProps {
     width?: string,
     height?: string,
     item: string;
-    value: string | number;
+    value: number;
     unit: string;
+    threshold?: number;
     children?: React.ReactNode
 }
 
-const Screen: React.FC<ScreenProps> = ({ size = "small", width = "auto", height = "calc(100% - 20px)", item, value, unit }) => {
+const Screen: React.FC<ScreenProps> = ({ size = "small", width = "auto", height = "calc(100% - 20px)", item, value, unit, threshold }) => {
     return (
         <Container size={size} width={width} height={height}>
             <ItemBlock size={size}>
                 <span>{item}</span>
             </ItemBlock>
             <ValueBlock size={size} unit={unit}>
-                <span>{value}</span>
+                <span>{value}{threshold && threshold <= value && "/警戒"}</span>
             </ValueBlock>
             <UnitBlock size={size}>
                 <span>{unit}</span>
