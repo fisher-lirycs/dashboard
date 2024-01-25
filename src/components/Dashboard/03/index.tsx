@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { getWeek } from "../../../utils/utils";
 import Weather from "./weather";
 import Work from "./work";
+import Notice from "./notice";
 
 const DashBoard03: React.FC = () => {
     const day = new Date();
@@ -35,7 +36,9 @@ const DashBoard03: React.FC = () => {
                 <WorkContent>
                     <Work />
                 </WorkContent>
-                <NoticeContent></NoticeContent>
+                <NoticeContent>
+                    <Notice />
+                </NoticeContent>
             </MainContent>
         </Container>
     )
@@ -117,7 +120,6 @@ const NoticeContent = styled.div`
     height: 100%;
     width: calc(37% - 10px);
     margin-left: 5px;
-    background: blue;
 `
 
 export default DashBoard03
