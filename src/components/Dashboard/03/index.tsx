@@ -7,20 +7,13 @@ import Notice from "./notice";
 import Scroll from "./scroll";
 import { KidsWeatherType, SensorsType } from "../../../types/Types";
 import axios from "axios";
+import { OpenWeatherType } from "../../../types/Types";
 
 const DashBoard03: React.FC = () => {
     const day = new Date();
-    const weatherData = {
-        "yestoday": "01d",
-        "today": "03d",
-        "tomorrow": "10d",
-    }
-
     const weathery_name = "msp000969"
-
     const [weather, setWeather] = useState<KidsWeatherType>();
     const [tempSensor, setTempSensor] = useState<SensorsType>();
-    const [windSensor, setWindSensor] = useState<SensorsType>();
 
     const getWeather = useCallback(() => {
         axios.get("https://o6qzaa6wj3fyhkhyugfpa6d4iq0frhoq.lambda-url.ap-northeast-1.on.aws/").then(({ data }) => {
@@ -49,8 +42,6 @@ const DashBoard03: React.FC = () => {
                         for (const sensor of weatherInfo.sensors) {
                             if (sensor.unit_id === "thermohygro") {
                                 setTempSensor(sensor);
-                            } else if (sensor.unit_id === "ws") {
-                                setWindSensor(sensor)
                             }
                         }
                     }
@@ -58,6 +49,23 @@ const DashBoard03: React.FC = () => {
             }
         }
     }, [weather, weathery_name])
+
+    const [weatherData, setWeatherData] = useState<{
+        "yestoday": string;
+        "today": string;
+        "tomorrow": string;
+    }>()
+
+    useEffect(() => {
+        axios.get("https://api.openweathermap.org/data/2.5/weather?lat=35.558751&lon=139.715263&units=metric&appid=2d6f72fd863d8dbb934d557c5009e646").then(({ data }) => {
+            setWeatherData({
+                "yestoday": data.weather[0].icon,
+                "today": data.weather[0].icon,
+                "tomorrow": data.weather[0].icon,
+            });
+        })
+    }, []);
+
     return (
         <Container>
             <HeaderContent>
@@ -69,7 +77,7 @@ const DashBoard03: React.FC = () => {
             <MainContent>
                 <WeatherContent>
                     <WeatherImageBlock>
-                        <Weather type="image" title="天気" weather={weatherData}></Weather>
+                        {weatherData && (<Weather type="image" title="天気" weather={weatherData}></Weather>)}
                     </WeatherImageBlock>
                     <WeatherNumberBlock>
                         <Weather type="number" title="温度" number={tempSensor?.current.temp as number} unit="℃"></Weather>

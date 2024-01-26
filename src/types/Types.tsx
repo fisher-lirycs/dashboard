@@ -1,4 +1,4 @@
-export type WeatherType = {
+export type OpenWeatherType = {
     coord: {
         lon: number,
         lat: number,

@@ -6,6 +6,7 @@ import Workflow from "./workflow";
 import Notice from "./notice";
 import axios from "axios";
 import { KidsWeatherType, SensorsType } from "../../../types/Types";
+import { OpenWeatherType } from "../../../types/Types";
 
 export interface DashboardProps {
     children?: React.ReactNode;
@@ -18,7 +19,6 @@ const DashBoard01: React.FC<DashboardProps> = () => {
 
     const [weather, setWeather] = useState<KidsWeatherType>();
     const [tempSensor, setTempSensor] = useState<SensorsType>();
-    const [windSensor, setWindSensor] = useState<SensorsType>();
 
     const getWeather = useCallback(() => {
         axios.get("https://o6qzaa6wj3fyhkhyugfpa6d4iq0frhoq.lambda-url.ap-northeast-1.on.aws/").then(({ data }) => {
@@ -47,8 +47,6 @@ const DashBoard01: React.FC<DashboardProps> = () => {
                         for (const sensor of weatherInfo.sensors) {
                             if (sensor.unit_id === "thermohygro") {
                                 setTempSensor(sensor);
-                            } else if (sensor.unit_id === "ws") {
-                                setWindSensor(sensor)
                             }
                         }
                     }
@@ -56,6 +54,14 @@ const DashBoard01: React.FC<DashboardProps> = () => {
             }
         }
     }, [weather, weathery_name])
+
+
+    const [openWeather, setOpenWeather] = useState<OpenWeatherType>();
+    useEffect(() => {
+        axios.get("https://api.openweathermap.org/data/2.5/weather?lat=35.558751&lon=139.715263&units=metric&appid=2d6f72fd863d8dbb934d557c5009e646").then(({ data }) => {
+            setOpenWeather(data);
+        })
+    }, []);
 
     return (
         <Body>
@@ -66,7 +72,7 @@ const DashBoard01: React.FC<DashboardProps> = () => {
             <Container>
                 <WeatherContainer>
                     <WeatherBlock>
-                        <Weather title="今日の天気" kubun="image" icon={"03d"} timer="Today" />
+                        <Weather title="今日の天気" kubun="image" icon={openWeather?.weather[0].icon} timer="Today" />
                     </WeatherBlock>
                     <WeatherBlock>
                         <Weather title="温度" kubun="number" val={tempSensor?.current.temp} type="temp" />
@@ -75,7 +81,7 @@ const DashBoard01: React.FC<DashboardProps> = () => {
                         <Weather title="湿度" kubun="number" val={tempSensor?.current.humi} type="humi" />
                     </WeatherBlock>
                     <WeatherBlock>
-                        <Weather title="明日の天気" kubun="image" icon={"10d"} timer="Tomorrow" />
+                        <Weather title="明日の天気" kubun="image" icon={openWeather?.weather[0].icon} timer="Tomorrow" />
                     </WeatherBlock>
                 </WeatherContainer>
                 <WorkContainer>
