@@ -30,7 +30,7 @@ const Weather: React.FC<WeatherProps> = (props) => {
                                 <Icon name={WeatherIconMap[props.weather.yestoday] as IconTypes} width={"70%"} height={"70%"} />
                             </Image>
                             <Image day="today">
-                                <Icon name={WeatherIconMap[props.weather.today] as IconTypes} width={"150%"} height={"150%"} />
+                                <Icon name={WeatherIconMap[props.weather.today] as IconTypes} width={"130%"} height={"130%"} />
                             </Image>
                             <Image day="tomorrow">
                                 <Icon name={WeatherIconMap[props.weather.tomorrow] as IconTypes} width={"70%"} height={"70%"} />
