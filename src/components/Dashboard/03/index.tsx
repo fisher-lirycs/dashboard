@@ -71,7 +71,7 @@ const DashBoard03: React.FC = () => {
             <HeaderContent>
                 <HeaderDateBlock>{day.getFullYear()}年{day.getMonth() + 1}月{day.getDate()}日 ({getWeek(day.getDay())})</HeaderDateBlock>
                 <HeaderFlowBlock>
-                    <Scroll text={"流れる文字"} />
+                    <Scroll text={"流れる文字流れる文字流れる文字流れる文字流れる文字流れる文字"} />
                 </HeaderFlowBlock>
             </HeaderContent>
             <MainContent>
