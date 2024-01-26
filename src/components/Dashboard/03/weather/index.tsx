@@ -46,7 +46,7 @@ const Weather: React.FC<WeatherProps> = (props) => {
                     <ValueBlock>
                         <ValueNumber>
                             {props.number}
-                            <ValueUnit unit={props.unit}>{props.unit}</ValueUnit>
+                            {props.number && (<ValueUnit unit={props.unit}>{props.unit}</ValueUnit>)}
                         </ValueNumber>
 
                     </ValueBlock>
