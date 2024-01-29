@@ -22,9 +22,9 @@ function App() {
         {/* <li>
           <Link to="/icons">Icons</Link>
         </li> */}
-        <li>
+        {/* <li>
           <Link to="/mamory">Drag</Link>
-        </li>
+        </li> */}
       </ul>
     </div >
   );

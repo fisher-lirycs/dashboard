@@ -49,10 +49,10 @@ const router = createBrowserRouter([
     path: "/setting",
     element: <Setting />,
   },
-  {
-    path: "/mamory",
-    element: <Mamory />,
-  },
+  // {
+  //   path: "/mamory",
+  //   element: <Mamory />,
+  // },
 ]);
 root.render(
   <React.StrictMode>
