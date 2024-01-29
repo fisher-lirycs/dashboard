@@ -30,6 +30,11 @@ const Weather: React.FC = () => {
         })
     }, [])
 
+
+    useEffect(() => {
+        getWeather();
+    }, [])
+
     useEffect(() => {
         const timerX = setInterval(getWeather, apiTime)
         return () => {
