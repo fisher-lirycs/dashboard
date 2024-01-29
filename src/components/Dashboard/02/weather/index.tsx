@@ -23,10 +23,10 @@ const Weather: React.FC = () => {
 
     useEffect(() => {
         getWeather();
-        const timerX = setInterval(getWeather, 10000)
-        return () => {
-            clearInterval(timerX)
-        }
+        // const timerX = setInterval(getWeather, 10000)
+        // return () => {
+        //     clearInterval(timerX)
+        // }
     }, [])
 
     useEffect(() => {
