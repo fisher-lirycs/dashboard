@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ScheduleDataType } from "../../../../types/Types";
+import Screen from "../weather/screen";
 
 const Work: React.FC = () => {
 
@@ -43,7 +44,7 @@ const TitleContent = styled.div`
     width: 100%;
     align-items: center;
     justify-content: center;
-    font-size: 2.5vw;
+    font-size: 20px;
     color: #366836;
 `
 
@@ -57,7 +58,7 @@ const Table = styled.table`
     background-color: #366836;
     border-color: #ffffff;
     border-radius: 10px;
-    font-size: 2vw;
+    font-size: 20px;
 
     &  tr:not(:last-child) {
         border-bottom: solid 1px #fff;
