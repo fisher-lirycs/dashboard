@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Rnd } from "react-rnd";
 import Carama from "./camera";
+import Work from "./work";
+import Weather from "./weather";
 
 const Dashboard04: React.FC = () => {
-    const [screenHeight, setScreenHeight] = useState(window.innerHeight - 10);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth - 10);
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight - 30);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth - 30);
 
     return (
         <Container>
             <Rnd
                 default={{
-                    x: 0,
-                    y: 0,
+                    x: 10,
+                    y: 20,
                     width: screenWidth / 2,
                     height: screenHeight
                 }}
@@ -23,23 +25,26 @@ const Dashboard04: React.FC = () => {
             </Rnd>
             <Rnd
                 default={{
-                    x: screenWidth / 2,
-                    y: 0,
+                    x: screenWidth / 2 + 20,
+                    y: 10,
                     width: screenWidth / 2,
                     height: screenHeight / 2
                 }}
             >
-                <ContaineRightTop></ContaineRightTop>
+                <ContaineRightTop>
+                    <Work />
+                </ContaineRightTop>
             </Rnd>
             <Rnd
                 default={{
-                    x: screenWidth / 2,
-                    y: screenHeight / 2,
+                    x: screenWidth / 2 + 20,
+                    y: screenHeight / 2 + 50,
                     width: screenWidth / 2,
-                    height: screenHeight / 2
+                    height: screenHeight / 2 - 30
                 }}
             >
                 <ContaineRightBottom>
+                    <Weather />
                 </ContaineRightBottom>
             </Rnd>
         </Container>
@@ -59,19 +64,24 @@ const ContainerLeft = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    background-color: orange;
+    background-color: #366836;
 `
 
 const ContaineRightTop = styled.div`
+    display:flex;
     width: 100%;
     height: 100%;
-    background-color: blue;
+    justify-content: center;
+    border-radius: 10px;
 `
 
 const ContaineRightBottom = styled.div`
+    display:flex;
     width: 100%;
     height: 100%;
-    background-color: green;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
 `
 
 
