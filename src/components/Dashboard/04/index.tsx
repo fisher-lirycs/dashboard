@@ -54,8 +54,8 @@ const Container = styled.div`
 const ContainerLeft = styled.div`
     width: 100%;
     height: 100%;
-    background-color: red;
-    padding: px;
+    background-color: green;
+    padding: 20px;
 `
 
 const ContaineRightTop = styled.div`
