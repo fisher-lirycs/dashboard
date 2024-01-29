@@ -11,6 +11,7 @@ import {
 import DashBoard01 from './components/Dashboard/01';
 import DashBoard02 from './components/Dashboard/02';
 import DashBoard03 from './components/Dashboard/03';
+import DashBoard04 from './components/Dashboard/04';
 import IconView from './components/Icon';
 import Mamory from './components/Mamory';
 import Setting from './components/Setting';
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
     path: "/dashboard03",
     element: <DashBoard03 />,
   },
+  {
+    path: "/dashboard04",
+    element: <DashBoard04 />,
+  },
   // {
   //   path: "/icons",
   //   element: <IconView />,
@@ -44,10 +49,10 @@ const router = createBrowserRouter([
     path: "/setting",
     element: <Setting />,
   },
-  // {
-  //   path: "/mamory",
-  //   element: <Mamory />,
-  // },
+  {
+    path: "/mamory",
+    element: <Mamory />,
+  },
 ]);
 root.render(
   <React.StrictMode>
