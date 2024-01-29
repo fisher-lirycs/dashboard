@@ -62,6 +62,7 @@ const UnitBlock = styled.div`
     font-size: 20px;
     font-weight: bold;
     margin-left: 5px;
+    color: #ffffff;
 `
 
 export default Screen;
