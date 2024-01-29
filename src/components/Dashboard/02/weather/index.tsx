@@ -103,14 +103,14 @@ const MiddleDateContent = styled.div`
 
 const CameraBlock = styled.div`
     height: 100%;
-    width: 50%;
+    width: 56%;
     margin-left: 1%;
 `
 
 
 const MiddleWeatherBlock = styled.div`
     height: 100%;
-    width: 33%;
+    width: 44%;
     margin-left: 1%;
 `
 
