@@ -102,8 +102,8 @@ const MiddleDateContent = styled.div`
 `
 
 const CameraBlock = styled.div`
-    height: 86%;
-    width: 66%;
+    height: 100%;
+    width: 50%;
     margin-left: 1%;
 `
 
