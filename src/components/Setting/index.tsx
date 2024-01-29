@@ -104,7 +104,7 @@ const Setting: React.FC = () => {
                     <span>秒</span>
                 </div>
                 <div>
-                    <Lable htmlFor="file">APIの呼出</Lable>
+                    <Lable htmlFor="file">API呼出の間隔時間</Lable>
                     <NummberInput type="number" name="apiTime" id="apiTime" defaultValue={apiTime} onBlur={handleApiTimeChange} />
                     <span>秒</span>
                 </div>
