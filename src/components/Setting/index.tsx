@@ -6,6 +6,7 @@ const Setting: React.FC = () => {
     const [displayFileName, setDisplayFileName] = useState<string>("選択されていません");
     const [scheduleFile, setScheduleFile] = useState<File>();
     const [sliderTime, setSliderTime] = useState<string>("5");
+    const [apiTime, setApiTime] = useState<string>("10");
 
     const [errMessage, setErrMessage] = useState<Array<string>>([]);
     const [success, setSuccess] = useState(false);
@@ -27,9 +28,15 @@ const Setting: React.FC = () => {
         setSliderTime(value);
     }, [setSliderTime])
 
+    const handleApiTimeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const target = e.target;
+        const value = target.value;
+        setApiTime(value);
+    }, [setApiTime])
+
     const set = () => {
         const errMsg: Array<string> = [];
-        if (!scheduleFile && !sliderTime) {
+        if (!scheduleFile && !sliderTime && !apiTime) {
             errMsg.push("日程ファイル または スライドの切替時間を設定してください");
         }
         setErrMessage(errMsg)
@@ -39,6 +46,9 @@ const Setting: React.FC = () => {
             setSuccess(true)
             if (sliderTime) {
                 localStorage.setItem("sliderTime", sliderTime as string)
+            }
+            if (apiTime) {
+                localStorage.setItem("apiTime", apiTime as string)
             }
             if (scheduleFile) {
                 const reader = new FileReader();
@@ -88,9 +98,14 @@ const Setting: React.FC = () => {
                         <input type="file" name="file" id="file" onChange={handleFileSelect} />
                     </FileInput>
                 </FileUpBlock>
-                <div>
+                <div style={{ marginBottom: "5px" }}>
                     <Lable htmlFor="file">スライドの切替</Lable>
                     <NummberInput type="number" name="slideTime" id="slideTime" defaultValue={sliderTime} onBlur={handleTimeChange} />
+                    <span>秒</span>
+                </div>
+                <div>
+                    <Lable htmlFor="file">APIの呼出</Lable>
+                    <NummberInput type="number" name="apiTime" id="apiTime" defaultValue={apiTime} onBlur={handleApiTimeChange} />
                     <span>秒</span>
                 </div>
                 {errMessage && errMessage.length > 0 && (

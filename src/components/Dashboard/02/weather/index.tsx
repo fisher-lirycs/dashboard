@@ -9,6 +9,15 @@ import Carama from "../camera";
 const Weather: React.FC = () => {
     const weathery_name = "msp000969"
 
+    const [apiTime, setApiTime] = useState<number>();
+    useEffect(() => {
+        if (localStorage.getItem("apiTime")) {
+            const apiData: string = JSON.parse(localStorage.getItem("apiTime") || "5");
+            const apiTimeSec = parseInt(apiData) * 1000;
+            setApiTime(apiTimeSec);
+        }
+    }, [])
+
     const [weather, setWeather] = useState<KidsWeatherType>();
     const [tempSensor, setTempSensor] = useState<SensorsType>();
     const [windSensor, setWindSensor] = useState<SensorsType>();
@@ -22,12 +31,11 @@ const Weather: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        getWeather();
-        // const timerX = setInterval(getWeather, 10000)
-        // return () => {
-        //     clearInterval(timerX)
-        // }
-    }, [])
+        const timerX = setInterval(getWeather, apiTime)
+        return () => {
+            clearInterval(timerX)
+        }
+    }, [apiTime])
 
     useEffect(() => {
         if (weather) {
