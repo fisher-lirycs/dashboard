@@ -53,9 +53,13 @@ const Container = styled.div`
 `
 
 const ContainerLeft = styled.div`
+    display:flex;
     width: 100%;
     height: 100%;
-    background-color: green;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: orange;
 `
 
 const ContaineRightTop = styled.div`
