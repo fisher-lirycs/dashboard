@@ -30,8 +30,8 @@ const Carama: React.FC = () => {
 const CameraContainer = styled.div`
     position: relative;
     display: flex;
-    height: 100%;
-    width: 100%;
+    height: 80%;
+    width: 80%;
     align-items: center;
     justify-content: center;
 `

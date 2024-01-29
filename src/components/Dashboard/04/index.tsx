@@ -39,7 +39,8 @@ const Dashboard04: React.FC = () => {
                     height: screenHeight / 2
                 }}
             >
-                <ContaineRightBottom></ContaineRightBottom>
+                <ContaineRightBottom>
+                </ContaineRightBottom>
             </Rnd>
         </Container>
     )
@@ -55,7 +56,6 @@ const ContainerLeft = styled.div`
     width: 100%;
     height: 100%;
     background-color: green;
-    padding: 20px;
 `
 
 const ContaineRightTop = styled.div`
