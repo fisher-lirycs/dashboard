@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ScheduleDataType } from "../../../../types/Types";
-import Screen from "../weather/screen";
 
-const Work: React.FC = () => {
+export interface WorkProps {
+    headFontColor?: string
+}
+const Work: React.FC<WorkProps> = ({ headFontColor }) => {
 
     const [schedules, setSchedules] = useState<Array<ScheduleDataType>>();
     useEffect(() => {
@@ -15,7 +17,7 @@ const Work: React.FC = () => {
 
     return (
         <Container>
-            <TitleContent>今週の作業予定</TitleContent>
+            <TitleContent color={headFontColor}>今週の作業予定</TitleContent>
             <Table>
                 <tbody>
                     {
@@ -38,14 +40,14 @@ const Container = styled.div`
     color: #fff;
 `
 
-const TitleContent = styled.div`
+const TitleContent = styled.div<{ color?: string }>`
     display: flex;
     height: 10%;
     width: 100%;
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    color: #366836;
+    color: ${props => props.color || '#366836'};
 `
 
 const Table = styled.table`
@@ -92,7 +94,7 @@ const Table = styled.table`
 `
 
 const TdWeek = styled.td<{ week?: string }>`
-    color: ${props => props.week === "日" ? "red": "#fff"}
+    color: ${props => props.week === "日" ? "red" : "#fff"}
 `
 
 export default Work;

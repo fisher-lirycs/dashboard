@@ -33,12 +33,11 @@ const Slider: React.FC<SliderProps> = ({ status, time, pieData, borderColor, set
                                     <div>
                                         <ClockAndPie time={time} pieData={pieData} borderColor={borderColor} />
                                     </div>
-
                                 </SliderBlock>
                             </TransCarousel.Item>
                             <TransCarousel.Item>
                                 <SliderBlock>
-                                    <Work />
+                                    <Work headFontColor="#fff" />
                                 </SliderBlock>
                             </TransCarousel.Item>
                         </TransCarousel>
@@ -95,7 +94,6 @@ const SliderContent = styled.div`
     width: 100%;
     height: 90%;
     pointer-events: auto;
-    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid rgba(0,0,0,.2);
     border-radius: 0.3rem;
@@ -114,7 +112,6 @@ const CloseButton = styled.div`
 const SliderBlock = styled.div`
     height: 100%;
     width: 100%;
-    background-color: #ffffff;
 `
 
 
