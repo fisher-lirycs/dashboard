@@ -79,7 +79,7 @@ const SliderModal = styled.div`
 const SliderModalDialog = styled.div`
     position: relative;
     width: 40%;
-    height: 80%;
+    height: 90%;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -101,7 +101,7 @@ const SliderContent = styled.div`
 
 const CloseButton = styled.div`
     position: absolute;
-    bottom : -50px;
+    bottom : 10px;
     left: calc(50% - 25px); 
     width: 50px;
     cursor: pointer;
