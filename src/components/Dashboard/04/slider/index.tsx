@@ -30,9 +30,7 @@ const Slider: React.FC<SliderProps> = ({ status, time, pieData, borderColor, set
                         <TransCarousel interval={sliderTime * 1000}>
                             <TransCarousel.Item>
                                 <SliderBlock>
-                                    <div>
-                                        <ClockAndPie time={time} pieData={pieData} borderColor={borderColor} />
-                                    </div>
+                                    <ClockAndPie time={time} pieData={pieData} borderColor={borderColor} />
                                 </SliderBlock>
                             </TransCarousel.Item>
                             <TransCarousel.Item>
@@ -43,7 +41,7 @@ const Slider: React.FC<SliderProps> = ({ status, time, pieData, borderColor, set
                         </TransCarousel>
                     </SliderContent>
                     <CloseButton onClick={() => setStatus(!status)}>
-                        <ColseImage width={"100%"} height={"100%"} color="#5cbf5c"/>
+                        <ColseImage width={"100%"} height={"100%"} color="#5cbf5c" />
                     </CloseButton>
                 </SliderModalDialog>
             </SliderModal>
@@ -104,8 +102,8 @@ const SliderContent = styled.div`
 const CloseButton = styled.div`
     position: absolute;
     bottom : -50px;
-    left: calc(50% - 50px); 
-    width: 100px;
+    left: calc(50% - 25px); 
+    width: 50px;
     cursor: pointer;
 `;
 

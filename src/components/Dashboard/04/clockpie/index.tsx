@@ -193,23 +193,26 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
 
     useEffect(() => {
         let frameWidth = 0;
+        let frameHeight = 0
         if (frameRef.current) {
             const frame = frameRef.current as HTMLDivElement;
             frameWidth = frame.offsetWidth;
+            frameHeight = frame.offsetHeight
         }
 
         if (frameWidth > 0 && canvasRef.current) {
+            const r = frameWidth > frameHeight ? frameHeight : frameWidth;
             const canvas = canvasRef.current as HTMLCanvasElement;
-            canvas.width = frameWidth;
-            canvas.height = frameWidth;
+            canvas.width = r;
+            canvas.height = r;
             const ctx = canvas.getContext('2d');
             if (ctx) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const x0 = ctx.canvas.width * 0.7 / 2 + 50;
-                const y0 = ctx.canvas.height * 0.7 / 2 + 40;
+                const x0 = ctx.canvas.width / 2;
+                const y0 = frameHeight / 2;
 
                 drawPie(ctx, x0, y0);
-                drawClock(time, frameWidth, x0, y0, canvas, ctx);
+                drawClock(time, r, x0, y0, canvas, ctx);
             }
         }
     }, [time, borderColor, pieData]);
