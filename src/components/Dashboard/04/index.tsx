@@ -99,37 +99,37 @@ const Dashboard04: React.FC = () => {
                     <Work />
                 </ContaineLeftBottom>
             </Rnd>
-            <Rnd default={{ x: screenWidth / 3 + 20, y: 20, width: screenWidth / 3, height: screenHeight - 105, }}>
+            <Rnd default={{ x: screenWidth / 3 + 20, y: 20, width: screenWidth / 2, height: screenHeight, }}>
                 <ContaineMiddleTop>
                     <Carama />
                 </ContaineMiddleTop>
             </Rnd>
-            <Rnd default={{ x: screenWidth / 2 - 20, y: screenHeight - 80, width: 80, height: 80, }}>
+            <Rnd default={{ x: screenWidth / 7 * 6, y: screenHeight - 20, width: 60, height: 40, }}>
                 <ContaineMiddleBottom onClick={() => setSliderStatus(!sliderStatus)}>
                     <PlayImage width={"100%"} height={"100%"} />
                 </ContaineMiddleBottom>
             </Rnd>
-            <Rnd default={{ x: screenWidth / 3 * 2 + 25, y: 30, width: screenWidth / 3 - 20, height: 80 }}>
+            <Rnd default={{ x: screenWidth / 7 * 6, y: 30, width: screenWidth / 7, height: 80 }}>
                 <ContaineRight>
                     <Screen item="温度" value={tempSensor?.current.temp as number} unit="℃" />
                 </ContaineRight>
             </Rnd>
-            <Rnd default={{ x: screenWidth / 3 * 2 + 25, y: 155, width: screenWidth / 3 - 20, height: 80 }}>
+            <Rnd default={{ x: screenWidth / 7 * 6, y: 135, width: screenWidth / 7, height: 80 }}>
                 <ContaineRight>
                     <Screen item="湿度" value={tempSensor?.current.humi as number} unit="％" />
                 </ContaineRight>
             </Rnd>
-            <Rnd default={{ x: screenWidth / 3 * 2 + 25, y: 285, width: screenWidth / 3 - 20, height: 80 }}>
+            <Rnd default={{ x: screenWidth / 7 * 6, y: 240, width: screenWidth / 7, height: 80 }}>
                 <ContaineRight>
                     <Screen item="暑さ指数" value={tempSensor?.current.wbgt as number} unit="℃" />
                 </ContaineRight>
             </Rnd>
-            <Rnd default={{ x: screenWidth / 3 * 2 + 25, y: 415, width: screenWidth / 3 - 20, height: 80 }}>
+            <Rnd default={{ x: screenWidth / 7 * 6, y: 345, width: screenWidth / 7, height: 80 }}>
                 <ContaineRight>
                     <Screen item="最大瞬間風速" value={windSensor?.current.inws as number} unit="m/sec" />
                 </ContaineRight>
             </Rnd>
-            <Rnd default={{ x: screenWidth / 3 * 2 + 25, y: 545, width: screenWidth / 3 - 20, height: 80 }}>
+            <Rnd default={{ x: screenWidth / 7 * 6, y: 450, width: screenWidth / 7, height: 80 }}>
                 <ContaineRight>
                     <Screen item="平均風速" value={windSensor?.current.avws as number} unit="m/sec" />
                 </ContaineRight>
