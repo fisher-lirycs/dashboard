@@ -43,7 +43,7 @@ const Slider: React.FC<SliderProps> = ({ status, time, pieData, borderColor, set
                         </TransCarousel>
                     </SliderContent>
                     <CloseButton onClick={() => setStatus(!status)}>
-                        <ColseImage width={"100%"} height={"100%"} />
+                        <ColseImage width={"100%"} height={"100%"} color="#5cbf5c"/>
                     </CloseButton>
                 </SliderModalDialog>
             </SliderModal>

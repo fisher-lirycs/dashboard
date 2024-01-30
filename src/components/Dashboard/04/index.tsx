@@ -150,15 +150,13 @@ const ContainerLeftTop = styled.div`
     height: 100%;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
-    background-color: #366836;
+    background-color: #5cbf5c;
 `
 const ContaineLeftBottom = styled.div`
     display:flex;
     width: 100%;
     height: 100%;
     justify-content: center;
-    border-radius: 10px;
 `
 const ContaineMiddleTop = styled.div`
     display:flex;
@@ -166,8 +164,7 @@ const ContaineMiddleTop = styled.div`
     height: 100%;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
-    background-color: #366836;
+    background-color: #5cbf5c;
 `
 
 const ContaineMiddleBottom = styled.div`
@@ -176,7 +173,6 @@ const ContaineMiddleBottom = styled.div`
     height: 100%;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
     cursor: pointer;
 `
 
@@ -186,7 +182,6 @@ const ContaineRight = styled.div`
     height: 100%;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
 `
 
 export default Dashboard04;

@@ -38,6 +38,7 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     color: #fff;
+    background-color: #5cbf5c;
 `
 
 const TitleContent = styled.div<{ color?: string }>`
@@ -47,7 +48,8 @@ const TitleContent = styled.div<{ color?: string }>`
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    color: ${props => props.color || '#366836'};
+    font-weight: bold;
+    color: ${props => props.color || '#fff'};
 `
 
 const Table = styled.table`
@@ -57,9 +59,7 @@ const Table = styled.table`
     caption-side: bottom;
     vertical-align: top;
     border-collapse: collapse;
-    background-color: #366836;
     border-color: #ffffff;
-    border-radius: 10px;
     font-size: 20px;
 
     &  tr:not(:last-child) {

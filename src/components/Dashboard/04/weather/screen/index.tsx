@@ -33,8 +33,7 @@ const Container = styled.div<{ width: string, height: string }>`
     align-items: center;
     width: ${props => props.width};
     height: ${props => props.height};
-    background-color: #366836;
-    border-radius: 5px;
+    background-color: #5cbf5c;
     padding: 10px;
 `
 
