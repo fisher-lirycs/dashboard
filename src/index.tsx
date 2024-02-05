@@ -13,6 +13,7 @@ import DashBoard02 from './components/Dashboard/02';
 import DashBoard03 from './components/Dashboard/03';
 import DashBoard04 from './components/Dashboard/04';
 import DashBoard05 from './components/Dashboard/05';
+import DashBoard06 from './components/Dashboard/06';
 import IconView from './components/Icon';
 import Mamory from './components/Mamory';
 import Setting from './components/Setting';
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/setting",
     element: <Setting />,
+  },
+  {
+    path: "/mamory",
+    element: <DashBoard06 />,
   },
   // {
   //   path: "/mamory",

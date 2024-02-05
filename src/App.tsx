@@ -20,6 +20,9 @@ function App() {
           <Link to="/dashboard">DashBoard</Link>
         </li>
         <li>
+          <Link to="/mamory">Mamory</Link>
+        </li>
+        <li>
           <Link to="/setting">Setting</Link>
         </li>
       </ul>

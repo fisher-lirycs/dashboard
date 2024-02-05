@@ -1,5 +1,5 @@
 import React from "react";
-import { Rnd } from "react-rnd";
+import Carama from "../Dashboard/06/camera";
 
 const Mamory: React.FC = () => {
     const style = {
@@ -11,17 +11,7 @@ const Mamory: React.FC = () => {
     };
     return (
         <>
-            <Rnd
-                style={style}
-                default={{
-                    x: 0,
-                    y: 0,
-                    width: 320,
-                    height: 200
-                }}
-            >
-                Rnd
-            </Rnd>
+
         </>
     )
 }
