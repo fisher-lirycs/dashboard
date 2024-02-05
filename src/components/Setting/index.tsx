@@ -126,6 +126,7 @@ const Setting: React.FC = () => {
                 )}
                 <ButtonBlock>
                     <Button type="button" value="設定" onClick={set} />
+                    <Button type="button" style={{ marginLeft: "5px" }} value="戻る" onClick={() => { window.history.back() }} />
                 </ButtonBlock>
             </Content>
         </Contanier>
