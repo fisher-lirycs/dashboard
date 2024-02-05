@@ -42,8 +42,8 @@ const Container = styled.div`
 `
 const Content = styled.div`
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
 `
 
 const CloseButton = styled.div`
