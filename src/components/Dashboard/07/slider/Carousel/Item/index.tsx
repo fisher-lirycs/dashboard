@@ -42,7 +42,7 @@ const TransitionItem: React.FC<TransitionItemProps> = ({
                 );
                 return (
                     <div className={classes}>
-                        <div className="carousel-item-height-90">{children}</div>
+                        <div className="carousel-item-height-100">{children}</div>
                     </div>
                 );
             }}
