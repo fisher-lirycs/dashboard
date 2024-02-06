@@ -14,8 +14,7 @@ import DashBoard03 from './components/Dashboard/03';
 import DashBoard04 from './components/Dashboard/04';
 import DashBoard05 from './components/Dashboard/05';
 import DashBoard06 from './components/Dashboard/06';
-import IconView from './components/Icon';
-import Mamory from './components/Mamory';
+import DashBoard07 from './components/Dashboard/07';
 import Setting from './components/Setting';
 
 const root = ReactDOM.createRoot(
@@ -45,12 +44,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashBoard05 />,
+    element: <DashBoard07 />,
   },
-  // {
-  //   path: "/icons",
-  //   element: <IconView />,
-  // },
   {
     path: "/setting",
     element: <Setting />,
@@ -59,10 +54,6 @@ const router = createBrowserRouter([
     path: "/mamory",
     element: <DashBoard06 />,
   },
-  // {
-  //   path: "/mamory",
-  //   element: <Mamory />,
-  // },
 ]);
 root.render(
   <React.StrictMode>
