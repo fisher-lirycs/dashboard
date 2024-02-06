@@ -9,7 +9,7 @@ const Carama: React.FC = () => {
     useEffect(() => {
         getCameraUrl("exlnk-eJym4WXfkzLm", "UD&hNcC(g5-m", serialId).then(data => {
             let url = data.url;
-            let qs = "aspect_ratio=4_3&";
+            let qs = "aspect_ratio=16_9&";
             qs += "pause_resume_enable=enable";
             setCameraUrl(url + "?" + qs)
         }).then(() => {
@@ -34,19 +34,6 @@ const CameraContainer = styled.div`
     width: calc(100% - 20px);
     align-items: center;
     justify-content: center;
-`
-
-const BrightlessBlock = styled.div`
-    position: absolute;
-    top: -10px;
-    right: 20px;
-    color: #fff;
-`
-
-const BrightlessImage = styled.img`
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
 `
 
 const CameraIframe = styled.iframe`

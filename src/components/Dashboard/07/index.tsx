@@ -4,6 +4,7 @@ import { Rnd } from "react-rnd";
 import Header from "./Header";
 import Circle from "./Circle";
 import Reserve from "./Reserve";
+import CameraAndWeather from "./CameraAndWeather";
 
 const Dashboard07: React.FC = () => {
     const [screenHeight, setScreenHeight] = useState(window.innerHeight - 120);
@@ -22,6 +23,12 @@ const Dashboard07: React.FC = () => {
             y: 90 + screenHeight / 2,
             width: screenWidth / 4,
             height: screenHeight / 2
+        },
+        "CameraAndWeather": {
+            x: screenWidth / 4 + 20,
+            y: 90,
+            width: screenWidth / 2,
+            height: screenHeight - 10
         }
     }
 
@@ -33,6 +40,9 @@ const Dashboard07: React.FC = () => {
             </Rnd>
             <Rnd default={layout["Schedule"]}>
                 <Reserve />
+            </Rnd>
+            <Rnd default={layout["CameraAndWeather"]}>
+                <CameraAndWeather />
             </Rnd>
         </Container>
     )
