@@ -9,7 +9,7 @@ const Carama: React.FC = () => {
     useEffect(() => {
         getCameraUrl("exlnk-eJym4WXfkzLm", "UD&hNcC(g5-m", serialId).then(data => {
             let url = data.url;
-            let qs = "aspect_ratio=16_9&";
+            let qs = "aspect_ratio=4_3&";
             qs += "pause_resume_enable=enable";
             setCameraUrl(url + "?" + qs)
         }).then(() => {

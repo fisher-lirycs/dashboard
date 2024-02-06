@@ -5,6 +5,8 @@ import Header from "./Header";
 import Circle from "./Circle";
 import Reserve from "./Reserve";
 import CameraAndWeather from "./CameraAndWeather";
+import Safety from "./Safety";
+import Rule from "./Rule";
 
 const Dashboard07: React.FC = () => {
     const [screenHeight, setScreenHeight] = useState(window.innerHeight - 120);
@@ -27,9 +29,21 @@ const Dashboard07: React.FC = () => {
         "CameraAndWeather": {
             x: screenWidth / 4 + 20,
             y: 90,
-            width: screenWidth / 2 - 30,
+            width: screenWidth / 2 - 10,
             height: screenHeight - 10
-        }
+        },
+        "Safety": {
+            x: screenWidth / 4 * 3 + 20,
+            y: 90,
+            width: screenWidth / 4,
+            height: screenHeight / 3,
+        },
+        "Rule": {
+            x: screenWidth / 4 * 3 + 20,
+            y: screenHeight / 3 + 100,
+            width: screenWidth / 4,
+            height: screenHeight / 3 * 2,
+        },
     }
 
     return (
@@ -43,6 +57,12 @@ const Dashboard07: React.FC = () => {
             </Rnd>
             <Rnd default={layout["CameraAndWeather"]}>
                 <CameraAndWeather />
+            </Rnd>
+            <Rnd default={layout["Safety"]}>
+                <Safety />
+            </Rnd>
+            <Rnd default={layout["Rule"]}>
+                <Rule />
             </Rnd>
         </Container>
     )
