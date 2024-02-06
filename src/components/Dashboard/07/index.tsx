@@ -10,8 +10,8 @@ import Rule from "./Rule";
 import Slider from "./Slider";
 
 const Dashboard07: React.FC = () => {
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight - 120);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth - 30);
+  const [screenHeight] = useState(window.innerHeight - 120);
+  const [screenWidth] = useState(window.innerWidth - 30);
   const [sliderStatus, setSliderStatus] = useState(true);
 
   const layout = {
