@@ -7,7 +7,7 @@ import Reserve from "./Reserve";
 import CameraAndWeather from "./CameraAndWeather";
 import Safety from "./Safety";
 import Rule from "./Rule";
-import Slider from "./Slider";
+
 
 const Dashboard07: React.FC = () => {
   const [screenHeight] = useState(window.innerHeight - 120);
@@ -65,9 +65,7 @@ const Dashboard07: React.FC = () => {
       <Rnd default={layout["Rule"]}>
         <Rule />
       </Rnd>
-      {sliderStatus && (
-        <Slider status={sliderStatus} setStatus={setSliderStatus} />
-      )}
+
     </Container>
   );
 };

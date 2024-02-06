@@ -42,7 +42,7 @@ const Schedule: React.FC = () => {
         detail: "外構工事",
       },
     ];
-    setSchedules(defaultDate);
+    setSchedules(defaultDate); 
   }, []);
 
   return (
