@@ -27,7 +27,7 @@ const Dashboard07: React.FC = () => {
         "CameraAndWeather": {
             x: screenWidth / 4 + 20,
             y: 90,
-            width: screenWidth / 2,
+            width: screenWidth / 2 - 30,
             height: screenHeight - 10
         }
     }

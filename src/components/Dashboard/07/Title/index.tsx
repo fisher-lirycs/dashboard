@@ -17,7 +17,6 @@ const TitleContainer = styled.div`
     height: 25px;
     width: 100%;
     background: linear-gradient(#499549, #9ccd98, #499549);
-    border-radius: 5px;
     text-align: center;
 
     & > span {

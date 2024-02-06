@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
-import Screen from "./screen";
-import { KidsWeatherType, SensorsType } from "../../../../types/Types";
+import Screen from "./Screen";
+import { KidsWeatherType, SensorsType } from "../../../../../types/Types";
 import axios from "axios";
 
 const Weather: React.FC = () => {
@@ -62,23 +62,64 @@ const Weather: React.FC = () => {
     }, [weather, weathery_name])
 
     return (
-        <Container>
-            <div style={{ width: "calc(100% - 20px)" }}>
-                <Screen item="温度" value={tempSensor?.current.temp as number} unit="℃" />
-            </div>
-            <div style={{ width: "calc(100% - 20px)" }}>
-                <Screen item="湿度" value={tempSensor?.current.humi as number} unit="％" />
-            </div>
-            <div style={{ width: "calc(100% - 20px)" }}>
-                <Screen item="暑さ指数" value={tempSensor?.current.wbgt as number} unit="℃" />
-            </div>
-        </Container>
+        <WeatherContainer>
+            <TempContent>
+                <li>
+                    <Screen item="温度" value={tempSensor?.current.temp as number} unit="℃" />
+                </li>
+                <li>
+                    <Screen item="湿度" value={tempSensor?.current.humi as number} unit="％" />
+                </li>
+                <li>
+                    <Screen item="暑さ指数" value={tempSensor?.current.wbgt as number} unit="℃" />
+                </li>
+            </TempContent>
+            <WindContent>
+                <li>
+                    <Screen item="最大瞬間風速" value={windSensor?.current.inws as number} unit="m/sec" />
+
+                </li>
+                <li>
+                    <Screen item="平均風速" value={windSensor?.current.avws as number} unit="m/sec" />
+                </li>
+            </WindContent>
+        </WeatherContainer>
     )
 }
 
-const Container = styled.div`
+const WeatherContainer = styled.div`
     position: relative;
     width: 100%;
+    height: 100%;
 `;
 
+const TempContent = styled.ul`
+    display: flex;
+    width: 100%;
+    height: calc(50% - 10px);
+    margin: 0 0 10px 0;
+    padding: 0;
+    list-style: none;
+    & li {
+        width: 33%;
+    }
+    & li:not(:last-child) {
+        margin-right: 1%;
+    }
+`
+
+const WindContent = styled.ul`
+    display: flex;
+    width: 100%;
+    height: calc(50% - 10px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    & li {
+        width: 49.5%;
+    }
+    & li:not(:last-child) {
+        margin-right: 1%;
+    }
+`
 export default Weather;

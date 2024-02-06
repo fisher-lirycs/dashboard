@@ -2,16 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 export interface ScreenProps {
-    width?: string,
-    height?: string,
     item: string;
     value: number;
     unit: string;
 }
 
-const Screen: React.FC<ScreenProps> = ({ width = "100%", height = "100%", item, value, unit }) => {
+const Screen: React.FC<ScreenProps> = ({ item, value, unit }) => {
     return (
-        <Container width={width} height={height}>
+        <Container>
             <ItemBlock>
                 <span>{item}</span>
             </ItemBlock>
@@ -23,23 +21,22 @@ const Screen: React.FC<ScreenProps> = ({ width = "100%", height = "100%", item, 
                     <span>{unit}</span>
                 </UnitBlock>
             </div>
-
         </Container>
     )
 }
 
-const Container = styled.div<{ width: string, height: string }>`
+const Container = styled.div`
     position: relative;
     align-items: center;
-    width: ${props => props.width};
-    height: ${props => props.height};
-    background-color: #5cbf5c;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    background-color: orange;
     padding: 10px;
 `
 
 const ItemBlock = styled.div`
     font-weight: bold;
-    color: #fff;
+    color: #000;
 `
 
 const ValueBlock = styled.div<{ unit?: string }>`
@@ -61,7 +58,7 @@ const UnitBlock = styled.div`
     font-size: 20px;
     font-weight: bold;
     margin-left: 5px;
-    color: #ffffff;
+    color: #000;
 `
 
 export default Screen;
