@@ -7,7 +7,7 @@ import Reserve from "./Reserve";
 import CameraAndWeather from "./CameraAndWeather";
 import Safety from "./Safety";
 import Rule from "./Rule";
-import Slider from "./Slider";
+import Slider from "./Slide";
 
 const Dashboard07: React.FC = () => {
   const [screenHeight] = useState(window.innerHeight - 120);
