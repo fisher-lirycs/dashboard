@@ -4,7 +4,8 @@ import { ReactComponent as ColseImage } from "./../../../../assets/images/home.s
 import TransCarousel from "./Carousel";
 import Circle from "../Circle";
 import Reserve from "../Reserve";
-import CameraAndWeather from "../CameraAndWeather";
+import Camera from "../Camera";
+import Weather from "../Weather";
 import Safety from "../Safety";
 import Rule from "../Rule";
 
@@ -40,7 +41,7 @@ const Slider: React.FC<SliderProps> = ({ status, setStatus }) => {
               </TransCarousel.Item>
               <TransCarousel.Item>
                 <SliderBlock>
-                  <CameraAndWeather />
+                  <Camera />
                 </SliderBlock>
               </TransCarousel.Item>
               <TransCarousel.Item>

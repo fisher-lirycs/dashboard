@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const Carama: React.FC = () => {
+const Camera: React.FC = () => {
     const { getCameraUrl } = window;
     const [cameraUrl, setCameraUrl] = useState("");
     const serialId = "1503-5254-4767-2882";
@@ -34,6 +34,8 @@ const CameraContainer = styled.div`
     width: calc(100% - 20px);
     align-items: center;
     justify-content: center;
+    padding: 10px;
+    background-color: #000;
 `
 
 const CameraIframe = styled.iframe`
@@ -43,4 +45,4 @@ const CameraIframe = styled.iframe`
     border-radius: 5px;
 `
 
-export default Carama
+export default Camera

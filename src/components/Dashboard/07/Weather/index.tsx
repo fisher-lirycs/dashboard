@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Screen from "./Screen";
-import { KidsWeatherType, SensorsType } from "../../../../../types/Types";
+import { KidsWeatherType, SensorsType } from "../../../../types/Types";
 import axios from "axios";
 
 const Weather: React.FC = () => {
@@ -89,8 +89,10 @@ const Weather: React.FC = () => {
 
 const WeatherContainer = styled.div`
     position: relative;
-    width: 100%;
+    width: calc(100% - 10px);
     height: 100%;
+    background-color: #000;
+    padding: 5px;
 `;
 
 const TempContent = styled.ul`
@@ -111,7 +113,7 @@ const TempContent = styled.ul`
 const WindContent = styled.ul`
     display: flex;
     width: 100%;
-    height: calc(50% - 10px);
+    height: 50%;
     margin: 0;
     padding: 0;
     list-style: none;

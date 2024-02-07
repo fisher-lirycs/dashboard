@@ -4,7 +4,8 @@ import { Rnd } from "react-rnd";
 import Header from "./Header";
 import Circle from "./Circle";
 import Reserve from "./Reserve";
-import CameraAndWeather from "./CameraAndWeather";
+import Camera from "./Camera";
+import Weather from "./Weather";
 import Safety from "./Safety";
 import Rule from "./Rule";
 import Slider from "./Slide";
@@ -27,11 +28,17 @@ const Dashboard07: React.FC = () => {
       width: screenWidth / 4,
       height: screenHeight / 2,
     },
-    CameraAndWeather: {
+    Camera: {
       x: screenWidth / 4 + 20,
       y: 90,
       width: screenWidth / 2 - 10,
-      height: screenHeight - 10,
+      height: screenHeight / 3 * 2,
+    },
+    Weather: {
+      x: screenWidth / 4 + 20,
+      y: screenHeight / 3 * 2 + 90,
+      width: screenWidth / 2 - 10,
+      height: screenHeight / 3,
     },
     Safety: {
       x: (screenWidth / 4) * 3 + 20,
@@ -56,8 +63,11 @@ const Dashboard07: React.FC = () => {
       <Rnd default={layout["Schedule"]}>
         <Reserve />
       </Rnd>
-      <Rnd default={layout["CameraAndWeather"]}>
-        <CameraAndWeather />
+      <Rnd default={layout["Camera"]}>
+        <Camera />
+      </Rnd>
+      <Rnd default={layout["Weather"]}>
+        <Weather />
       </Rnd>
       <Rnd default={layout["Safety"]}>
         <Safety />
