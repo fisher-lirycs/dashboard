@@ -46,7 +46,7 @@ const Dashboard07: React.FC = () => {
       width: screenWidth / 4,
       height: screenHeight / 5,
     },
-    Rule: {
+    Crane: {
       x: (screenWidth / 4) * 3 + 20,
       y: screenHeight / 5 + 100,
       width: screenWidth / 4,
@@ -72,10 +72,12 @@ const Dashboard07: React.FC = () => {
       <Rnd default={layout["Safety"]}>
         <Safety />
       </Rnd>
-      <Rnd default={layout["Rule"]}>
+      <Rnd default={layout["Crane"]}>
         <Crane />
       </Rnd>
-
+      {sliderStatus && (
+        <Slider status={sliderStatus} setStatus={setSliderStatus} />
+      )}
     </Container>
   );
 };

@@ -7,7 +7,7 @@ import Reserve from "../Reserve";
 import Camera from "../Camera";
 import Weather from "../Weather";
 import Safety from "../Safety";
-import Rule from "../Rule";
+import Crane from "../Crane";
 
 export interface SliderProps {
   status: boolean;
@@ -15,6 +15,7 @@ export interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ status, setStatus }) => {
+  const [sliderItem, setSliderItem] = useState(["Circle", "Schedule", "Camera", "Weather", "Safety", "Crane"])
   const [sliderTime, setSliterTime] = useState<number>(5);
   useEffect(() => {
     const time: number = Number.parseInt(
@@ -22,6 +23,21 @@ const Slider: React.FC<SliderProps> = ({ status, setStatus }) => {
     );
     setSliterTime(time);
   }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("sliderSort")) {
+      const sliderSort: Array<{ id: string, sort: number }> = JSON.parse(localStorage.getItem("sliderSort") as string);
+      const sortItems = []
+      for (const sortObj of sliderSort) {
+        sortItems.push(sortObj.id)
+      }
+      setSliderItem(sortItems)
+    }
+  }, [])
+
+
+
+
   return (
     <Container>
       <SliderBackDrop />
@@ -29,31 +45,18 @@ const Slider: React.FC<SliderProps> = ({ status, setStatus }) => {
         <SliderModalDialog>
           <SliderContent>
             <TransCarousel interval={sliderTime * 1000}>
-              <TransCarousel.Item>
-                <SliderBlock>
-                  <Circle />
-                </SliderBlock>
-              </TransCarousel.Item>
-              <TransCarousel.Item>
-                <SliderBlock>
-                  <Reserve />
-                </SliderBlock>
-              </TransCarousel.Item>
-              <TransCarousel.Item>
-                <SliderBlock>
-                  <Camera />
-                </SliderBlock>
-              </TransCarousel.Item>
-              <TransCarousel.Item>
-                <SliderBlock>
-                  <Safety />
-                </SliderBlock>
-              </TransCarousel.Item>
-              <TransCarousel.Item>
-                <SliderBlock>
-                  <Rule />
-                </SliderBlock>
-              </TransCarousel.Item>
+              {sliderItem.map((item, index) => (
+                <TransCarousel.Item key={index}>
+                  <SliderBlock>
+                    {item === "Circle" && <Circle />}
+                    {item === "Schedule" && <Reserve />}
+                    {item === "Camera" && <Camera />}
+                    {item === "Weather" && <Weather />}
+                    {item === "Safety" && <Safety />}
+                    {item === "Crane" && <Crane />}
+                  </SliderBlock>
+                </TransCarousel.Item>
+              ))}
             </TransCarousel>
           </SliderContent>
           <CloseButton onClick={() => setStatus(!status)}>
