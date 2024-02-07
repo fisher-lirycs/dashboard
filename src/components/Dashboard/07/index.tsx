@@ -7,6 +7,7 @@ import Reserve from "./Reserve";
 import Camera from "./Camera";
 import Weather from "./Weather";
 import Safety from "./Safety";
+import Rule from "./Rule";
 import Crane from "./Crane";
 import Slider from "./Slide";
 import { ReactComponent as PlayImage } from "./../../../assets/images/play.svg";
@@ -51,13 +52,19 @@ const Dashboard07: React.FC = () => {
       x: (screenWidth / 4) * 3 + 20,
       y: 90,
       width: screenWidth / 4,
-      height: screenHeight / 5,
+      height: screenHeight / 4,
+    },
+    Rule: {
+      x: (screenWidth / 4) * 3 + 20,
+      y: screenHeight / 4 + 90,
+      width: screenWidth / 4,
+      height: (screenHeight / 4),
     },
     Crane: {
       x: (screenWidth / 4) * 3 + 20,
-      y: screenHeight / 5 + 100,
+      y: screenHeight / 2 + 110,
       width: screenWidth / 4,
-      height: (screenHeight / 5) * 4,
+      height: (screenHeight / 2),
     },
   };
 
@@ -83,6 +90,9 @@ const Dashboard07: React.FC = () => {
       </Rnd>
       <Rnd default={layout["Safety"]}>
         <Safety />
+      </Rnd>
+      <Rnd default={layout["Rule"]}>
+        <Rule />
       </Rnd>
       <Rnd default={layout["Crane"]}>
         <Crane />

@@ -6,6 +6,7 @@ import Circle from "../Circle";
 import Reserve from "../Reserve";
 import Camera from "../Camera";
 import Weather from "../Weather";
+import Rule from "../Rule";
 import Safety from "../Safety";
 import Crane from "../Crane";
 
@@ -15,7 +16,7 @@ export interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ status, setStatus }) => {
-  const [sliderItem, setSliderItem] = useState(["Circle", "Schedule", "Camera", "Weather", "Safety", "Crane"])
+  const [sliderItem, setSliderItem] = useState(["Circle", "Schedule", "Weather", "Safety", "Rule", "Crane", "Camera"])
   const [sliderTime, setSliterTime] = useState<number>(5);
   useEffect(() => {
     const time: number = Number.parseInt(
@@ -54,6 +55,7 @@ const Slider: React.FC<SliderProps> = ({ status, setStatus }) => {
                     {item === "Weather" && <Weather />}
                     {item === "Safety" && <Safety />}
                     {item === "Crane" && <Crane />}
+                    {item === "Rule" && <Rule />}
                   </SliderBlock>
                 </TransCarousel.Item>
               ))}
@@ -97,8 +99,8 @@ const SliderModal = styled.div`
 
 const SliderModalDialog = styled.div`
   position: relative;
-  width: 80%;
-  height: 95%;
+  width: 60%;
+  height: 70%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

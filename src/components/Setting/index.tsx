@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { ScheduleDataType } from "../../types/Types";
 
@@ -7,13 +7,22 @@ const Setting: React.FC = () => {
     const [scheduleFile, setScheduleFile] = useState<File>();
     const [sliderTime, setSliderTime] = useState<string>("5");
     const [apiTime, setApiTime] = useState<string>("10");
+    const [circleSortNumber, setCircleSortNumber] = useState<string>((localStorage.getItem("CircleSortNumber") as string) || "1");
+    const [scheduleSortNumber, setScheduleSortNumber] = useState<string>((localStorage.getItem("ScheduleSortNumber") as string) || "2");
+    const [weatherSortNumber, setWeatherSortNumber] = useState<string>((localStorage.getItem("WeatherSortNumber") as string) || "3");
+    const [safetySortNumber, setSafetySortNumber] = useState<string>((localStorage.getItem("SafetySortNumber") as string) || "4");
+    const [ruleSortNumber, setRuleSortNumber] = useState<string>((localStorage.getItem("RuleSortNumber") as string) || "5");
+    const [craneSortNumber, setCraneSortNumber] = useState<string>((localStorage.getItem("CraneSortNumber") as string) || "6");
+    const [cameraSortNumber, setCameraSortNumber] = useState<string>((localStorage.getItem("CameraSortNumber") as string) || "7");
+
     const [sliderSort, setSliderSort] = useState<{ [key: string]: string }>({
         Circle: "1",
         Schedule: "2",
-        Camera: "3",
-        Weather: "4",
-        Safety: "5",
+        Weather: "3",
+        Safety: "4",
+        Rule: "5",
         Crane: "6",
+        Camera: "7",
     })
 
     const [errMessage, setErrMessage] = useState<Array<string>>([]);
@@ -42,12 +51,14 @@ const Setting: React.FC = () => {
         setApiTime(value);
     }, [setApiTime])
 
-    const handleSliderSortChange = useCallback((e: React.ChangeEvent<HTMLInputElement>, item: string) => {
+    const handleSliderSortChange = useCallback((e: React.ChangeEvent<HTMLInputElement>, item: string, setItemFunc: (value: string) => void) => {
         const target = e.target;
         const value = target.value;
         let temp = sliderSort;
         temp[item] = value;
         setSliderSort(temp)
+        setItemFunc(value);
+        localStorage.setItem(item + "SortNumber", value);
     }, [setSliderSort])
 
     const set = () => {
@@ -68,14 +79,16 @@ const Setting: React.FC = () => {
             }
 
             let sliderArray = [
-                { id: "Circle", sort: parseInt(sliderSort["Circle"]) },
-                { id: "Schedule", sort: parseInt(sliderSort["Schedule"]) },
-                { id: "Camera", sort: parseInt(sliderSort["Camera"]) },
-                { id: "Weather", sort: parseInt(sliderSort["Weather"]) },
-                { id: "Safety", sort: parseInt(sliderSort["Safety"]) },
-                { id: "Crane", sort: parseInt(sliderSort["Crane"]) },
+                { id: "Circle", sort: circleSortNumber },
+                { id: "Schedule", sort: scheduleSortNumber },
+                { id: "Weather", sort: weatherSortNumber },
+                { id: "Safety", sort: safetySortNumber },
+                { id: "Rule", sort: ruleSortNumber },
+                { id: "Crane", sort: craneSortNumber },
+                { id: "Camera", sort: cameraSortNumber },
             ]
-            localStorage.setItem("sliderSort", JSON.stringify(sliderArray.sort((a, b) => a.sort - b.sort)))
+
+            localStorage.setItem("sliderSort", JSON.stringify(sliderArray.sort((a, b) => parseInt(a.sort) - parseInt(b.sort))))
 
             if (scheduleFile) {
                 const reader = new FileReader();
@@ -139,28 +152,32 @@ const Setting: React.FC = () => {
                     <Lable>スライダーの表示準</Lable>
                     <div>
                         <div style={{ display: "flex", alignItems: "center" }}>
-                            <span style={{ width: "150px" }}>安全施行サイクル</span>
-                            <NummberInput style={{ width: "40px" }} defaultValue={sliderSort["Circle"]} onBlur={(e) => { handleSliderSortChange(e, "Circle") }} />
+                            <span style={{ width: "150px" }}>安全施工サイクル</span>
+                            <NummberInput style={{ width: "40px" }} defaultValue={circleSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Circle", setCircleSortNumber) }} />
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
                             <span style={{ width: "150px" }}>今週の作業予定</span>
-                            <NummberInput style={{ width: "40px" }} defaultValue={sliderSort["Schedule"]} onBlur={(e) => { handleSliderSortChange(e, "Schedule") }} />
-                        </div>
-                        <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
-                            <span style={{ width: "150px" }}>Mamory</span>
-                            <NummberInput style={{ width: "40px" }} defaultValue={sliderSort["Camera"]} onBlur={(e) => { handleSliderSortChange(e, "Camera") }} />
+                            <NummberInput style={{ width: "40px" }} defaultValue={scheduleSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Schedule", setScheduleSortNumber) }} />
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
                             <span style={{ width: "150px" }}>Weather</span>
-                            <NummberInput style={{ width: "40px" }} defaultValue={sliderSort["Weather"]} onBlur={(e) => { handleSliderSortChange(e, "Weather") }} />
+                            <NummberInput style={{ width: "40px" }} defaultValue={weatherSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Weather", setWeatherSortNumber) }} />
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
                             <span style={{ width: "150px" }}>安全</span>
-                            <NummberInput style={{ width: "40px" }} defaultValue={sliderSort["Safety"]} onBlur={(e) => { handleSliderSortChange(e, "Safety") }} />
+                            <NummberInput style={{ width: "40px" }} defaultValue={safetySortNumber} onBlur={(e) => { handleSliderSortChange(e, "Safety", setSafetySortNumber) }} />
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
+                            <span style={{ width: "150px" }}>ルール</span>
+                            <NummberInput style={{ width: "40px" }} defaultValue={ruleSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Rule", setRuleSortNumber) }} />
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
                             <span style={{ width: "150px" }}>建設用クレーンの標準合図法</span>
-                            <NummberInput style={{ width: "40px" }} defaultValue={sliderSort["Crane"]} onBlur={(e) => { handleSliderSortChange(e, "Crane") }} />
+                            <NummberInput style={{ width: "40px" }} defaultValue={craneSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Crane", setCraneSortNumber) }} />
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
+                            <span style={{ width: "150px" }}>Mamory</span>
+                            <NummberInput style={{ width: "40px" }} defaultValue={cameraSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Camera", setCameraSortNumber) }} />
                         </div>
                     </div>
                 </div>
