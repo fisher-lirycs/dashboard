@@ -19,14 +19,16 @@ const Rule: React.FC = () => {
 
     const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = null || e.target.files && e.target.files[0]
-        const reader = new FileReader();
-        reader.readAsDataURL(selectedFile as File);
+        if (selectedFile) {
+            const reader = new FileReader();
+            reader.readAsDataURL(selectedFile as File);
 
-        reader.onload = (event: ProgressEvent<FileReader>) => {
-            const url = event.target?.result;
-            localStorage.setItem("ruleimage", url as string);
-            setImageUrl(url as string)
-        };
+            reader.onload = (event: ProgressEvent<FileReader>) => {
+                const url = event.target?.result;
+                localStorage.setItem("ruleimage", url as string);
+                setImageUrl(url as string)
+            };
+        }
     }
 
     return (
