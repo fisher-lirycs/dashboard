@@ -7,7 +7,7 @@ const Crane: React.FC = () => {
     return (
         <CraneContainer>
             <TitleContent>
-                <Title text={"建設用クレーンの標準合図法"} />
+                <Title text={"標準合図法"} />
             </TitleContent>
             <DetailContent>
                 <img src={imgURL} alt="建設用クレーンの標準合図法" width={"100%"} height={"100%"}/>

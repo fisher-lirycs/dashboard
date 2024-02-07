@@ -26,7 +26,7 @@ const Safety: React.FC<SafetyProps> = ({ fontSize = "1.2vw" }) => {
                 {!editStatus && <SetImage width={"100%"} height={"100%"} onClick={() => setEditStatus(!editStatus)} />}
             </EditIconBlock>
             <TitleContent>
-                <Title text={"安 全"} />
+                <Title text={"安全掲示板"} />
             </TitleContent>
             {editStatus ? (
                 <InputContent fontSize={fontSize}>
