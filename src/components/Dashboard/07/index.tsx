@@ -9,13 +9,20 @@ import Weather from "./Weather";
 import Safety from "./Safety";
 import Crane from "./Crane";
 import Slider from "./Slide";
+import { ReactComponent as PlayImage } from "./../../../assets/images/play.svg";
 
 const Dashboard07: React.FC = () => {
   const [screenHeight] = useState(window.innerHeight - 120);
   const [screenWidth] = useState(window.innerWidth - 30);
-  const [sliderStatus, setSliderStatus] = useState(true);
+  const [sliderStatus, setSliderStatus] = useState(false);
 
   const layout = {
+    Play: {
+      x: screenWidth - 100,
+      y: 20,
+      width: 80,
+      height: 40,
+    },
     Circle: {
       x: 10,
       y: 90,
@@ -57,6 +64,11 @@ const Dashboard07: React.FC = () => {
   return (
     <Container>
       <Header />
+      <Rnd default={layout["Play"]}>
+        <PlayButton onClick={() => setSliderStatus(!sliderStatus)}>
+          <PlayImage width={"100%"} height={"100%"} />
+        </PlayButton>
+      </Rnd>
       <Rnd default={layout["Circle"]}>
         <Circle />
       </Rnd>
@@ -86,6 +98,12 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   overflow: hidden;
+`;
+
+const PlayButton = styled.div`
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 `;
 
 export default Dashboard07;
