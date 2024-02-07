@@ -126,7 +126,7 @@ const Setting: React.FC = () => {
                 )}
                 <ButtonBlock>
                     <Button type="button" value="設定" onClick={set} />
-                    <Button type="button" style={{ marginLeft: "5px" }} value="戻る" onClick={() => { window.history.back() }} />
+                    <Button type="button" style={{ marginLeft: "5px", backgroundColor: "grey", borderColor: "grey" }} value="戻る" onClick={() => { window.history.back() }} />
                 </ButtonBlock>
             </Content>
         </Contanier>
@@ -142,7 +142,7 @@ const Contanier = styled.div`
 `;
 
 const Content = styled.div`
-    width: 300px;
+    width: 400px;
     padding: 30px;
     background: #fff;
     box-shadow: 0 0 8px rgba(0,0,0,.12);
@@ -155,7 +155,7 @@ const Lable = styled.label`
     align-items: center;
     margin-right: .75rem;
     height: 40px;
-    width: 100px;
+    width: 150px;
     padding: 0 5px;
     background: #eaeaea;
     font-weight: 700;

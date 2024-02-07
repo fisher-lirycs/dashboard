@@ -7,7 +7,7 @@ import Reserve from "./Reserve";
 import Camera from "./Camera";
 import Weather from "./Weather";
 import Safety from "./Safety";
-import Rule from "./Rule";
+import Crane from "./Crane";
 import Slider from "./Slide";
 
 const Dashboard07: React.FC = () => {
@@ -44,13 +44,13 @@ const Dashboard07: React.FC = () => {
       x: (screenWidth / 4) * 3 + 20,
       y: 90,
       width: screenWidth / 4,
-      height: screenHeight / 3,
+      height: screenHeight / 5,
     },
     Rule: {
       x: (screenWidth / 4) * 3 + 20,
-      y: screenHeight / 3 + 100,
+      y: screenHeight / 5 + 100,
       width: screenWidth / 4,
-      height: (screenHeight / 3) * 2,
+      height: (screenHeight / 5) * 4,
     },
   };
 
@@ -73,7 +73,7 @@ const Dashboard07: React.FC = () => {
         <Safety />
       </Rnd>
       <Rnd default={layout["Rule"]}>
-        <Rule />
+        <Crane />
       </Rnd>
 
     </Container>
