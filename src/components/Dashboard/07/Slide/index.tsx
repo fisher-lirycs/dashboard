@@ -97,8 +97,8 @@ const SliderModal = styled.div`
 
 const SliderModalDialog = styled.div`
   position: relative;
-  width: 40%;
-  height: 80%;
+  width: 80%;
+  height: 95%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -109,7 +109,7 @@ const SliderContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 90%;
+  height: 100%;
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
