@@ -157,7 +157,7 @@ const Table = styled.table`
 `;
 
 const TdWeek = styled.td<{ week?: string }>`
-  color: ${(props) => (props.week === "日" ? "red" : "#5cbf5c")};
+  color: ${(props) => (props.week === "日" ? "red" : (props.week === "土" ? "blue" : "#5cbf5c"))};
 `;
 
 export default Schedule;

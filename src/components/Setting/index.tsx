@@ -1,10 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { ScheduleDataType } from "../../types/Types";
 
 const Setting: React.FC = () => {
-    const [displayFileName, setDisplayFileName] = useState<string>("選択されていません");
-    const [scheduleFile, setScheduleFile] = useState<File>();
     const [sliderTime, setSliderTime] = useState<string>("5");
     const [apiTime, setApiTime] = useState<string>("10");
     const [circleSortNumber, setCircleSortNumber] = useState<string>((localStorage.getItem("CircleSortNumber") as string) || "1");
@@ -27,17 +24,6 @@ const Setting: React.FC = () => {
 
     const [errMessage, setErrMessage] = useState<Array<string>>([]);
     const [success, setSuccess] = useState(false);
-
-    const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedFile = null || e.target.files && e.target.files[0]
-        const name = selectedFile?.name || "選択されていません";
-        setDisplayFileName(name)
-        if (selectedFile) {
-            setScheduleFile(selectedFile);
-        } else {
-            setScheduleFile(undefined)
-        }
-    }, [])
 
     const handleTimeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const target = e.target;
@@ -62,94 +48,41 @@ const Setting: React.FC = () => {
     }, [setSliderSort])
 
     const set = () => {
-        const errMsg: Array<string> = [];
-        if (!scheduleFile && !sliderTime && !apiTime) {
-            errMsg.push("日程ファイル または スライドの切替時間を設定してください");
+        setSuccess(true)
+        if (sliderTime) {
+            localStorage.setItem("sliderTime", sliderTime as string)
         }
-        setErrMessage(errMsg)
-        if (errMsg.length > 0) {
-            setSuccess(false)
-        } else {
-            setSuccess(true)
-            if (sliderTime) {
-                localStorage.setItem("sliderTime", sliderTime as string)
-            }
-            if (apiTime) {
-                localStorage.setItem("apiTime", apiTime as string)
-            }
-
-            let sliderArray = [
-                { id: "Circle", sort: circleSortNumber },
-                { id: "Schedule", sort: scheduleSortNumber },
-                { id: "Weather", sort: weatherSortNumber },
-                { id: "Safety", sort: safetySortNumber },
-                { id: "Rule", sort: ruleSortNumber },
-                { id: "Crane", sort: craneSortNumber },
-                { id: "Camera", sort: cameraSortNumber },
-            ]
-
-            localStorage.setItem("sliderSort", JSON.stringify(sliderArray.sort((a, b) => parseInt(a.sort) - parseInt(b.sort))))
-
-            if (scheduleFile) {
-                const reader = new FileReader();
-                const scheduleArray: Array<ScheduleDataType> = []
-                reader.onload = (event: ProgressEvent<FileReader>) => {
-                    const content = event.target?.result;
-                    if (content) {
-                        const lines = content.toString().split("\r\n");
-                        for (const line of lines) {
-                            const strs = line.split(",");
-                            if (strs[0]) {
-                                const scheduleJson: ScheduleDataType = {
-                                    day: "",
-                                    week: "",
-                                    detail: "",
-                                };
-                                const day = strs[0]
-                                const newDate = new Date(day);
-
-                                scheduleJson.day = `${newDate.getMonth() + 1}/${newDate.getDate()}`;
-                                scheduleJson.week = strs[1];
-                                scheduleJson.detail = strs[2];
-                                scheduleArray.push(scheduleJson)
-                            }
-
-                        }
-                    }
-                };
-                reader.onloadend = () => {
-                    localStorage.setItem("schedule", JSON.stringify(scheduleArray))
-                };
-                reader.readAsText(scheduleFile as File, "UTF-8");
-            }
-
+        if (apiTime) {
+            localStorage.setItem("apiTime", apiTime as string)
         }
+        let sliderArray = [
+            { id: "Circle", sort: circleSortNumber },
+            { id: "Schedule", sort: scheduleSortNumber },
+            { id: "Weather", sort: weatherSortNumber },
+            { id: "Safety", sort: safetySortNumber },
+            { id: "Rule", sort: ruleSortNumber },
+            { id: "Crane", sort: craneSortNumber },
+            { id: "Camera", sort: cameraSortNumber },
+        ]
+        localStorage.setItem("sliderSort", JSON.stringify(sliderArray.sort((a, b) => parseInt(a.sort) - parseInt(b.sort))))
     };
 
 
     return (
         <Contanier>
             <Content>
-                <FileUpBlock style={{ marginBottom: "5px" }}>
-                    <Lable htmlFor="file">日程ファイル</Lable>
-                    <span>{displayFileName}</span>
-                    <FileInput>
-                        <span>選択</span>
-                        <input type="file" name="file" id="file" onChange={handleFileSelect} />
-                    </FileInput>
-                </FileUpBlock>
                 <div style={{ marginBottom: "5px" }}>
-                    <Lable >スライドの切替</Lable>
+                    <Lable>スライドショーの間隔</Lable>
                     <NummberInput type="number" name="slideTime" id="slideTime" defaultValue={sliderTime} onBlur={handleTimeChange} />
                     <span>秒</span>
                 </div>
                 <div style={{ marginBottom: "5px" }}>
-                    <Lable >API呼出の間隔時間</Lable>
+                    <Lable>APIデータ取込間隔</Lable>
                     <NummberInput type="number" name="apiTime" id="apiTime" defaultValue={apiTime} onBlur={handleApiTimeChange} />
                     <span>秒</span>
                 </div>
                 <div style={{ display: "flex" }}>
-                    <Lable>スライダーの表示準</Lable>
+                    <div><Lable>スライドショーの表示順</Lable></div>
                     <div>
                         <div style={{ display: "flex", alignItems: "center" }}>
                             <span style={{ width: "150px" }}>安全施工サイクル</span>
@@ -160,11 +93,11 @@ const Setting: React.FC = () => {
                             <NummberInput style={{ width: "40px" }} defaultValue={scheduleSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Schedule", setScheduleSortNumber) }} />
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
-                            <span style={{ width: "150px" }}>Weather</span>
+                            <span style={{ width: "150px" }}>WeatheryAPIデータ</span>
                             <NummberInput style={{ width: "40px" }} defaultValue={weatherSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Weather", setWeatherSortNumber) }} />
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
-                            <span style={{ width: "150px" }}>安全</span>
+                            <span style={{ width: "150px" }}>安全掲示板</span>
                             <NummberInput style={{ width: "40px" }} defaultValue={safetySortNumber} onBlur={(e) => { handleSliderSortChange(e, "Safety", setSafetySortNumber) }} />
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
@@ -172,11 +105,11 @@ const Setting: React.FC = () => {
                             <NummberInput style={{ width: "40px" }} defaultValue={ruleSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Rule", setRuleSortNumber) }} />
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
-                            <span style={{ width: "150px" }}>建設用クレーンの標準合図法</span>
+                            <span style={{ width: "150px" }}>標準合図法</span>
                             <NummberInput style={{ width: "40px" }} defaultValue={craneSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Crane", setCraneSortNumber) }} />
                         </div>
                         <div style={{ display: "flex", alignItems: "center", marginTop: "5px" }}>
-                            <span style={{ width: "150px" }}>Mamory</span>
+                            <span style={{ width: "150px" }}>MAMORYAPIデータ</span>
                             <NummberInput style={{ width: "40px" }} defaultValue={cameraSortNumber} onBlur={(e) => { handleSliderSortChange(e, "Camera", setCameraSortNumber) }} />
                         </div>
                     </div>
@@ -227,7 +160,8 @@ const Lable = styled.label`
     display: inline-flex;
     align-items: center;
     margin-right: .75rem;
-    height: 40px;
+    min-height: 40px;
+    height: 100%;
     width: 150px;
     padding: 0 5px;
     background: #eaeaea;
@@ -253,40 +187,6 @@ const NummberInput = styled.input`
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-`
-
-const FileUpBlock = styled.div`
-    position: relative;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    font-size: 13px;
-`
-const FileInput = styled.div`
-    position: absolute;
-    display: flex;
-    right: 0;
-    overflow: hidden;
-    width: 30px;
-    height: 20px;
-    border: 1px solid #eaeaea;
-    border-radius: 4px;
-    align-items: center;
-    justify-content: center;
-    background: #eaeaea;
-    cursor: pointer;
-    font-size: 12px;
-
-    & > input {
-        display: inline-block;
-        position: absolute;
-        font-size: 12px;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        z-index: 1;
-        cursor: pointer;
-    }
 `
 
 const ButtonBlock = styled.div`
