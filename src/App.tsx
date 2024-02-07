@@ -5,9 +5,6 @@ function App() {
     <div>
       <ul>
         <li>
-          <Link to="/dashBoard02">DashBoard02</Link>
-        </li>
-        <li>
           <Link to="/dashboard">DashBoard</Link>
         </li>
         <li>
