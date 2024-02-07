@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Header: React.FC = () => {
     return (
         <HeaderContainer>
-            <span>やりと心くばりを現場の隅々まで</span>
+            <span>思いやりの心くばりを現場の隅々まで</span>
         </HeaderContainer>
     )
 }
