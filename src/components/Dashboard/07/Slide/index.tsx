@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { ReactComponent as ColseImage } from "./../../../../assets/images/home.svg";
+import { ReactComponent as ColseImage } from "./../../../../assets/images/close.svg";
 import TransCarousel from "./Carousel";
 import Circle from "../Circle";
 import Reserve from "../Reserve";
@@ -120,10 +120,11 @@ const SliderContent = styled.div`
 
 const CloseButton = styled.div`
   position: absolute;
-  bottom: -50px;
-  left: calc(50% - 50px);
-  width: 100px;
+  top: -15px;
+  right: -15px;
+  width: 30px;
   cursor: pointer;
+  z-index: 999;
 `;
 
 const SliderBlock = styled.div`
