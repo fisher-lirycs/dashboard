@@ -3,16 +3,30 @@ import styled from "styled-components";
 import Title from "../Title";
 import { ReactComponent as ColseImage } from "./../../../../assets/images/close_white.svg";
 import { ReactComponent as SetImage } from "./../../../../assets/images/setting.svg";
+import noImage from "./../../../../assets/images/no-image.svg"
 
 const Rule: React.FC = () => {
     const [editStatus, setEditStatus] = useState(false)
     const [ruleDetail, setRuleDetail] = useState((localStorage.getItem("ruleDetail")) || "")
+    const [imageUrl, setImageUrl] = useState(localStorage.getItem("ruleimage") || noImage)
 
-    const handleBlur = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
         const target = e.target;
         const value = target.value;
         setRuleDetail(value)
         localStorage.setItem("ruleDetail", value);
+    }
+
+    const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = null || e.target.files && e.target.files[0]
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile as File);
+
+        reader.onload = (event: ProgressEvent<FileReader>) => {
+            const url = event.target?.result;
+            localStorage.setItem("ruleimage", url as string);
+            setImageUrl(url as string)
+        };
     }
 
     return (
@@ -26,14 +40,19 @@ const Rule: React.FC = () => {
             </TitleContent>
             {editStatus ? (
                 <InputContent>
-                    <textarea defaultValue={ruleDetail} rows={6} onBlur={(e) => { handleBlur(e) }} />
+                    <input type="text" defaultValue={ruleDetail} onBlur={(e) => { handleBlur(e) }} />
                 </InputContent>
             ) : (
                 <DetailContent>
                     {ruleDetail}
                 </DetailContent>
             )}
-
+            <ImageContent>
+                <input type="file" name="file" id="ruleFile" style={{ width: "100%", height: "100%" }} onChange={handleFileSelect} />
+                <div style={{ width: "100%", height: "100%" }}>
+                    <img src={imageUrl} alt="" width={"100%"} height={"100%"} />
+                </div>
+            </ImageContent>
         </RuleContainer>
     )
 }
@@ -50,21 +69,34 @@ const TitleContent = styled.div`
 `
 
 const DetailContent = styled.div`
-    height: calc(100% - 35px);
+    height: 25px;
     margin-top: 5px;
     padding: 5px;
-    background: linear-gradient(#5acdef, #dff8ff);
     font-size: 1vw;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    word-break: normal;
+`
+
+const ImageContent = styled.div`
+    position: relative;
+    height: calc(100% - 55px);
+    padding: 5px;
+
+    & > input {
+        display: inline-block;
+        position: absolute;
+        font-size: 12px;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: 1;
+        cursor: pointer;
+    }
 `
 
 const InputContent = styled.div`
-    margin-top: 10px;
+    margin: 10px 0 10px 0;
     font-weith: bold;
 
-    & textarea {
+    & input {
         width: calc(100% - 10px);
         height: 100%;
         font-size: 1vw;
