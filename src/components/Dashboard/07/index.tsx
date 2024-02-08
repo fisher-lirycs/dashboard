@@ -11,6 +11,8 @@ import Rule from "./Rule";
 import Crane from "./Crane";
 import Slider from "./Slide";
 import { ReactComponent as PlayImage } from "./../../../assets/images/play.svg";
+import { ReactComponent as SettingImage } from "./../../../assets/images/setting.svg";
+import { Link } from "react-router-dom";
 
 const Dashboard07: React.FC = () => {
   const [screenHeight] = useState(window.innerHeight - 120);
@@ -40,11 +42,11 @@ const Dashboard07: React.FC = () => {
       x: screenWidth / 4 + 20,
       y: 90,
       width: screenWidth / 2 - 10,
-      height: screenHeight / 3 * 2,
+      height: (screenHeight / 3) * 2,
     },
     Weather: {
       x: screenWidth / 4 + 20,
-      y: screenHeight / 3 * 2 + 90,
+      y: (screenHeight / 3) * 2 + 90,
       width: screenWidth / 2 - 10,
       height: screenHeight / 3,
     },
@@ -58,13 +60,13 @@ const Dashboard07: React.FC = () => {
       x: (screenWidth / 4) * 3 + 20,
       y: screenHeight / 4 + 90,
       width: screenWidth / 4,
-      height: (screenHeight / 4),
+      height: screenHeight / 4,
     },
     Crane: {
       x: (screenWidth / 4) * 3 + 20,
       y: screenHeight / 2 + 110,
       width: screenWidth / 4,
-      height: (screenHeight / 2),
+      height: screenHeight / 2,
     },
   };
 
@@ -72,8 +74,19 @@ const Dashboard07: React.FC = () => {
     <Container>
       <Header />
       <Rnd default={layout["Play"]}>
-        <PlayButton onClick={() => setSliderStatus(!sliderStatus)}>
-          <PlayImage width={"100%"} height={"100%"} />
+        <PlayButton>
+          <div>
+            <PlayImage
+              width={"100%"}
+              height={"100%"}
+              onClick={() => setSliderStatus(!sliderStatus)}
+            />
+          </div>
+          <div>
+            <Link to="/setting">
+              <SettingImage width={"100%"} height={"100%"} />
+            </Link>
+          </div>
         </PlayButton>
       </Rnd>
       <Rnd default={layout["Circle"]}>
@@ -111,9 +124,14 @@ const Container = styled.div`
 `;
 
 const PlayButton = styled.div`
+  display: flex;
   width: 100%;
   height: 100%;
-  cursor: pointer;
+  align-items: center;
+
+  & svg {
+    cursor: pointer;
+  }
 `;
 
 export default Dashboard07;
