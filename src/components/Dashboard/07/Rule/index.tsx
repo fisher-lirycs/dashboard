@@ -10,7 +10,7 @@ const Rule: React.FC = () => {
     const [ruleDetail, setRuleDetail] = useState((localStorage.getItem("ruleDetail")) || "")
     const [imageUrl, setImageUrl] = useState(localStorage.getItem("ruleimage") || noImage)
 
-    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleBlur = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const target = e.target;
         const value = target.value;
         setRuleDetail(value)
@@ -42,7 +42,7 @@ const Rule: React.FC = () => {
             </TitleContent>
             {editStatus ? (
                 <InputContent>
-                    <input type="text" defaultValue={ruleDetail} onBlur={(e) => { handleBlur(e) }} />
+                    <textarea rows={2} defaultValue={ruleDetail} onBlur={(e) => { handleBlur(e) }} />
                 </InputContent>
             ) : (
                 <DetailContent>
@@ -71,16 +71,18 @@ const TitleContent = styled.div`
 `
 
 const DetailContent = styled.div`
-    height: 25px;
+    min-height: 25px;
     margin-top: 5px;
     padding: 5px;
     font-size: 1vw;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: normal;
 `
 
 const ImageContent = styled.div`
     position: relative;
     height: calc(100% - 75px);
-    padding: 5px;
 
     & > input {
         display: inline-block;
@@ -98,7 +100,7 @@ const InputContent = styled.div`
     margin: 10px 0 10px 0;
     font-weith: bold;
 
-    & input {
+    & textarea {
         width: calc(100% - 10px);
         height: 100%;
         font-size: 1vw;
