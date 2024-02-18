@@ -153,7 +153,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         // 数値
         console.log(ratio);
         
-        ctx.font = `1vw Arial`;
+        ctx.font = `0.8vw Arial`;
         ctx.fillStyle = "#333";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
