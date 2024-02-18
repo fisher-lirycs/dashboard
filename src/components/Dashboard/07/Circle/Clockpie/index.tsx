@@ -122,10 +122,11 @@ const ClockAndPie: React.FC<PieProps> = ({
 
       const x = Math.cos(radian) * base;
       const y = Math.sin(radian) * base;
-      console.log(radius - 65 * ratio);
+
+      const lineBase = base > 60 ? 4 : 3
 
       ctx.beginPath();
-      ctx.lineWidth = 3 * ratio;
+      ctx.lineWidth = lineBase * ratio;
       ctx.lineCap = "round";
       ctx.strokeStyle = "#333333";
       ctx.moveTo(-x * 0.2 * ratio, -y * 0.2 * ratio);
@@ -153,8 +154,10 @@ const ClockAndPie: React.FC<PieProps> = ({
       const x = Math.cos(radian) * base;
       const y = Math.sin(radian) * base;
 
+      const lineBase = base > 80 ? 3 : 2
+
       ctx.beginPath();
-      ctx.lineWidth = 1.5 * ratio;
+      ctx.lineWidth = lineBase * ratio;
       ctx.lineCap = "round";
       ctx.moveTo(-x * 0.25 * ratio, -y * 0.25 * ratio);
       ctx.lineTo(x * ratio, y * ratio);
@@ -181,8 +184,10 @@ const ClockAndPie: React.FC<PieProps> = ({
       const x = Math.cos(radian) * base;
       const y = Math.sin(radian) * base;
 
+      const lineBase = 1
+
       ctx.beginPath();
-      ctx.lineWidth = 1 * ratio;
+      ctx.lineWidth = lineBase * ratio;
       ctx.lineCap = "round";
       ctx.moveTo(-x * 0.25 * ratio, -y * 0.25 * ratio);
       ctx.lineTo(x * ratio, y * ratio);
