@@ -6,14 +6,10 @@ import { ReactComponent as SetImage } from "./../../../../assets/images/setting.
 import { LayoutType } from "../../../../types/Types";
 
 export interface SafetyProps {
-  layout?: LayoutType;
-  setLayout?: (layoutData: LayoutType) => void;
   fontSize?: string;
 }
 
 const Safety: React.FC<SafetyProps> = ({
-  layout,
-  setLayout,
   fontSize = "1.2vw",
 }) => {
   const [editStatus, setEditStatus] = useState(false);
@@ -27,9 +23,6 @@ const Safety: React.FC<SafetyProps> = ({
     const value = target.value;
     setSafeDetail(value);
     localStorage.setItem("safetyDetail", value);
-    const tempLayout = layout as LayoutType;
-    tempLayout["Safety"].height = 150;
-    setLayout && setLayout(tempLayout);
   };
 
   return (

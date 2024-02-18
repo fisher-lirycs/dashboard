@@ -72,7 +72,7 @@ const Dashboard07: React.FC = () => {
     },
   };
 
-  const [layout, setLayout] = useState<LayoutType>(
+  const [layout] = useState<LayoutType>(
     JSON.parse(localStorage.getItem("layoutData") as string) ||
       layoutDefaultData
   );
@@ -101,17 +101,17 @@ const Dashboard07: React.FC = () => {
     // localStorage.setItem("layoutData", JSON.stringify(tempLayoutData));
   };
 
-  // const resetLayout = () => {
-  //   localStorage.setItem("layoutData", JSON.stringify(layoutDefaultData));
-  //   window.location.reload();
-  // };
+  const resetLayout = () => {
+    localStorage.setItem("layoutData", JSON.stringify(layoutDefaultData));
+    window.location.reload();
+  };
 
   return (
     <Container>
       <Header />
-      {/* <ResetButton>
+      <ResetButton style={{ display: "none" }}>
         <ResetImage width={"100%"} height={"100%"} onClick={resetLayout} />
-      </ResetButton> */}
+      </ResetButton>
       <Rnd
         default={layout["Play"]}
         onDragStop={(e, d) => {
@@ -231,7 +231,7 @@ const Dashboard07: React.FC = () => {
           );
         }}
       >
-        <Safety layout={layout} setLayout={setLayout} />
+        <Safety />
       </Rnd>
       <Rnd
         default={layout["Rule"]}

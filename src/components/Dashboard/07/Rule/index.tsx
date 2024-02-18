@@ -50,7 +50,7 @@ const Rule: React.FC = () => {
                 </DetailContent>
             )}
             <ImageContent>
-                <input type="file" name="file" id="ruleFile" style={{ width: "100%", height: "100%" }} onChange={handleFileSelect} />
+                {editStatus && <input type="file" name="file" id="ruleFile" style={{ width: "100%", height: "100%" }} onChange={handleFileSelect} />}
                 <div style={{ width: "100%", height: "100%" }}>
                     <img src={imageUrl} alt="参考画像" width={"100%"} height={"100%"} />
                 </div>
@@ -83,6 +83,7 @@ const DetailContent = styled.div`
 const ImageContent = styled.div`
     position: relative;
     height: calc(100% - 75px);
+    padding: 5px;
 
     & > input {
         display: inline-block;
