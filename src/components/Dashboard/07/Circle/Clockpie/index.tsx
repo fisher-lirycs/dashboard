@@ -153,7 +153,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         // 数値
         console.log(ratio);
         
-        ctx.font = `0.8vw Arial`;
+        ctx.font = `1vw Arial`;
         ctx.fillStyle = "#333";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -170,7 +170,7 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
             const y = Math.sin(radian) * (radius - 18 * ratio);
 
             ctx.beginPath();
-            if (j % 5 == 0) {
+            if (j % 5 === 0) {
                 ctx.fillStyle = "#333";
             } else {
                 ctx.fillStyle = "#ccc";
