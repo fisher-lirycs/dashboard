@@ -12,6 +12,7 @@ import Crane from "./Crane";
 import Slider from "./Slide";
 import { ReactComponent as PlayImage } from "./../../../assets/images/play.svg";
 import { ReactComponent as SettingImage } from "./../../../assets/images/setting.svg";
+import { ReactComponent as ResetImage } from "./../../../assets/images/reset.svg";
 import { Link } from "react-router-dom";
 
 const Dashboard07: React.FC = () => {
@@ -19,7 +20,16 @@ const Dashboard07: React.FC = () => {
   const [screenWidth] = useState(window.innerWidth - 30);
   const [sliderStatus, setSliderStatus] = useState(false);
 
-  const layout = {
+  type LayoutType = {
+    [key: string]: {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    };
+  };
+
+  const layoutDefaultData: LayoutType = {
     Play: {
       x: screenWidth - 100,
       y: 20,
@@ -70,10 +80,62 @@ const Dashboard07: React.FC = () => {
     },
   };
 
+  const [layout] = useState<LayoutType>(
+    JSON.parse(localStorage.getItem("layoutData") as string) ||
+      layoutDefaultData
+  );
+
+  const handlerLayout = (
+    id: string,
+    kbn: "drag" | "resize",
+    x: number,
+    y: number,
+    width?: number,
+    height?: number
+  ) => {
+    let tempLayoutData: LayoutType = JSON.parse(
+      localStorage.getItem("layoutData") || JSON.stringify(layout)
+    );
+
+    if (kbn === "drag") {
+      tempLayoutData[id].x = x;
+      tempLayoutData[id].y = y;
+    } else if (kbn === "resize") {
+      tempLayoutData[id].x = x;
+      tempLayoutData[id].y = y;
+      tempLayoutData[id].width = width as number;
+      tempLayoutData[id].height = height as number;
+    }
+    // localStorage.setItem("layoutData", JSON.stringify(tempLayoutData));
+  };
+
+  const resetLayout = () => {
+    localStorage.setItem("layoutData", JSON.stringify(layoutDefaultData));
+    window.location.reload();
+  };
+
   return (
     <Container>
       <Header />
-      <Rnd default={layout["Play"]}>
+      <ResetButton>
+        <ResetImage width={"100%"} height={"100%"} onClick={resetLayout} />
+      </ResetButton>
+      <Rnd
+        default={layout["Play"]}
+        onDragStop={(e, d) => {
+          handlerLayout("Play", "drag", d.x, d.y);
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          handlerLayout(
+            "Play",
+            "resize",
+            position.x,
+            position.y,
+            ref.offsetWidth,
+            ref.offsetHeight
+          );
+        }}
+      >
         <PlayButton>
           <div>
             <PlayImage
@@ -89,25 +151,130 @@ const Dashboard07: React.FC = () => {
           </div>
         </PlayButton>
       </Rnd>
-      <Rnd default={layout["Circle"]}>
+      <Rnd
+        default={layout["Circle"]}
+        onDragStop={(e, d) => {
+          handlerLayout("Circle", "drag", d.x, d.y);
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          handlerLayout(
+            "Circle",
+            "resize",
+            position.x,
+            position.y,
+            ref.offsetWidth,
+            ref.offsetHeight
+          );
+        }}
+      >
         <Circle />
       </Rnd>
-      <Rnd default={layout["Schedule"]}>
+      <Rnd
+        default={layout["Schedule"]}
+        onDragStop={(e, d) => {
+          handlerLayout("Schedule", "drag", d.x, d.y);
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          handlerLayout(
+            "Schedule",
+            "resize",
+            position.x,
+            position.y,
+            ref.offsetWidth,
+            ref.offsetHeight
+          );
+        }}
+      >
         <Reserve />
       </Rnd>
-      <Rnd default={layout["Camera"]}>
+      <Rnd
+        default={layout["Camera"]}
+        onDragStop={(e, d) => {
+          handlerLayout("Camera", "drag", d.x, d.y);
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          handlerLayout(
+            "Camera",
+            "resize",
+            position.x,
+            position.y,
+            ref.offsetWidth,
+            ref.offsetHeight
+          );
+        }}
+      >
         <Camera />
       </Rnd>
-      <Rnd default={layout["Weather"]}>
+      <Rnd
+        default={layout["Weather"]}
+        onDragStop={(e, d) => {
+          handlerLayout("Weather", "drag", d.x, d.y);
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          handlerLayout(
+            "Weather",
+            "resize",
+            position.x,
+            position.y,
+            ref.offsetWidth,
+            ref.offsetHeight
+          );
+        }}
+      >
         <Weather />
       </Rnd>
-      <Rnd default={layout["Safety"]}>
+      <Rnd
+        default={layout["Safety"]}
+        onDragStop={(e, d) => {
+          handlerLayout("Safety", "drag", d.x, d.y);
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          handlerLayout(
+            "Safety",
+            "resize",
+            position.x,
+            position.y,
+            ref.offsetWidth,
+            ref.offsetHeight
+          );
+        }}
+      >
         <Safety />
       </Rnd>
-      <Rnd default={layout["Rule"]}>
+      <Rnd
+        default={layout["Rule"]}
+        onDragStop={(e, d) => {
+          handlerLayout("Rule", "drag", d.x, d.y);
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          handlerLayout(
+            "Rule",
+            "resize",
+            position.x,
+            position.y,
+            ref.offsetWidth,
+            ref.offsetHeight
+          );
+        }}
+      >
         <Rule />
       </Rnd>
-      <Rnd default={layout["Crane"]}>
+      <Rnd
+        default={layout["Crane"]}
+        onDragStop={(e, d) => {
+          handlerLayout("Crane", "drag", d.x, d.y);
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          handlerLayout(
+            "Crane",
+            "resize",
+            position.x,
+            position.y,
+            ref.offsetWidth,
+            ref.offsetHeight
+          );
+        }}
+      >
         <Crane />
       </Rnd>
       {sliderStatus && (
@@ -132,6 +299,15 @@ const PlayButton = styled.div`
   & svg {
     cursor: pointer;
   }
+`;
+
+const ResetButton = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
 `;
 
 export default Dashboard07;
