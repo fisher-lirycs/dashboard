@@ -151,7 +151,9 @@ const ClockAndPie: React.FC<PieProps> = ({ width = "100%", height = "100%", time
         ctx.stroke();
 
         // 数値
-        ctx.font = `${18 * ratio}px Arial`;
+        console.log(ratio);
+        
+        ctx.font = `1vw Arial`;
         ctx.fillStyle = "#333";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
