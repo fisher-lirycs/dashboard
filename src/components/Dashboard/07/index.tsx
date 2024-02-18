@@ -80,7 +80,7 @@ const Dashboard07: React.FC = () => {
     },
   };
 
-  const [layout] = useState<LayoutType>(
+  const [layout, setLayout] = useState<LayoutType>(
     JSON.parse(localStorage.getItem("layoutData") as string) ||
       layoutDefaultData
   );
@@ -117,9 +117,9 @@ const Dashboard07: React.FC = () => {
   return (
     <Container>
       <Header />
-      <ResetButton>
+      {/* <ResetButton>
         <ResetImage width={"100%"} height={"100%"} onClick={resetLayout} />
-      </ResetButton>
+      </ResetButton> */}
       <Rnd
         default={layout["Play"]}
         onDragStop={(e, d) => {
