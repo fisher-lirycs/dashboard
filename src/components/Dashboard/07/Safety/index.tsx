@@ -45,6 +45,7 @@ const Safety: React.FC<SafetyProps> = ({ fontSize = "1.2vw" }) => {
 const SafetyContainer = styled.div`
     width: 100%;
     height: 100%;
+    background-color: #fff;
 `
 
 const TitleContent = styled.div`

@@ -19,7 +19,7 @@ const Crane: React.FC = () => {
 const CraneContainer = styled.div`
     height: 100%;
     width: 100%;
-
+    background-color: #fff;
 `
 
 const TitleContent = styled.div`

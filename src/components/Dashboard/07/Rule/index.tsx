@@ -38,7 +38,7 @@ const Rule: React.FC = () => {
                 {!editStatus && <SetImage width={"100%"} height={"100%"} onClick={() => setEditStatus(!editStatus)} />}
             </EditIconBlock>
             <TitleContent>
-                <Title text={"ルール"} />
+                <Title text={"参考画像"} />
             </TitleContent>
             {editStatus ? (
                 <InputContent>
@@ -62,7 +62,7 @@ const Rule: React.FC = () => {
 const RuleContainer = styled.div`
     height: 100%;
     width: 100%;
-
+    background-color: #fff;
 `
 
 const TitleContent = styled.div`
