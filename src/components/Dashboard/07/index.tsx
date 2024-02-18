@@ -14,20 +14,12 @@ import { ReactComponent as PlayImage } from "./../../../assets/images/play.svg";
 import { ReactComponent as SettingImage } from "./../../../assets/images/setting.svg";
 import { ReactComponent as ResetImage } from "./../../../assets/images/reset.svg";
 import { Link } from "react-router-dom";
+import { LayoutType } from "../../../types/Types";
 
 const Dashboard07: React.FC = () => {
   const [screenHeight] = useState(window.innerHeight - 120);
   const [screenWidth] = useState(window.innerWidth - 30);
   const [sliderStatus, setSliderStatus] = useState(false);
-
-  type LayoutType = {
-    [key: string]: {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-    };
-  };
 
   const layoutDefaultData: LayoutType = {
     Play: {
@@ -109,10 +101,10 @@ const Dashboard07: React.FC = () => {
     // localStorage.setItem("layoutData", JSON.stringify(tempLayoutData));
   };
 
-  const resetLayout = () => {
-    localStorage.setItem("layoutData", JSON.stringify(layoutDefaultData));
-    window.location.reload();
-  };
+  // const resetLayout = () => {
+  //   localStorage.setItem("layoutData", JSON.stringify(layoutDefaultData));
+  //   window.location.reload();
+  // };
 
   return (
     <Container>
@@ -239,7 +231,7 @@ const Dashboard07: React.FC = () => {
           );
         }}
       >
-        <Safety />
+        <Safety layout={layout} setLayout={setLayout} />
       </Rnd>
       <Rnd
         default={layout["Rule"]}
