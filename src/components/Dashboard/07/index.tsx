@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { LayoutType } from "../../../types/Types";
 
 const Dashboard07: React.FC = () => {
+  
   const [screenHeight] = useState((window.innerHeight < 600 ? 600 : window.innerHeight) - 120);
   const [screenWidth] = useState(window.innerWidth - 30);
   const [sliderStatus, setSliderStatus] = useState(false);
