@@ -21,7 +21,7 @@ const Dashboard07: React.FC = () => {
   console.log(window.innerHeight);
   console.log("----------------------");
   const [screenHeight] = useState(window.innerHeight - 120);
-  const [screenWidth] = useState(window.innerWidth - 30);
+  const [screenWidth] = useState((window.innerWidth < 600 ? 600 : window.innerWidth) - 30);
   const [sliderStatus, setSliderStatus] = useState(false);
 
   const layoutDefaultData: LayoutType = {
@@ -77,7 +77,7 @@ const Dashboard07: React.FC = () => {
 
   const [layout] = useState<LayoutType>(
     JSON.parse(localStorage.getItem("layoutData") as string) ||
-      layoutDefaultData
+    layoutDefaultData
   );
 
   const handlerLayout = (
