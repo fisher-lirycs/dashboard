@@ -13,6 +13,9 @@ const Weather: React.FC = () => {
             const apiData: string = JSON.parse(localStorage.getItem("apiTime") || "5");
             const apiTimeSec = parseInt(apiData) * 1000;
             setApiTime(apiTimeSec);
+        } else {
+            const apiTimeSec = 5 * 1000;
+            setApiTime(apiTimeSec); 
         }
     }, [])
 
@@ -30,10 +33,12 @@ const Weather: React.FC = () => {
 
 
     useEffect(() => {
+        console.log("aaaaaaaaaaaaa");
         getWeather();
     }, [])
 
     useEffect(() => {
+        console.log(apiTime);
         const timerX = setInterval(getWeather, apiTime)
         return () => {
             clearInterval(timerX)
